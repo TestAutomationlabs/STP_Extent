@@ -1,14 +1,11 @@
 package com.qa.testcases;
 
-import java.io.IOException;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.qa.Base.TestBase;
 import com.qa.pages.CreateSTPPage;
-import com.qa.pages.HelpToggle;
 import com.qa.pages.HomePage;
 
 public class CreateSTPPagetest extends TestBase {

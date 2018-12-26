@@ -14,7 +14,8 @@ public class ExcelUtility {
 	public static String getCellData(String sheetname, int rowno, int cellno) throws IOException
 	{
 
-	File src= new File("./src/main.java/com.qa.TestData/testData.xlsx");
+	//File src= new File( "User.dir"+"\\src\\main\\java\\com\\qa\\TestData\\testData.xlsx");
+		File src= new File( ".\\src\\main\\java\\com\\qa\\TestData\\testData.xlsx");
 	FileInputStream file=new FileInputStream(src);
 	XSSFWorkbook work=new XSSFWorkbook(file);
 	XSSFSheet sheet1=work.getSheet(sheetname);

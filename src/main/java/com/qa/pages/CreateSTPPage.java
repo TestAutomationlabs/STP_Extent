@@ -2,8 +2,6 @@ package com.qa.pages;
 
 import java.io.IOException;
 
-import org.apache.poi.xssf.usermodel.helpers.HeaderFooterHelper;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
-import com.relevantcodes.extentreports.ExtentX;
 
 public class CreateSTPPage extends TestBase
 {
@@ -22,8 +19,6 @@ public class CreateSTPPage extends TestBase
 	
 	@FindBy(xpath="//span[contains(@class,'slider round')]")
 	WebElement HelpToggle;
-	
-	//private By HelpToggle = By.xpath("//span[contains(@class,'slider round')]");
 	
 	@FindBy(xpath="//p[@class ='col-md-6 mb-0 showhelptooltip shadow-sm p-2 ml-2']")
 	WebElement HelpText;
@@ -196,17 +191,35 @@ public CreateSTPPage()
 		
 		public void EnterMandatoryFields() throws InterruptedException, IOException
 		{
-			for (int i = 1; i<2; i++)
+			for (int i = 1; i<6; i++)
 			{
-				STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, i));
+				generalInfo.click();
 				Thread.sleep(1000);
-				Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, i));
+				STPName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+				Thread.sleep(1000);
+				STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, i));
+				Description.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+				Thread.sleep(1000);
+				Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, i));
+				Thread.sleep(1000);
+				ShortName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
 				Thread.sleep(1000);
 				ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, i));
 				Thread.sleep(1000);
 				resources.click();
 				Thread.sleep(1000);
-				CommunityOrganiser.sendKeys("Kushalappa ");
+				try {
+					if (removeCommunityOrgainser.isDisplayed())
+					{
+						removeCommunityOrgainser.click();
+					}
+				}
+				catch(Exception e)
+				{
+					System.out.println("Community organiser not maintained");
+				}
+				Thread.sleep(1000);
+				CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, i)+" ");
 				Thread.sleep(3000);
 				CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
 				Thread.sleep(1000);
