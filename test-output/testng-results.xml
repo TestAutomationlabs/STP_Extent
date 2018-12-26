@@ -2,28 +2,24 @@
 <testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="608753" started-at="2018-12-24T13:57:21Z" finished-at="2018-12-24T14:07:30Z">
+  <suite name="Default suite" duration-ms="18703" started-at="2018-12-26T12:00:35Z" finished-at="2018-12-26T12:00:54Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="608753" started-at="2018-12-24T13:57:21Z" finished-at="2018-12-24T14:07:30Z">
-      <class name="com.qa.testcases.CreateSTPPagetest">
-        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6356695f]" name="setup" is-config="true" duration-ms="25988" started-at="2018-12-24T13:57:21Z" finished-at="2018-12-24T13:57:47Z">
+    <test name="Default test" duration-ms="18703" started-at="2018-12-26T12:00:35Z" finished-at="2018-12-26T12:00:54Z">
+      <class name="com.qa.testcases.HomePageTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.qa.testcases.HomePageTest@271053e1]" name="setUp" is-config="true" duration-ms="8718" started-at="2018-12-26T12:00:35Z" finished-at="2018-12-26T12:00:44Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method status="PASS" signature="HelpTextValidation()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6356695f]" name="HelpTextValidation" duration-ms="32610" started-at="2018-12-24T13:57:47Z" finished-at="2018-12-24T13:58:20Z">
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="verifyHomeIconTest()[pri:0, instance:com.qa.testcases.HomePageTest@271053e1]" name="verifyHomeIconTest" duration-ms="9501" started-at="2018-12-26T12:00:44Z" finished-at="2018-12-26T12:00:53Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- HelpTextValidation -->
-        <test-method status="PASS" signature="MandatoryFieldValidation()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6356695f]" name="MandatoryFieldValidation" duration-ms="10486" started-at="2018-12-24T13:58:20Z" finished-at="2018-12-24T13:58:30Z">
+        </test-method> <!-- verifyHomeIconTest -->
+        <test-method status="PASS" signature="verifyListTabTest()[pri:2, instance:com.qa.testcases.HomePageTest@271053e1]" name="verifyListTabTest" duration-ms="414" started-at="2018-12-26T12:00:53Z" finished-at="2018-12-26T12:00:54Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- MandatoryFieldValidation -->
-        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6356695f]" name="CloseBrowser" is-config="true" duration-ms="539626" started-at="2018-12-24T13:58:30Z" finished-at="2018-12-24T14:07:30Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseBrowser -->
-      </class> <!-- com.qa.testcases.CreateSTPPagetest -->
+        </test-method> <!-- verifyListTabTest -->
+      </class> <!-- com.qa.testcases.HomePageTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
