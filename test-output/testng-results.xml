@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="608753" started-at="2018-12-24T13:57:21Z" finished-at="2018-12-24T14:07:30Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="608753" started-at="2018-12-24T13:57:21Z" finished-at="2018-12-24T14:07:30Z">
+      <class name="com.qa.testcases.CreateSTPPagetest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6356695f]" name="setup" is-config="true" duration-ms="25988" started-at="2018-12-24T13:57:21Z" finished-at="2018-12-24T13:57:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="HelpTextValidation()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6356695f]" name="HelpTextValidation" duration-ms="32610" started-at="2018-12-24T13:57:47Z" finished-at="2018-12-24T13:58:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- HelpTextValidation -->
+        <test-method status="PASS" signature="MandatoryFieldValidation()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6356695f]" name="MandatoryFieldValidation" duration-ms="10486" started-at="2018-12-24T13:58:20Z" finished-at="2018-12-24T13:58:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- MandatoryFieldValidation -->
+        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6356695f]" name="CloseBrowser" is-config="true" duration-ms="539626" started-at="2018-12-24T13:58:30Z" finished-at="2018-12-24T14:07:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseBrowser -->
+      </class> <!-- com.qa.testcases.CreateSTPPagetest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
