@@ -1,1 +1,4 @@
 /target/
+*.xlsx
+src/main/java/com/qa/pages/CreateSTPPage.java
+src/main/java/com/qa/DataDriven/ExcelUtility.java
