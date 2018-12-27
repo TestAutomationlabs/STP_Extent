@@ -8,47 +8,40 @@ import org.testng.annotations.Test;
 
 import com.qa.Base.TestBase;
 import com.qa.pages.CreateSTPPage;
-import com.qa.pages.HelpToggle;
 import com.qa.pages.HomePage;
 
 public class CreateSTPPagetest extends TestBase {
-	
+
 	CreateSTPPage create;
 	HomePage home;
-	
-	public CreateSTPPagetest()
-	{
+
+	public CreateSTPPagetest() {
 		super();
 	}
- 
+
 	@BeforeClass
-	public void setup()
-	{
+	public void setup() {
 		initialization();
-		create=new CreateSTPPage();
+		create = new CreateSTPPage();
 		home = new HomePage();
 	}
-	
-	@Test
-  public void HelpTextValidation() throws Exception {
-		
+
+	@Test(priority = 1)
+	public void HelpTextValidation() throws Exception {
+
 		home.ClickOnSTPLink();
 		Thread.sleep(1000);
 		create.HelpToggleValidation();
-		
+
 	}
-	
+
 	@Test
-	public void MandatoryFieldValidation() throws Exception
-	{
+	public void MandatoryFieldValidation() throws Exception {
 		create.EnterMandatoryFields();
 	}
 
-@AfterClass
-public void CloseBrowser()
-{
-	driver.close();
+	@AfterClass
+	public void CloseBrowser() {
+		driver.close();
+	}
 }
-}
-	
-	
