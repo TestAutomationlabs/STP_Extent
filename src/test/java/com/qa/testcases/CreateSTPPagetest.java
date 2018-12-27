@@ -7,11 +7,13 @@ import org.testng.annotations.Test;
 import com.qa.Base.TestBase;
 import com.qa.pages.CreateSTPPage;
 import com.qa.pages.HomePage;
+import com.qa.pages.ToastMessages;
 
 public class CreateSTPPagetest extends TestBase {
 	
 	CreateSTPPage create;
 	HomePage home;
+	ToastMessages toast;
 	
 	public CreateSTPPagetest()
 	{
@@ -24,6 +26,7 @@ public class CreateSTPPagetest extends TestBase {
 		initialization();
 		create=new CreateSTPPage();
 		home = new HomePage();
+		toast = new ToastMessages();
 	}
 	
 	@Test
@@ -38,13 +41,20 @@ public class CreateSTPPagetest extends TestBase {
 	@Test
 	public void MandatoryFieldValidation() throws Exception
 	{
-		create.EnterMandatoryFields();
+		for (int i=1; i<6 ; i++)
+		{
+		create.EnterMandatoryFields(i);
+		toast.fullnameToast(i);
+		toast.DescriptionToast(i);
+		toast.CommunityOrganiserToast(i);
+		toast.successfulToast(i);
+		}
 	}
 
 @AfterClass
 public void CloseBrowser()
 {
-	driver.close();
+	//driver.close();
 }
 }
 	
