@@ -37,7 +37,7 @@ public class CreateSTPPagetest extends TestBase {
 
 	}
 
-
+	@Test(priority = 2)
 	public void MandatoryFieldValidation() throws Exception
 	{
 		for (int i=1; i<6 ; i++)
