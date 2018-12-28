@@ -1,7 +1,5 @@
 package com.qa.testcases;
 
-import java.io.IOException;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -9,13 +7,16 @@ import org.testng.annotations.Test;
 import com.qa.Base.TestBase;
 import com.qa.pages.CreateSTPPage;
 import com.qa.pages.HomePage;
+import com.qa.pages.ToastMessages;
 
 public class CreateSTPPagetest extends TestBase {
 
 	CreateSTPPage create;
 	HomePage home;
-
-	public CreateSTPPagetest() {
+	ToastMessages toast;
+	
+	public CreateSTPPagetest()
+	{
 		super();
 	}
 
@@ -24,6 +25,7 @@ public class CreateSTPPagetest extends TestBase {
 		initialization();
 		create = new CreateSTPPage();
 		home = new HomePage();
+		toast = new ToastMessages();
 	}
 
 	@Test(priority = 1)
@@ -35,13 +37,22 @@ public class CreateSTPPagetest extends TestBase {
 
 	}
 
-	@Test
-	public void MandatoryFieldValidation() throws Exception {
-		create.EnterMandatoryFields();
+
+	public void MandatoryFieldValidation() throws Exception
+	{
+		for (int i=1; i<6 ; i++)
+		{
+		create.EnterMandatoryFields(i);
+		toast.fullnameToast(i);
+		toast.DescriptionToast(i);
+		toast.CommunityOrganiserToast(i);
+		toast.successfulToast(i);
+		}
 	}
 
-	@AfterClass
-	public void CloseBrowser() {
-		driver.close();
-	}
+@AfterClass
+public void CloseBrowser()
+{
+	driver.close();
+}
 }

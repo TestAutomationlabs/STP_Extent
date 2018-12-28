@@ -2,7 +2,7 @@
 <testng-results skipped="0" failed="1" ignored="0" total="2" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="85748" started-at="2018-12-26T16:37:47Z" finished-at="2018-12-26T16:39:13Z">
+ <suite name="Default suite" duration-ms="85748" started-at="2018-12-26T16:37:47Z" finished-at="2018-12-26T16:39:13Z">
     <groups>
     </groups>
     <test name="Default test" duration-ms="85748" started-at="2018-12-26T16:37:47Z" finished-at="2018-12-26T16:39:13Z">
@@ -52,6 +52,28 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           </reporter-output>
         </test-method> <!-- verifyPostPageTest -->
       </class> <!-- com.qa.testcases.PostButtonTest -->
+  <suite name="Default suite" duration-ms="178689" started-at="2018-12-26T15:06:46Z" finished-at="2018-12-26T15:09:45Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="178689" started-at="2018-12-26T15:06:46Z" finished-at="2018-12-26T15:09:45Z">
+      <class name="com.qa.testcases.CreateSTPPagetest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6500df86]" name="setup" is-config="true" duration-ms="8680" started-at="2018-12-26T15:06:46Z" finished-at="2018-12-26T15:06:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="HelpTextValidation()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6500df86]" name="HelpTextValidation" duration-ms="32295" started-at="2018-12-26T15:06:55Z" finished-at="2018-12-26T15:07:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- HelpTextValidation -->
+        <test-method status="PASS" signature="MandatoryFieldValidation()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6500df86]" name="MandatoryFieldValidation" duration-ms="137187" started-at="2018-12-26T15:07:27Z" finished-at="2018-12-26T15:09:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- MandatoryFieldValidation -->
+        <test-method status="PASS" signature="CloseBrowser()[pri:0, instance:com.qa.testcases.CreateSTPPagetest@6500df86]" name="CloseBrowser" is-config="true" duration-ms="488" started-at="2018-12-26T15:09:44Z" finished-at="2018-12-26T15:09:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseBrowser -->
+      </class> <!-- com.qa.testcases.CreateSTPPagetest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
