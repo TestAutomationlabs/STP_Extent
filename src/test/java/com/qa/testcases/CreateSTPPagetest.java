@@ -50,6 +50,14 @@ public class CreateSTPPagetest extends TestBase {
 		toast.successfulToast(i);
 		}
 	}
+	
+	@Test
+	public void AllFieldValidation() throws Exception
+	{
+		home.ClickOnSTPLink();
+		Thread.sleep(1000);
+		
+	}
 
 @AfterClass
 public void CloseBrowser()
