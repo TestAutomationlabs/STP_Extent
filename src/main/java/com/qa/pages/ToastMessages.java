@@ -131,11 +131,6 @@ public class ToastMessages extends TestBase
 									String nodesc = "'STP created successfully!' toast message missing after clicking 'Save and Close' button";
 									System.out.print(nodesc);
 								}		
-							}
-			
+							}	
 		}
-		
-	
-	
-	
 }

@@ -1,1 +1,11 @@
 /target/
+*.xlsx
+src/main/java/com/qa/pages/CreateSTPPage.java
+src/main/java/com/qa/DataDriven/ExcelUtility.java
+src/main/java/com/qa/DataDriven/ExcelUtility.java
+src/main/java/com/qa/DataDriven/ExcelUtility.java
+src/main/java/com/qa/pages/CreateSTPPage.java
+src/main/java/com/qa/pages/ListPage.java
+src/test/java/com/qa/testcases/CreateSTPPagetest.java
+src/main/java/com/qa/pages/ToastMessages.java
+src/main/java/com/qa/pages/ListPage.java

@@ -10,7 +10,7 @@ import com.qa.pages.HomePage;
 import com.qa.pages.ToastMessages;
 
 public class CreateSTPPagetest extends TestBase {
-	
+
 	CreateSTPPage create;
 	HomePage home;
 	ToastMessages toast;
@@ -19,26 +19,25 @@ public class CreateSTPPagetest extends TestBase {
 	{
 		super();
 	}
- 
+
 	@BeforeClass
-	public void setup()
-	{
+	public void setup() {
 		initialization();
-		create=new CreateSTPPage();
+		create = new CreateSTPPage();
 		home = new HomePage();
 		toast = new ToastMessages();
 	}
-	
-	@Test
-  public void HelpTextValidation() throws Exception {
-		
+
+	@Test(priority = 1)
+	public void HelpTextValidation() throws Exception {
+
 		home.ClickOnSTPLink();
 		Thread.sleep(1000);
 		create.HelpToggleValidation();
-		
+
 	}
-	
-	@Test
+
+
 	public void MandatoryFieldValidation() throws Exception
 	{
 		for (int i=1; i<6 ; i++)
@@ -62,8 +61,6 @@ public class CreateSTPPagetest extends TestBase {
 @AfterClass
 public void CloseBrowser()
 {
-	//driver.close();
+	driver.close();
 }
 }
-	
-	

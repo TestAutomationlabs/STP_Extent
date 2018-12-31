@@ -3,6 +3,7 @@ package com.qa.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import org.openqa.selenium.support.PageFactory;
 import com.qa.Base.TestBase;
 
 public class ListPage extends TestBase
@@ -118,4 +119,10 @@ public class ListPage extends TestBase
 	@FindBy (xpath = "//div[@id='sEaoUDiUOkh']")
 	WebElement disabledLoad;
 	
+	public ListPage()
+	{
+		PageFactory.initElements(driver, this);         
+	}
+	
+
 }
