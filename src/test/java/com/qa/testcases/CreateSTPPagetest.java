@@ -55,6 +55,7 @@ public class CreateSTPPagetest extends TestBase {
 	{
 		home.ClickOnSTPLink();
 		Thread.sleep(1000);
+		create.EnterALLFields();
 		
 	}
 

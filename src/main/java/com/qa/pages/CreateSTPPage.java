@@ -1,7 +1,9 @@
 package com.qa.pages;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -228,7 +230,85 @@ SavenClose.click();
 Thread.sleep(1000);
 }
 
+public void EnterALLFields() throws Exception
+{
+	STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, 6));
+	
+	Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, 6));
+	Thread.sleep(1000);
+	
+	ShortName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+	ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, 6));
+	
+	Location.sendKeys(ExcelUtility.getCellData("CreateSTP", 7, 6)+" ");
+	Thread.sleep(3000);
+	Location.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	
+	BusinessSector.sendKeys(ExcelUtility.getCellData("CreateSTP", 6, 6)+" ");
+	Thread.sleep(3000);
+	BusinessSector.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	//___________________________________ Page 2 ________________________________________
+	resources.click();
+	Thread.sleep(1000);
+	
+	CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, 6)+" ");
+	Thread.sleep(3000);
+	CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	
+	Experts.sendKeys(ExcelUtility.getCellData("CreateSTP", 5, 6)+" ");
+	Thread.sleep(2000);
+	Experts.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	
+	String asset = ExcelUtility.getCellData("CreateSTP", 9, 6);
+	Assets.sendKeys(asset);
+	Assets.sendKeys(Keys.RETURN);
+	callNewDimension(asset);
+	
+	String database = ExcelUtility.getCellData("CreateSTP", 9, 6);
+	
+}
 
+public void callNewDimension(String value) throws InterruptedException
+{
+	try {
+			Thread.sleep(2000);
+			if(newDimensionName.isDisplayed())
+			{
+
+				newDimensionDescription.sendKeys("Description of "+value );
+				Thread.sleep(1000);
+				newDimensionAdditionalInfo.sendKeys("Additional Info of "+value);
+				Thread.sleep(1000);
+				newDimensionExternalLink.sendKeys("External link of "+value);
+				Thread.sleep(1000);
+				
+				try {
+					newDimensionsave.click();
+				}
+				catch(Exception e)
+				{
+					System.out.println(e);
+				}
+				
+				Thread.sleep(5000);
+			}
+			
+		}
+	catch(NoSuchElementException e)
+	{
+		try {
+			WebElement path = driver.findElement(By.xpath("//div[contains(@data-original-title,"+value+")]"));
+			if (path.isDisplayed())
+			{
+				System.out.println("Element Identified");
+			}
+		}
+		catch(Exception e1)
+		{
+			System.out.println("Element not Identified");
+		}
+	}
+}
 		
 //	public HelpToggle ClickHelpToggle() 
 //	{         HelpToggle.click(); 
