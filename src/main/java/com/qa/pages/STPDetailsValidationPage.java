@@ -76,7 +76,6 @@ public class STPDetailsValidationPage extends TestBase{
 		PageFactory.initElements(driver, this);
 	}
 	
-	
 	//Excel Read for Individual(single data)
 	public void STPFields() throws IOException, InterruptedException 
 	{		
@@ -168,24 +167,85 @@ public class STPDetailsValidationPage extends TestBase{
 		System.out.println("Failed to validate Resoucrce community organizer in Details page");
 		}
 	}
-	}
 	
 
-
-
-	
-
-	
-	
+	public void detailsValidation(int column)
+	{
+		if (column<6)
+		{
+			try {
+				String inputfullname = ExcelUtility.getCellData("CreateSTP", 1, column);
+				String fullname = Stpname.getText();
+				if(inputfullname.equalsIgnoreCase(fullname))
+				{
+					System.out.println("Full name Verified");
+				}
+				else
+				{
+					System.out.println("Full name didnt match with the input data");
+				}
+			}
+			catch (Exception e)
+			{
+				System.out.println(e);
+				System.out.println("Exception at Fullname");
+			}
+			
+			try {
+				String inputShortname = ExcelUtility.getCellData("CreateSTP", 2, column);
+				String shortname = StpShortname.getText();
+				if(inputShortname.equalsIgnoreCase(shortname))
+				{
+					System.out.println("Short name Verified");
+				}
+				else
+				{
+					System.out.println("Short name didnt match with the input data");
+				}
+			}
+			catch (Exception e)
+			{
+				System.out.println("Exception at short name");
+			}
+		}
+		else
+		{
+			try {
+				String inputfullname = ExcelUtility.getCellData("CreateSTP", 1, column);
+				String fullname = Stpname.getText();
+				if(inputfullname.equalsIgnoreCase(fullname))
+				{
+					System.out.println("Full name Verified");
+				}
+				else
+				{
+					System.out.println("Full name didnt match with the input data");
+				}
+			}
+			catch (Exception e)
+			{
+				System.out.println(e);
+				System.out.println("Exception at Fullname");
+			}
+			
+			try {
+				String inputShortname = ExcelUtility.getCellData("CreateSTP", 2, column);
+				String shortname = StpShortname.getText();
+				if(inputShortname.equalsIgnoreCase(shortname))
+				{
+					System.out.println("Short name Verified");
+				}
+				else
+				{
+					System.out.println("Short name didnt match with the input data");
+				}
+			}
+			catch (Exception e)
+			{
+				System.out.println("Exception at short name");
+			}
+		}
 		
-
-	
-	
-
-
-
-	
-	
-	
-
-
+		
+	}
+}

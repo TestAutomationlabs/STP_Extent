@@ -2,20 +2,26 @@ package com.qa.pages;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
+import com.qa.Util.TestUtil;
 
 public class CreateSTPPage extends TestBase
 {
 
 //	CreateSTP Elements
+	
+	WebDriverWait wait=new WebDriverWait(driver,30);
 	
 	@FindBy(xpath="//div[text()='Create']")
 	WebElement createStpText ;
@@ -175,12 +181,15 @@ else
 {
 System.out.println("Help Text present");
 HelpToggle.click();
+
 if (HelpToggle.isEnabled())
 {
+	
 	System.out.println("Toggle button clicked");
 	try
 	{
-		if (HelpText.isDisplayed())
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	if (HelpText.isDisplayed())
 		{
 			System.out.println("Help text not removed. Hence failed");
 		}
@@ -233,6 +242,7 @@ Thread.sleep(1000);
 
 public void EnterALLFields() throws Exception
 {
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, 6));
 	
 	Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, 6));
@@ -296,7 +306,13 @@ public void EnterALLFields() throws Exception
 	
 	Knowledgetab.click();
 	
+	try {
 	ExpertiseLevel.click();
+	}
+	catch (Exception e)
+	{
+		System.out.println(e);
+	}
 	
 	String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
 	AssociatedTrends.sendKeys(trend);

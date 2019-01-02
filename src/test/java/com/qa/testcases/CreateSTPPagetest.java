@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import com.qa.Base.TestBase;
 import com.qa.pages.CreateSTPPage;
 import com.qa.pages.HomePage;
+import com.qa.pages.STPDetailsValidationPage;
 import com.qa.pages.ToastMessages;
 
 public class CreateSTPPagetest extends TestBase {
@@ -14,6 +15,8 @@ public class CreateSTPPagetest extends TestBase {
 	CreateSTPPage create;
 	HomePage home;
 	ToastMessages toast;
+	STPDetailsValidationPage validation;
+	
 	
 	public CreateSTPPagetest()
 	{
@@ -26,9 +29,10 @@ public class CreateSTPPagetest extends TestBase {
 		create = new CreateSTPPage();
 		home = new HomePage();
 		toast = new ToastMessages();
+		
 	}
 
-	@Test(priority = 1)
+	//@Test(priority = 1)
 	public void HelpTextValidation() throws Exception {
 
 		home.ClickOnSTPLink();
@@ -37,7 +41,7 @@ public class CreateSTPPagetest extends TestBase {
 
 	}
 
-	@Test (priority = 2)
+//	@Test (priority = 2)
 	public void MandatoryFieldValidation() throws Exception
 	{
 		for (int i=1; i<6 ; i++)
@@ -47,6 +51,8 @@ public class CreateSTPPagetest extends TestBase {
 		toast.DescriptionToast(i);
 		toast.CommunityOrganiserToast(i);
 		toast.successfulToast(i);
+		validation.detailsValidation(5);
+		
 		}
 	}
 	
@@ -58,6 +64,8 @@ public class CreateSTPPagetest extends TestBase {
 		create.EnterALLFields();
 		Thread.sleep(3000);
 		toast.successfulToast(6);
+		validation.detailsValidation(6);
+		
 		
 	}
 

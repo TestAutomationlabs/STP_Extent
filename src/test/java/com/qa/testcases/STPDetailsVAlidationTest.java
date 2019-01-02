@@ -6,8 +6,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.qa.Base.TestBase;
-import com.qa.Pages.HomePage;
-import com.qa.Pages.STPDetailsValidationPage;
+import com.qa.pages.HomePage;
+import com.qa.pages.STPDetailsValidationPage;
 
 
 
@@ -23,12 +23,13 @@ STPDetailsValidationPage stpdetails;
 	@BeforeClass
 	public void setUp() {
 		initialization();
-		landingpage=new LandingPage();
+		homepage = new HomePage();
+		stpdetails = new STPDetailsValidationPage();
 	}
 	
 	@Test(priority=1)
 	public void CreateSTPValidateTest() {
-		landingpage.ClickOnTPLink();
+		homepage.ClickOnSTPLink();
 		System.out.println("User tap on STPButton");
 	}
 	
