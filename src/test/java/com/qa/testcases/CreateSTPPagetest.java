@@ -37,7 +37,7 @@ public class CreateSTPPagetest extends TestBase {
 
 	}
 
-
+	@Test (priority = 2)
 	public void MandatoryFieldValidation() throws Exception
 	{
 		for (int i=1; i<6 ; i++)
@@ -50,12 +50,14 @@ public class CreateSTPPagetest extends TestBase {
 		}
 	}
 	
-	@Test
+	@Test(priority = 3)
 	public void AllFieldValidation() throws Exception
 	{
 		home.ClickOnSTPLink();
 		Thread.sleep(1000);
 		create.EnterALLFields();
+		Thread.sleep(3000);
+		toast.successfulToast(6);
 		
 	}
 

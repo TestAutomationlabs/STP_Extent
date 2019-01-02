@@ -196,6 +196,7 @@ if (HelpToggle.isEnabled())
 public void EnterMandatoryFields(int cellNo) throws InterruptedException, IOException
 {
 
+	
 generalInfo.click();
 Thread.sleep(1000);
 STPName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
@@ -264,8 +265,98 @@ public void EnterALLFields() throws Exception
 	Assets.sendKeys(Keys.RETURN);
 	callNewDimension(asset);
 	
-	String database = ExcelUtility.getCellData("CreateSTP", 9, 6);
+	String database = ExcelUtility.getCellData("CreateSTP", 17, 6);
+	Database.sendKeys(database);
+	Database.sendKeys(Keys.RETURN);
+	callNewDimension(database);
 	
+	String materials = ExcelUtility.getCellData("CreateSTP", 11, 6);
+	MaterialUsed.sendKeys(materials);
+	MaterialUsed.sendKeys(Keys.RETURN);
+	callNewDimension(materials);
+	//__________________________________ Page 3 ___________________________
+	
+	technologytab.click();
+	
+	String techniqueUsed = ExcelUtility.getCellData("CreateSTP", 10, 6);
+	TechniqueUsed.sendKeys(techniqueUsed);
+	TechniqueUsed.sendKeys(Keys.RETURN);
+	callNewDimension(techniqueUsed);
+	
+	String relatedTech = ExcelUtility.getCellData("CreateSTP", 16, 6);
+	RelatedTechnology.sendKeys(relatedTech);
+	RelatedTechnology.sendKeys(Keys.RETURN);
+	callNewDimension(relatedTech);
+	
+	String keyword = ExcelUtility.getCellData("CreateSTP", 19, 6);
+	Keywords.sendKeys(keyword);
+	Keywords.sendKeys(Keys.RETURN);
+	callNewDimension(keyword);
+	//____________________________________ Page 4 ___________________________
+	
+	Knowledgetab.click();
+	
+	ExpertiseLevel.click();
+	
+	String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
+	AssociatedTrends.sendKeys(trend);
+	AssociatedTrends.sendKeys(Keys.RETURN);
+	callNewDimension(trend);
+	
+	TechnologyReadiness.click();
+	
+	String merckPubli = ExcelUtility.getCellData("CreateSTP", 20, 6);
+	PublicationsbyMerck.sendKeys(merckPubli);
+	PublicationsbyMerck.sendKeys(Keys.RETURN);
+	callNewDimension(merckPubli);
+	
+	String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
+	ReviewarticlesFromOutsideWorld.sendKeys(reivew);
+	ReviewarticlesFromOutsideWorld.sendKeys(Keys.RETURN);
+	callNewDimension(reivew);
+	
+	String patent = ExcelUtility.getCellData("CreateSTP", 23, 6);
+	patents.sendKeys(patent);
+	patents.sendKeys(Keys.RETURN);
+	callNewDimension(patent);
+	//____________________________________ Page 5 ______________________________
+	
+	ApplicationsnProductsTab.click();
+	
+	String application = ExcelUtility.getCellData("CreateSTP", 12, 6);
+	Applications.sendKeys(application);
+	Applications.sendKeys(Keys.RETURN);
+	callNewDimension(application);
+	
+	String ongoing = ExcelUtility.getCellData("CreateSTP", 13, 6);
+	ongoingProjects.sendKeys(ongoing);
+	ongoingProjects.sendKeys(Keys.RETURN);
+	callNewDimension(ongoing);
+
+	String products = ExcelUtility.getCellData("CreateSTP", 14, 6);
+	ProductsnServices.sendKeys(products);
+	ProductsnServices.sendKeys(Keys.RETURN);
+	callNewDimension(products);
+	
+	String example = ExcelUtility.getCellData("CreateSTP", 15, 6);
+	Externalexample.sendKeys(example);
+	Externalexample.sendKeys(Keys.RETURN);
+	callNewDimension(example);
+	//____________________________________ Page 6 __________________________________
+	
+	relations.click();
+	
+	String collaboration = ExcelUtility.getCellData("CreateSTP", 22, 6);
+	ExternalCollaboration.sendKeys(collaboration);
+	ExternalCollaboration.sendKeys(Keys.RETURN);
+	callNewDimension(collaboration);
+	
+	String competitor = ExcelUtility.getCellData("CreateSTP", 24, 6);
+	Competitors.sendKeys(competitor);
+	Competitors.sendKeys(Keys.RETURN);
+	callNewDimension(competitor);
+	
+	SavenClose.click();
 }
 
 public void callNewDimension(String value) throws InterruptedException
