@@ -1,19 +1,27 @@
 package com.qa.pages;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
+import com.qa.Util.TestUtil;
 
 public class CreateSTPPage extends TestBase
 {
 
 //	CreateSTP Elements
+	
+	WebDriverWait wait=new WebDriverWait(driver,30);
 	
 	@FindBy(xpath="//div[text()='Create']")
 	WebElement createStpText ;
@@ -173,12 +181,15 @@ else
 {
 System.out.println("Help Text present");
 HelpToggle.click();
+
 if (HelpToggle.isEnabled())
 {
+	
 	System.out.println("Toggle button clicked");
 	try
 	{
-		if (HelpText.isDisplayed())
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	if (HelpText.isDisplayed())
 		{
 			System.out.println("Help text not removed. Hence failed");
 		}
@@ -194,6 +205,7 @@ if (HelpToggle.isEnabled())
 public void EnterMandatoryFields(int cellNo) throws InterruptedException, IOException
 {
 
+	
 generalInfo.click();
 Thread.sleep(1000);
 STPName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
@@ -228,7 +240,182 @@ SavenClose.click();
 Thread.sleep(1000);
 }
 
+public void EnterALLFields() throws Exception
+{
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, 6));
+	
+	Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, 6));
+	Thread.sleep(1000);
+	
+	ShortName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+	ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, 6));
+	
+	Location.sendKeys(ExcelUtility.getCellData("CreateSTP", 7, 6)+" ");
+	Thread.sleep(3000);
+	Location.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	
+	BusinessSector.sendKeys(ExcelUtility.getCellData("CreateSTP", 6, 6)+" ");
+	Thread.sleep(3000);
+	BusinessSector.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	//___________________________________ Page 2 ________________________________________
+	resources.click();
+	Thread.sleep(1000);
+	
+	CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, 6)+" ");
+	Thread.sleep(3000);
+	CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	
+	Experts.sendKeys(ExcelUtility.getCellData("CreateSTP", 5, 6)+" ");
+	Thread.sleep(2000);
+	Experts.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	
+	String asset = ExcelUtility.getCellData("CreateSTP", 9, 6);
+	Assets.sendKeys(asset);
+	Assets.sendKeys(Keys.RETURN);
+	callNewDimension(asset);
+	
+	String database = ExcelUtility.getCellData("CreateSTP", 17, 6);
+	Database.sendKeys(database);
+	Database.sendKeys(Keys.RETURN);
+	callNewDimension(database);
+	
+	String materials = ExcelUtility.getCellData("CreateSTP", 11, 6);
+	MaterialUsed.sendKeys(materials);
+	MaterialUsed.sendKeys(Keys.RETURN);
+	callNewDimension(materials);
+	//__________________________________ Page 3 ___________________________
+	
+	technologytab.click();
+	
+	String techniqueUsed = ExcelUtility.getCellData("CreateSTP", 10, 6);
+	TechniqueUsed.sendKeys(techniqueUsed);
+	TechniqueUsed.sendKeys(Keys.RETURN);
+	callNewDimension(techniqueUsed);
+	
+	String relatedTech = ExcelUtility.getCellData("CreateSTP", 16, 6);
+	RelatedTechnology.sendKeys(relatedTech);
+	RelatedTechnology.sendKeys(Keys.RETURN);
+	callNewDimension(relatedTech);
+	
+	String keyword = ExcelUtility.getCellData("CreateSTP", 19, 6);
+	Keywords.sendKeys(keyword);
+	Keywords.sendKeys(Keys.RETURN);
+	callNewDimension(keyword);
+	//____________________________________ Page 4 ___________________________
+	
+	Knowledgetab.click();
+	
+	try {
+	ExpertiseLevel.click();
+	}
+	catch (Exception e)
+	{
+		System.out.println(e);
+	}
+	
+	String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
+	AssociatedTrends.sendKeys(trend);
+	AssociatedTrends.sendKeys(Keys.RETURN);
+	callNewDimension(trend);
+	
+	TechnologyReadiness.click();
+	
+	String merckPubli = ExcelUtility.getCellData("CreateSTP", 20, 6);
+	PublicationsbyMerck.sendKeys(merckPubli);
+	PublicationsbyMerck.sendKeys(Keys.RETURN);
+	callNewDimension(merckPubli);
+	
+	String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
+	ReviewarticlesFromOutsideWorld.sendKeys(reivew);
+	ReviewarticlesFromOutsideWorld.sendKeys(Keys.RETURN);
+	callNewDimension(reivew);
+	
+	String patent = ExcelUtility.getCellData("CreateSTP", 23, 6);
+	patents.sendKeys(patent);
+	patents.sendKeys(Keys.RETURN);
+	callNewDimension(patent);
+	//____________________________________ Page 5 ______________________________
+	
+	ApplicationsnProductsTab.click();
+	
+	String application = ExcelUtility.getCellData("CreateSTP", 12, 6);
+	Applications.sendKeys(application);
+	Applications.sendKeys(Keys.RETURN);
+	callNewDimension(application);
+	
+	String ongoing = ExcelUtility.getCellData("CreateSTP", 13, 6);
+	ongoingProjects.sendKeys(ongoing);
+	ongoingProjects.sendKeys(Keys.RETURN);
+	callNewDimension(ongoing);
 
+	String products = ExcelUtility.getCellData("CreateSTP", 14, 6);
+	ProductsnServices.sendKeys(products);
+	ProductsnServices.sendKeys(Keys.RETURN);
+	callNewDimension(products);
+	
+	String example = ExcelUtility.getCellData("CreateSTP", 15, 6);
+	Externalexample.sendKeys(example);
+	Externalexample.sendKeys(Keys.RETURN);
+	callNewDimension(example);
+	//____________________________________ Page 6 __________________________________
+	
+	relations.click();
+	
+	String collaboration = ExcelUtility.getCellData("CreateSTP", 22, 6);
+	ExternalCollaboration.sendKeys(collaboration);
+	ExternalCollaboration.sendKeys(Keys.RETURN);
+	callNewDimension(collaboration);
+	
+	String competitor = ExcelUtility.getCellData("CreateSTP", 24, 6);
+	Competitors.sendKeys(competitor);
+	Competitors.sendKeys(Keys.RETURN);
+	callNewDimension(competitor);
+	
+	SavenClose.click();
+}
+
+public void callNewDimension(String value) throws InterruptedException
+{
+	try {
+			Thread.sleep(2000);
+			if(newDimensionName.isDisplayed())
+			{
+
+				newDimensionDescription.sendKeys("Description of "+value );
+				Thread.sleep(1000);
+				newDimensionAdditionalInfo.sendKeys("Additional Info of "+value);
+				Thread.sleep(1000);
+				newDimensionExternalLink.sendKeys("External link of "+value);
+				Thread.sleep(1000);
+				
+				try {
+					newDimensionsave.click();
+				}
+				catch(Exception e)
+				{
+					System.out.println(e);
+				}
+				
+				Thread.sleep(5000);
+			}
+			
+		}
+	catch(NoSuchElementException e)
+	{
+		try {
+			WebElement path = driver.findElement(By.xpath("//div[contains(@data-original-title,"+value+")]"));
+			if (path.isDisplayed())
+			{
+				System.out.println("Element Identified");
+			}
+		}
+		catch(Exception e1)
+		{
+			System.out.println("Element not Identified");
+		}
+	}
+}
 		
 //	public HelpToggle ClickHelpToggle() 
 //	{         HelpToggle.click(); 

@@ -16,7 +16,7 @@ public class TestUtil extends TestBase {
 
 	public static long PAGE_LOAD_TIMEOUT = 200;
 	public static long IMPLICIT_WAIT = 200;
-	public static WebDriverWait wait =new WebDriverWait(driver,600);
+	public static WebDriverWait wait =new WebDriverWait(driver,20);
 	//public static String fileName;
 	//public static methodname;
 	
@@ -27,8 +27,6 @@ public class TestUtil extends TestBase {
 	
 	public void switchToFrame() {
 		driver.switchTo().frame("mainpanel");
-	
-	
 }
 	
 	
