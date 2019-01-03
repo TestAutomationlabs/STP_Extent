@@ -17,7 +17,7 @@ public class HomePage extends TestBase {
 	@FindBy(xpath = "//span[contains(text(),'List')]")
 	WebElement ListTab;
 
-	@FindBy(xpath = "//button[@class='btn btn-highlight ml-0']")
+	@FindBy(xpath = "//div/following::button[@class='btn btn-highlight ml-0']")
 	WebElement PostButton;
 
 	// Initializing the Page Objects:
@@ -42,7 +42,7 @@ public class HomePage extends TestBase {
 
 	}
 	
-	public PostPage ClickOnPostButton() {
+	public PostPages ClickOnPostButton() {
 	{
 		if(!PostButton.isDisplayed())
 		{
@@ -53,7 +53,7 @@ public class HomePage extends TestBase {
 			PostButton.click();
 			System.out.println("Post Button is clicked");
 		}
-		return new PostPage();
+		return new PostPages();
 	}
 	}
 
