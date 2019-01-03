@@ -1,14 +1,26 @@
 package com.qa.pages;
 
+import java.io.IOException;
+import java.util.NoSuchElementException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import org.openqa.selenium.support.PageFactory;
 import com.qa.Base.TestBase;
+import com.qa.DataDriven.ExcelUtility;
+
+
 
 public class ListPage extends TestBase
 
+
 {
+	int SearchCount = 0;
+	String value = null;
+	private static WebElement element = null;
 
 	//List Page Elements
 	@FindBy(xpath = "//div[contains(text(),'STP')]")
@@ -119,10 +131,149 @@ public class ListPage extends TestBase
 	@FindBy (xpath = "//div[@id='sEaoUDiUOkh']")
 	WebElement disabledLoad;
 	
+	@FindBy (xpath = "//*[@class='svg-inline--fa fa-times fa-w-11 globalsearch cursor-pointer']")
+	WebElement removeSearchdata;
+	
 	public ListPage()
 	{
 		PageFactory.initElements(driver, this);         
 	}
 	
-
+	public void searchSTP()
+	{
+			try {
+				if (stpHeaderText.isDisplayed())
+				{
+					System.out.println("Navigation to List Tab successful");
+					try {
+						listSearch.sendKeys("Inkjet printing");//ExcelUtility.getCellData("CreateSTP", 5, 1));
+						listSearch.sendKeys(Keys.RETURN);
+						Thread.sleep(1000);			
+						try{
+							elementSearch();
+						}
+						catch(Exception e)
+						{
+							System.out.println("Search Ended");
+							//test.log(LogStatus.INFO, "End of search");
+						}
+				if (SearchCount>0)
+				{
+					System.out.println("Searched STP name matched the full name");
+					//test.log(LogStatus.PASS, "Searched STP name matched the full name");
+				}
+				else
+				{
+					System.out.println("search parameter was not present");
+					//test.log(LogStatus.FAIL, "Searched STP name not found");
+				}
+				}
+				catch(Exception e)
+				{
+					System.out.println("Exception occured at search field");
+					//test.log(LogStatus.FAIL, e);
+				}
+				}
+				else
+				{
+					String noListTabLink = "Navigation to List Tab unsuccessful";
+					System.out.println(noListTabLink);
+				}
+				
+			}
+			catch(Exception e)
+			{
+				String noListTabLink = "Navigation to List Tab unsuccessful";
+				System.out.println(noListTabLink);
+			}
+		}
+	
+	public void elementSearch()
+	{
+		do		
+		{
+		try {
+			value = "Inkjet printing";//ExcelUtility.getCellData("CreateSTP", 5, 1);
+			String FetchedValue =	getstpinList().getText();
+			System.out.println(FetchedValue);
+			System.out.println(value);
+			
+			if (value.equalsIgnoreCase(FetchedValue))
+			{
+				SearchCount++;
+				//test.log(LogStatus.PASS, "Searched STP name matched the full name");
+				break;
+			}
+			
+			else
+			{
+				loadMore.click();
+				//test.log(LogStatus.INFO, "Loading more data");
+				Thread.sleep(2000);
+				
+				try
+				{
+					getstpinList();
+				}
+				catch(Exception e)
+				{
+					value = "Inkjet printing";//ExcelUtility.getCellData("CreateSTP", 5, 1);
+					FetchedValue = getstpinList().getText();
+					System.out.println(FetchedValue);
+					System.out.println(value);
+					if (value.equalsIgnoreCase(FetchedValue))
+					{
+						SearchCount++;
+						//test.log(LogStatus.PASS, "Searched STP name matched the full name");
+						break;
+					}
+				}
+			}
+			
+		}
+	catch(Exception e)
+	{
+		//test.log(LogStatus.FAIL, "Name not found");
+	}
 }
+		while(loadMore.isDisplayed());
+		
+	}
+	
+	public WebElement getstpinList() throws IOException
+	{
+		try
+		{
+				int count =driver.findElements(By.xpath("//div[@class='row border-bottom mb-2 pb-2']")).size();
+				System.out.println(count);
+				String text = ExcelUtility.getCellData("CreateSTP", 1, 5);
+				count = count+1;
+				System.out.println(count);
+			for(int i=1;i<=count;i++)
+			{
+			element = driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[3]/div["+i+"]/div[1]/h6[1]"));
+				
+				String preview=element.getText();
+				System.out.println(preview);
+				
+				if (preview.equalsIgnoreCase(text))
+				{
+					break;
+				}
+				
+			}
+		}
+		catch(NoSuchElementException e)
+			{
+				System.out.println("STP Name given is not present in the database");
+			}
+			return element;
+	}
+	
+	public void clearSearchField()
+	{
+		removeSearchdata.click();
+		listSearch.sendKeys(Keys.RETURN);
+	}
+}
+
