@@ -23,7 +23,10 @@ STPDetailsValidationPage stpdetails;
 	@BeforeClass
 	public void setUp() {
 		initialization();
-		homepage=new HomePage();
+
+		homepage = new HomePage();
+		stpdetails = new STPDetailsValidationPage();
+
 	}
 	
 	@Test(priority=1)
