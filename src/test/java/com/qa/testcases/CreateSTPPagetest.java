@@ -32,7 +32,7 @@ public class CreateSTPPagetest extends TestBase {
 		
 	}
 
-	@Test(priority = 1)
+	//@Test(priority = 1)
 	public void HelpTextValidation() throws Exception {
 
 		home.ClickOnSTPLink();
@@ -41,7 +41,7 @@ public class CreateSTPPagetest extends TestBase {
 
 	}
 
-	@Test(priority = 2)
+	//@Test(priority = 2)
 
 	public void MandatoryFieldValidation() throws Exception
 	{
@@ -57,7 +57,7 @@ public class CreateSTPPagetest extends TestBase {
 		}
 	}
 	
-	@Test(priority = 3)
+	@Test//(priority = 3)
 	public void AllFieldValidation() throws Exception
 	{
 		home.ClickOnSTPLink();

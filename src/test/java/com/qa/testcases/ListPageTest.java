@@ -1,6 +1,9 @@
 package com.qa.testcases;
 
 import org.testng.annotations.Test;
+
+import java.io.IOException;
+
 import org.testng.annotations.BeforeClass;
 import com.qa.Base.TestBase;
 import com.qa.pages.HomePage;
@@ -32,9 +35,12 @@ public class ListPageTest extends TestBase {
 	}
 	
 	@Test
-	public void categoryValidation()
+	public void categoryValidation() throws Exception
 	{
 		list.clearSearchField();
+		Thread.sleep(1000);
+		list.FilterByCategory();
+		
 		
 	}
 }

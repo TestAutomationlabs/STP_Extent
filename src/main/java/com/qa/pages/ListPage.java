@@ -1,6 +1,7 @@
 package com.qa.pages;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
@@ -21,6 +22,7 @@ public class ListPage extends TestBase
 	int SearchCount = 0;
 	String value = null;
 	private static WebElement element = null;
+	WebElement ele = null;
 
 	//List Page Elements
 	@FindBy(xpath = "//div[contains(text(),'STP')]")
@@ -77,13 +79,13 @@ public class ListPage extends TestBase
 	@FindBy (xpath = "//p[contains(text(),'Application')]")
 	WebElement popupApplication;
 	
-	@FindBy (xpath = "//p[contains(text(),'project')]")
+	@FindBy (xpath = "//p[contains(text(),'Ongoing Projects')]")
 	WebElement popupProject;
 	
 	@FindBy (xpath = "//p[contains(text(),'Product')]")
 	WebElement popupProduct;
 	
-	@FindBy (xpath = "//p[contains(text(),'example')]")
+	@FindBy (xpath = "//p[contains(text(),'External Examples')]")
 	WebElement popupExample;
 	
 	@FindBy (xpath = "//p[contains(text(),'Related Technology')]")
@@ -92,13 +94,13 @@ public class ListPage extends TestBase
 	@FindBy (xpath = "//p[contains(text(),'Database')]")
 	WebElement popupDatabase;
 	
-	@FindBy (xpath = "//p[contains(text(),'Material')]")
+	@FindBy (xpath = "//p[contains(text(),'Materials used')]")
 	WebElement popupMaterial;
 	
-	@FindBy (xpath = "//p[contains(text(),'Trend')]")
+	@FindBy (xpath = "//p[contains(text(),'Associated Trends')]")
 	WebElement popupTrend;
 	
-	@FindBy (xpath = "//p[contains(text(),'Keyword')]")
+	@FindBy (xpath = "//p[contains(text(),'Keywords')]")
 	WebElement popupKeyword;
 	
 	@FindBy (xpath = "//p[contains(text(),'Patents')]")
@@ -117,7 +119,7 @@ public class ListPage extends TestBase
 	WebElement popupPublicationExternal;
 	
 	@FindBy (xpath = "//input[@class='form-control']")
-	WebElement selectedfilter;
+	WebElement searchInSelectedFilter;
 	
 	@FindBy (xpath = "//div[contains(@data-toggle,'tooltip')and contains(@class,'token text-left undefined')]")
 	WebElement filterTip;
@@ -134,9 +136,12 @@ public class ListPage extends TestBase
 	@FindBy (xpath = "//*[@class='svg-inline--fa fa-times fa-w-11 globalsearch cursor-pointer']")
 	WebElement removeSearchdata;
 	
+	@FindBy (xpath = "//*[@class='svg-inline--fa fa-times fa-w-11 category-item-close hide-when-collapsed cursor-pointer']")
+	WebElement closeCategory;
+	
 	public ListPage()
 	{
-		PageFactory.initElements(driver, this);         
+		PageFactory.initElements(driver, this);
 	}
 	
 	public void searchSTP()
@@ -275,5 +280,65 @@ public class ListPage extends TestBase
 		removeSearchdata.click();
 		listSearch.sendKeys(Keys.RETURN);
 	}
+	
+	public void FilterByCategory() throws Exception
+	{
+		
+		for (int i=4; i<27; i++)
+		{
+			String value = ExcelUtility.getCellData("CreateSTP", i, 0);
+			String valueToMatch = ExcelUtility.getCellData("CreateSTP", i, 6);
+			
+		if (value.equalsIgnoreCase("Technology Readiness"))
+			{
+				
+			}
+			
+		else
+		{
+			try 
+			{
+				categoryButton.click();
+				driver.findElement(By.xpath("//p[contains(text(),'"+value+"')]")).click();
+				searchInSelectedFilter.sendKeys(valueToMatch);
+				Thread.sleep(2000);
+				searchInSelectedFilter.sendKeys(Keys.RETURN);
+				Thread.sleep(3000);
+				String searchedWord = filterTip.getText();
+	
+				List<WebElement> Ele2= driver.findElements(By.xpath("//div[contains(@class,'token text-left ') and contains (text(),'"+element+"')]"));
+				 String st = null;
+				 for (int j = 0; j < Ele2.size(); j++)
+				 {
+					 System.out.println(searchedWord);
+					 st= (Ele2.get(i).getText());
+					 System.out.println(st);
+				 }
+				 System.out.println(st);
+						 
+					if (st.equalsIgnoreCase(searchedWord))
+					{
+						System.out.println(searchedWord+" Filter applied in "+value+" category and filter was sucessful");
+						ele = driver.findElement(By.xpath("//div[contains(@class,'token text-left ') and text() ='"+searchedWord+"']"));
+					}
+					
+				}
+			catch(Exception e)
+				{
+					System.out.println("An Error occured at "+value);
+				}
+			try {
+				closeCategory.click();
+				
+			}
+			catch(Exception e)
+			{
+				System.out.println("Unable to close the category");
+				break;
+			}
+			}
+		}
+	}
 }
+
 

@@ -251,22 +251,22 @@ public void EnterALLFields() throws Exception
 	
 	Location.sendKeys(ExcelUtility.getCellData("CreateSTP", 7, 6)+" ");
 	Thread.sleep(3000);
-	Location.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	Location.sendKeys(Keys.RETURN);
 	
 	BusinessSector.sendKeys(ExcelUtility.getCellData("CreateSTP", 6, 6)+" ");
 	Thread.sleep(3000);
-	BusinessSector.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	BusinessSector.sendKeys(Keys.RETURN);
 	//___________________________________ Page 2 ________________________________________
 	resources.click();
 	Thread.sleep(1000);
 	
 	CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, 6)+" ");
 	Thread.sleep(3000);
-	CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	CommunityOrganiser.sendKeys(Keys.RETURN);
 	
 	Experts.sendKeys(ExcelUtility.getCellData("CreateSTP", 5, 6)+" ");
-	Thread.sleep(2000);
-	Experts.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	Thread.sleep(3000);
+	Experts.sendKeys(Keys.RETURN);
 	
 	String asset = ExcelUtility.getCellData("CreateSTP", 9, 6);
 	Assets.sendKeys(asset);
