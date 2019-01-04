@@ -284,7 +284,7 @@ public class ListPage extends TestBase
 	public void FilterByCategory() throws Exception
 	{
 		
-		for (int i=4; i<27; i++)
+		for (int i=4; i<5; i++)
 		{
 			String value = ExcelUtility.getCellData("CreateSTP", i, 0);
 			String valueToMatch = ExcelUtility.getCellData("CreateSTP", i, 6);

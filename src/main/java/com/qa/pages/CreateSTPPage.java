@@ -138,7 +138,7 @@ public class CreateSTPPage extends TestBase
 	@FindBy (xpath ="//input[@placeholder='External Link']")
 	WebElement newDimensionExternalLink;
 	
-	@FindBy (xpath = "//span[text()='Save']")
+	@FindBy (xpath = "//span[text()='Save & Close']")
 	WebElement newDimensionsave;
 
 	@FindBy (xpath = "//a[text()='Resources']")
@@ -271,17 +271,18 @@ public void EnterALLFields() throws Exception
 	String asset = ExcelUtility.getCellData("CreateSTP", 9, 6);
 	Assets.sendKeys(asset);
 	Assets.sendKeys(Keys.RETURN);
-	callNewDimension(asset);
+	callNewDimension(asset, Assets);
 	
 	String database = ExcelUtility.getCellData("CreateSTP", 17, 6);
 	Database.sendKeys(database);
 	Database.sendKeys(Keys.RETURN);
-	callNewDimension(database);
+	callNewDimension(database, Database);
 	
 	String materials = ExcelUtility.getCellData("CreateSTP", 11, 6);
 	MaterialUsed.sendKeys(materials);
 	MaterialUsed.sendKeys(Keys.RETURN);
-	callNewDimension(materials);
+	callNewDimension(materials, MaterialUsed);
+	
 	//__________________________________ Page 3 ___________________________
 	
 	technologytab.click();
@@ -289,17 +290,17 @@ public void EnterALLFields() throws Exception
 	String techniqueUsed = ExcelUtility.getCellData("CreateSTP", 10, 6);
 	TechniqueUsed.sendKeys(techniqueUsed);
 	TechniqueUsed.sendKeys(Keys.RETURN);
-	callNewDimension(techniqueUsed);
+	callNewDimension(techniqueUsed, TechniqueUsed);
 	
 	String relatedTech = ExcelUtility.getCellData("CreateSTP", 16, 6);
 	RelatedTechnology.sendKeys(relatedTech);
 	RelatedTechnology.sendKeys(Keys.RETURN);
-	callNewDimension(relatedTech);
+	callNewDimension(relatedTech, RelatedTechnology);
 	
 	String keyword = ExcelUtility.getCellData("CreateSTP", 19, 6);
 	Keywords.sendKeys(keyword);
 	Keywords.sendKeys(Keys.RETURN);
-	callNewDimension(keyword);
+	callNewDimension(keyword, Keywords);
 	//____________________________________ Page 4 ___________________________
 	
 	Knowledgetab.click();
@@ -315,24 +316,24 @@ public void EnterALLFields() throws Exception
 	String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
 	AssociatedTrends.sendKeys(trend);
 	AssociatedTrends.sendKeys(Keys.RETURN);
-	callNewDimension(trend);
+	callNewDimension(trend, AssociatedTrends);
 	
 	TechnologyReadiness.click();
 	
 	String merckPubli = ExcelUtility.getCellData("CreateSTP", 20, 6);
 	PublicationsbyMerck.sendKeys(merckPubli);
 	PublicationsbyMerck.sendKeys(Keys.RETURN);
-	callNewDimension(merckPubli);
+	callNewDimension(merckPubli, PublicationsbyMerck);
 	
 	String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
 	ReviewarticlesFromOutsideWorld.sendKeys(reivew);
 	ReviewarticlesFromOutsideWorld.sendKeys(Keys.RETURN);
-	callNewDimension(reivew);
+	callNewDimension(reivew, ReviewarticlesFromOutsideWorld);
 	
 	String patent = ExcelUtility.getCellData("CreateSTP", 23, 6);
 	patents.sendKeys(patent);
 	patents.sendKeys(Keys.RETURN);
-	callNewDimension(patent);
+	callNewDimension(patent, patents);
 	//____________________________________ Page 5 ______________________________
 	
 	ApplicationsnProductsTab.click();
@@ -340,22 +341,22 @@ public void EnterALLFields() throws Exception
 	String application = ExcelUtility.getCellData("CreateSTP", 12, 6);
 	Applications.sendKeys(application);
 	Applications.sendKeys(Keys.RETURN);
-	callNewDimension(application);
+	callNewDimension(application, Applications);
 	
 	String ongoing = ExcelUtility.getCellData("CreateSTP", 13, 6);
 	ongoingProjects.sendKeys(ongoing);
 	ongoingProjects.sendKeys(Keys.RETURN);
-	callNewDimension(ongoing);
+	callNewDimension(ongoing, ongoingProjects);
 
 	String products = ExcelUtility.getCellData("CreateSTP", 14, 6);
 	ProductsnServices.sendKeys(products);
 	ProductsnServices.sendKeys(Keys.RETURN);
-	callNewDimension(products);
+	callNewDimension(products, ProductsnServices);
 	
 	String example = ExcelUtility.getCellData("CreateSTP", 15, 6);
 	Externalexample.sendKeys(example);
 	Externalexample.sendKeys(Keys.RETURN);
-	callNewDimension(example);
+	callNewDimension(example, Externalexample);
 	//____________________________________ Page 6 __________________________________
 	
 	relations.click();
@@ -363,235 +364,72 @@ public void EnterALLFields() throws Exception
 	String collaboration = ExcelUtility.getCellData("CreateSTP", 22, 6);
 	ExternalCollaboration.sendKeys(collaboration);
 	ExternalCollaboration.sendKeys(Keys.RETURN);
-	callNewDimension(collaboration);
+	callNewDimension(collaboration,ExternalCollaboration);
 	
 	String competitor = ExcelUtility.getCellData("CreateSTP", 24, 6);
 	Competitors.sendKeys(competitor);
 	Competitors.sendKeys(Keys.RETURN);
-	callNewDimension(competitor);
+	callNewDimension(competitor,Competitors);
 	
 	SavenClose.click();
 }
 
-public void callNewDimension(String value) throws InterruptedException
+public void callNewDimension(String value, WebElement ele) throws InterruptedException
 {
-	try {
-			Thread.sleep(2000);
-			if(newDimensionName.isDisplayed())
-			{
-
-				newDimensionDescription.sendKeys("Description of "+value );
-				Thread.sleep(1000);
-				newDimensionAdditionalInfo.sendKeys("Additional Info of "+value);
-				Thread.sleep(1000);
-				newDimensionExternalLink.sendKeys("External link of "+value);
-				Thread.sleep(1000);
-				
-				try {
-					newDimensionsave.click();
-				}
-				catch(Exception e)
-				{
-					System.out.println(e);
-				}
-				
-				Thread.sleep(5000);
-			}
-			
-		}
-	catch(NoSuchElementException e)
+	String noDataText = null;
+	try
 	{
-		try {
-			WebElement path = driver.findElement(By.xpath("//div[contains(@data-original-title,"+value+")]"));
-			if (path.isDisplayed())
+		Thread.sleep(4000);
+		noDataText =driver.findElement(By.xpath("//div[@id='list-group-suggestions']")).getText();
+		if (noDataText.equalsIgnoreCase("No Data .."))
+		{
+			
+			ele.sendKeys(Keys.RETURN);
+			try {
+				Thread.sleep(3000);
+				
+				if(newDimensionName.isDisplayed())
+				{
+
+					newDimensionDescription.sendKeys("Description of "+value );
+					Thread.sleep(1000);
+					newDimensionAdditionalInfo.sendKeys("Additional Info of "+value);
+					Thread.sleep(1000);
+					newDimensionExternalLink.sendKeys("External link of "+value);
+					Thread.sleep(1000);
+					
+					try {
+						newDimensionsave.click();
+					}
+					catch(Exception e)
+					{
+						System.out.println(e);
+					}
+					
+					Thread.sleep(2000);
+				}
+				
+			}
+		catch(NoSuchElementException e)
+		{
+			try {
+				WebElement path = driver.findElement(By.xpath("//div[contains(@data-original-title,"+value+")]"));
+				if (path.isDisplayed())
+				{
+					System.out.println("Element Identified");
+				}
+			}
+			catch(Exception e1)
 			{
-				System.out.println("Element Identified");
+				System.out.println("Element not Identified");
 			}
 		}
-		catch(Exception e1)
-		{
-			System.out.println("Element not Identified");
 		}
 	}
-}
-		
-//	public HelpToggle ClickHelpToggle() 
-//	{         HelpToggle.click(); 
-//            return new HelpToggle();
-//    }
-//	
-//	public generalInfo ClickgeneralInfo() 
-//	{         generalInfo.click(); 
-//            return new generalInfo();
-//    }
+	catch(Exception e)
+	{
+		ele.sendKeys(Keys.RETURN);
+	}
 	
-//	public resources Clickresources() 
-//	{         resources.click(); 
-//            return new resources();
-//    }
-	
-//	public technologytab Clicktechnologytab() 
-//	{         technologytab.click(); 
-//            return new technologytab();
-//    }
-	
-//	public Knowledgetab ClickKnowledgetab() 
-//	{         Knowledgetab.click(); 
-//            return new Knowledgetab();
-//    }
-	
-//	public ApplicationsnProductsTab ClickApplicationsnProductsTab() 
-//	{         ApplicationsnProductsTab.click(); 
-//            return new ApplicationsnProductsTab();
-//    }
-	
-//	public relations Clickrelations() 
-//	{         relations.click(); 
-//            return new relations();
-//    }
-	
-//	public SavenClose ClickSavenClose() 
-//	{         SavenClose.click(); 
-//            return new SavenClose();
-//    }
-	
-//	public newDimensionsave ClicknewDimensionsave() 
-//	{   for(String winHandle : driver.getWindowHandles())
-//		{
-//	    driver.switchTo().window(winHandle);
-//	    element= newDimensionsave.click(); 
-//		}
-//		return element;
-//}
-	
-//	public  SendKeysSTPName(int i) throws IOException  
-//	{ 
-//		return STPName.sendKeys(ExcelUtility.getCellData("CreateSTP",1,i));
-//    }
-	
-//	public ShortName SendKeysShortName(int i) throws IOException  
-//	{         ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP",2,i));
-//            return new ShortName();
-//    }	
-
-//	public Description SendKeysDescription(int i) throws IOException  
-//	{         Description.sendKeys(ExcelUtility.getCellData("CreateSTP",3,i));
-//            return new Description();
-//    }
-
-//	public CommunityOrganiser SendKeysCommunityOrganiser(int i) throws IOException  
-//	{         CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new CommunityOrganiser();
-//    }
-	
-//	public Experts SendKeysExperts(int i) throws IOException  
-//	{         Experts.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new Experts();
-//    }
-	
-//	public BusinessSector SendKeysBusinessSector(int i) throws IOException  
-//	{         BusinessSector.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new BusinessSector();
-//    }
-	
-//	public Location SendKeysLocation(int i) throws IOException  
-//	{         Location.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new Location();
-//    }
-	
-//	public Location SendKeysLocation(int i) throws IOException  
-//	{         Location.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new Location();
-//    }
-	
-//	public TechnologyReadiness SendKeysTechnologyReadiness(int i) throws IOException  
-//	{         TechnologyReadiness.click();
-//            return new TechnologyReadiness();
-//    }
-	
-//	public Assets SendKeysAssets(int i) throws IOException  
-//	{         Assets.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new Assets();
-//    }
-	
-//	public TechniqueUsed SendKeysTechniqueUsed(int i) throws IOException  
-//	{         TechniqueUsed.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new TechniqueUsed();
-//    }
-	
-//	public MaterialUsed SendKeysMaterialUsed(int i) throws IOException  
-//	{         MaterialUsed.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new MaterialUsed();
-//    }
-	
-//	public Applications SendKeysApplications(int i) throws IOException  
-//	{         Applications.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new Applications();
-//    }
-	
-//	public ongoingProjects SendKeysongoingProjects(int i) throws IOException  
-//	{         ongoingProjects.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new ongoingProjects();
-//    }
-	
-//	public ProductsnServices SendKeysProductsnServices(int i) throws IOException  
-//	{         ProductsnServices.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new ProductsnServices();
-//    }
-	
-//	public Externalexample SendKeysExternalexample(int i) throws IOException  
-//	{         Externalexample.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new Externalexample();
-//    }
-	
-//	public RelatedTechnology SendKeysRelatedTechnology(int i) throws IOException  
-//	{         RelatedTechnology.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new RelatedTechnology();
-//    }
-	
-//	public Database SendKeysDatabase(int i) throws IOException  
-//	{         Database.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new Database();
-//    }
-	
-//	public AssociatedTrends SendKeysAssociatedTrends(int i) throws IOException  
-//	{         AssociatedTrends.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new AssociatedTrends();
-//    }
-	
-//	public Keywords SendKeysKeywords(int i) throws IOException  
-//	{         Keywords.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new Keywords();
-//    }
-	
-//	public PublicationsbyMerck SendKeysPublicationsbyMerck(int i) throws IOException  
-//	{         PublicationsbyMerck.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new PublicationsbyMerck();
-//    }
-	
-//	public ReviewarticlesFromOutsideWorld SendKeysReviewarticlesFromOutsideWorld(int i) throws IOException  
-//	{         ReviewarticlesFromOutsideWorld.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new ReviewarticlesFromOutsideWorld();
-//    }
-	
-//	public ExternalCollaboration SendKeysExternalCollaboration(int i) throws IOException  
-//	{         ExternalCollaboration.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new ExternalCollaboration();
-//    }
-	
-//	public patents SendKeyspatents(int i) throws IOException  
-//	{         patents.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new patents();
-//    }
-	
-//	public Competitors SendKeysCompetitors(int i) throws IOException  
-//	{         Competitors.sendKeys(ExcelUtility.getCellData("CreateSTP",4,i));
-//            return new Competitors();
-//    }
-	
-//	public ExpertiseLeveldropdown ClickExpertiseLeveldropdown(int i) throws IOException  
-//	{         ExpertiseLeveldropdown.click();
-//            return new ExpertiseLeveldropdown();
-//    }
-
+	}
 }
