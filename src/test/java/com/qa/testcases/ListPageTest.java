@@ -1,13 +1,13 @@
 package com.qa.testcases;
 
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
-import org.testng.annotations.BeforeClass;
 import com.qa.Base.TestBase;
 import com.qa.pages.HomePage;
 import com.qa.pages.ListPage;
+
 
 public class ListPageTest extends TestBase {
 
@@ -26,21 +26,25 @@ public class ListPageTest extends TestBase {
 		list = new ListPage();
 	}
 	
-	@Test
-	public void SearchSTPTest() throws InterruptedException
+	@Test(priority = 1)
+	public void SearchSTPTest() throws Exception
 	{
 		home.verifyListTab();
 		Thread.sleep(1000);
 		list.searchSTP();
 	}
 	
-	@Test
+	@Test(priority = 2)
 	public void categoryValidation() throws Exception
 	{
 		list.clearSearchField();
 		Thread.sleep(1000);
 		list.FilterByCategory();
-		
-		
+	}
+	
+	@AfterClass
+	public void KillBrowser()
+	{
+		driver.close();
 	}
 }

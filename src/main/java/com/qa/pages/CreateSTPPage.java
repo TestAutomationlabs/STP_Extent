@@ -138,7 +138,7 @@ public class CreateSTPPage extends TestBase
 	@FindBy (xpath ="//input[@placeholder='External Link']")
 	WebElement newDimensionExternalLink;
 	
-	@FindBy (xpath = "//span[text()='Save & Close']")
+	@FindBy (xpath = "//div[@class='modal-footer']/button[2]")
 	WebElement newDimensionsave;
 
 	@FindBy (xpath = "//a[text()='Resources']")
@@ -270,17 +270,14 @@ public void EnterALLFields() throws Exception
 	
 	String asset = ExcelUtility.getCellData("CreateSTP", 9, 6);
 	Assets.sendKeys(asset);
-	Assets.sendKeys(Keys.RETURN);
 	callNewDimension(asset, Assets);
 	
 	String database = ExcelUtility.getCellData("CreateSTP", 17, 6);
 	Database.sendKeys(database);
-	Database.sendKeys(Keys.RETURN);
 	callNewDimension(database, Database);
 	
 	String materials = ExcelUtility.getCellData("CreateSTP", 11, 6);
 	MaterialUsed.sendKeys(materials);
-	MaterialUsed.sendKeys(Keys.RETURN);
 	callNewDimension(materials, MaterialUsed);
 	
 	//__________________________________ Page 3 ___________________________
@@ -289,17 +286,14 @@ public void EnterALLFields() throws Exception
 	
 	String techniqueUsed = ExcelUtility.getCellData("CreateSTP", 10, 6);
 	TechniqueUsed.sendKeys(techniqueUsed);
-	TechniqueUsed.sendKeys(Keys.RETURN);
 	callNewDimension(techniqueUsed, TechniqueUsed);
 	
 	String relatedTech = ExcelUtility.getCellData("CreateSTP", 16, 6);
 	RelatedTechnology.sendKeys(relatedTech);
-	RelatedTechnology.sendKeys(Keys.RETURN);
 	callNewDimension(relatedTech, RelatedTechnology);
 	
 	String keyword = ExcelUtility.getCellData("CreateSTP", 19, 6);
 	Keywords.sendKeys(keyword);
-	Keywords.sendKeys(Keys.RETURN);
 	callNewDimension(keyword, Keywords);
 	//____________________________________ Page 4 ___________________________
 	
@@ -315,14 +309,12 @@ public void EnterALLFields() throws Exception
 	
 	String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
 	AssociatedTrends.sendKeys(trend);
-	AssociatedTrends.sendKeys(Keys.RETURN);
 	callNewDimension(trend, AssociatedTrends);
 	
 	TechnologyReadiness.click();
 	
 	String merckPubli = ExcelUtility.getCellData("CreateSTP", 20, 6);
 	PublicationsbyMerck.sendKeys(merckPubli);
-	PublicationsbyMerck.sendKeys(Keys.RETURN);
 	callNewDimension(merckPubli, PublicationsbyMerck);
 	
 	String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
@@ -396,9 +388,9 @@ public void callNewDimension(String value, WebElement ele) throws InterruptedExc
 					newDimensionAdditionalInfo.sendKeys("Additional Info of "+value);
 					Thread.sleep(1000);
 					newDimensionExternalLink.sendKeys("External link of "+value);
-					Thread.sleep(1000);
-					
-					try {
+					Thread.sleep(2000);
+					try 
+					{
 						newDimensionsave.click();
 					}
 					catch(Exception e)
@@ -425,10 +417,14 @@ public void callNewDimension(String value, WebElement ele) throws InterruptedExc
 			}
 		}
 		}
+		else 
+		{
+			ele.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+		}
 	}
 	catch(Exception e)
 	{
-		ele.sendKeys(Keys.RETURN);
+		ele.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
 	}
 	
 	}

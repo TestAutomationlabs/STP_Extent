@@ -17,7 +17,6 @@ public class CreateSTPPagetest extends TestBase {
 	ToastMessages toast;
 	STPDetailsValidationPage validation;
 	
-	
 	public CreateSTPPagetest()
 	{
 		super();
@@ -29,10 +28,11 @@ public class CreateSTPPagetest extends TestBase {
 		create = new CreateSTPPage();
 		home = new HomePage();
 		toast = new ToastMessages();
+		validation = new STPDetailsValidationPage();
 		
 	}
 
-	//@Test(priority = 1)
+	@Test(priority = 1)
 	public void HelpTextValidation() throws Exception {
 
 		home.ClickOnSTPLink();
@@ -41,7 +41,7 @@ public class CreateSTPPagetest extends TestBase {
 
 	}
 
-	//@Test(priority = 2)
+	@Test(priority = 2)
 
 	public void MandatoryFieldValidation() throws Exception
 	{
@@ -52,12 +52,12 @@ public class CreateSTPPagetest extends TestBase {
 		toast.DescriptionToast(i);
 		toast.CommunityOrganiserToast(i);
 		toast.successfulToast(i);
-		validation.detailsValidation(5);
+		//validation.detailsValidation(5);
 		
 		}
 	}
 	
-	@Test//(priority = 3)
+	@Test(priority = 3)
 	public void AllFieldValidation() throws Exception
 	{
 		home.ClickOnSTPLink();

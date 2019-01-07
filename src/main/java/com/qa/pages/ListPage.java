@@ -144,18 +144,21 @@ public class ListPage extends TestBase
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void searchSTP()
+	public void searchSTP() throws Exception
 	{
+		try
+		{
+			String searching = ExcelUtility.getCellData("CreateSTP", 1, 5);
 			try {
 				if (stpHeaderText.isDisplayed())
 				{
 					System.out.println("Navigation to List Tab successful");
 					try {
-						listSearch.sendKeys("Inkjet printing");//ExcelUtility.getCellData("CreateSTP", 5, 1));
+						listSearch.sendKeys(searching);//ExcelUtility.getCellData("CreateSTP", 5, 1));
 						listSearch.sendKeys(Keys.RETURN);
 						Thread.sleep(1000);			
 						try{
-							elementSearch();
+							elementSearch(searching);
 						}
 						catch(Exception e)
 						{
@@ -192,13 +195,18 @@ public class ListPage extends TestBase
 				System.out.println(noListTabLink);
 			}
 		}
+		catch(Exception e)
+		{
+			System.out.println("Error while fetching data");
+		}
+		}
 	
-	public void elementSearch()
+	public void elementSearch(String SearchValue)
 	{
 		do		
 		{
 		try {
-			value = "Inkjet printing";//ExcelUtility.getCellData("CreateSTP", 5, 1);
+			value = SearchValue;//ExcelUtility.getCellData("CreateSTP", 5, 1);
 			String FetchedValue =	getstpinList().getText();
 			System.out.println(FetchedValue);
 			System.out.println(value);
@@ -222,7 +230,7 @@ public class ListPage extends TestBase
 				}
 				catch(Exception e)
 				{
-					value = "Inkjet printing";//ExcelUtility.getCellData("CreateSTP", 5, 1);
+					value = SearchValue;//ExcelUtility.getCellData("CreateSTP", 5, 1);
 					FetchedValue = getstpinList().getText();
 					System.out.println(FetchedValue);
 					System.out.println(value);
@@ -284,7 +292,7 @@ public class ListPage extends TestBase
 	public void FilterByCategory() throws Exception
 	{
 		
-		for (int i=4; i<5; i++)
+		for (int i=4; i<22; i++)
 		{
 			String value = ExcelUtility.getCellData("CreateSTP", i, 0);
 			String valueToMatch = ExcelUtility.getCellData("CreateSTP", i, 6);
@@ -305,27 +313,22 @@ public class ListPage extends TestBase
 				searchInSelectedFilter.sendKeys(Keys.RETURN);
 				Thread.sleep(3000);
 				String searchedWord = filterTip.getText();
-	
-				List<WebElement> Ele2= driver.findElements(By.xpath("//div[contains(@class,'token text-left ') and contains (text(),'"+element+"')]"));
-				 String st = null;
-				 for (int j = 0; j < Ele2.size(); j++)
-				 {
-					 System.out.println(searchedWord);
-					 st= (Ele2.get(i).getText());
-					 System.out.println(st);
-				 }
-				 System.out.println(st);
-						 
-					if (st.equalsIgnoreCase(searchedWord))
-					{
-						System.out.println(searchedWord+" Filter applied in "+value+" category and filter was sucessful");
-						ele = driver.findElement(By.xpath("//div[contains(@class,'token text-left ') and text() ='"+searchedWord+"']"));
-					}
-					
+				String filterTipinList = getfilterTipinList().getText();
+				if(searchedWord.contains(filterTipinList))
+				{
+					System.out.println("Category pass");
 				}
+				else 
+				{
+					System.out.println("Category failed");
+				}
+				
+				
+			}
 			catch(Exception e)
 				{
 					System.out.println("An Error occured at "+value);
+					System.out.println(e);
 				}
 			try {
 				closeCategory.click();
@@ -336,9 +339,33 @@ public class ListPage extends TestBase
 				System.out.println("Unable to close the category");
 				break;
 			}
-			}
 		}
-	}
 }
-
-
+	}
+	
+	public WebElement getfilterTipinList() throws InterruptedException
+	{	
+		WebElement ele = null;
+		
+		String element = filterTip.getText();
+		Thread.sleep(2000);
+	 List<WebElement> Ele2= driver.findElements(By.xpath("//div[contains(@class,'token text-left ') and contains (text(),'"+element+"')]"));
+	 String st = null;
+	 for (int i = 0; i < Ele2.size(); i++)
+	 {
+		 System.out.println(element);
+		 st= (Ele2.get(i).getText());
+		 System.out.println(st);
+	 }
+	 System.out.println(st);
+	 //st = st.trim();
+	 //element = element.trim();
+	 
+		if (st.equalsIgnoreCase(element))
+		{
+			ele = driver.findElement(By.xpath("//div[contains(@class,'token text-left ') and text() ='"+element+"']"));
+		}
+		return ele;
+	}
+	
+}
