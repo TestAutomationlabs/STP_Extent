@@ -1,22 +1,13 @@
 package com.qa.pages;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
-//import com.qa.library.ExcelUtilityForMultiple;
 
 public class STPDetailsValidationPage extends TestBase{
 	static int i;
@@ -166,86 +157,5 @@ public class STPDetailsValidationPage extends TestBase{
 	else {
 		System.out.println("Failed to validate Resoucrce community organizer in Details page");
 		}
-	}
-	
-
-	public void detailsValidation(int column)
-	{
-		if (column<6)
-		{
-			try {
-				String inputfullname = ExcelUtility.getCellData("CreateSTP", 1, column);
-				String fullname = Stpname.getText();
-				if(inputfullname.equalsIgnoreCase(fullname))
-				{
-					System.out.println("Full name Verified");
-				}
-				else
-				{
-					System.out.println("Full name didnt match with the input data");
-				}
-			}
-			catch (Exception e)
-			{
-				System.out.println(e);
-				System.out.println("Exception at Fullname");
-			}
-			
-			try {
-				String inputShortname = ExcelUtility.getCellData("CreateSTP", 2, column);
-				String shortname = StpShortname.getText();
-				if(inputShortname.equalsIgnoreCase(shortname))
-				{
-					System.out.println("Short name Verified");
-				}
-				else
-				{
-					System.out.println("Short name didnt match with the input data");
-				}
-			}
-			catch (Exception e)
-			{
-				System.out.println("Exception at short name");
-			}
-		}
-		else
-		{
-			try {
-				String inputfullname = ExcelUtility.getCellData("CreateSTP", 1, column);
-				String fullname = Stpname.getText();
-				if(inputfullname.equalsIgnoreCase(fullname))
-				{
-					System.out.println("Full name Verified");
-				}
-				else
-				{
-					System.out.println("Full name didnt match with the input data");
-				}
-			}
-			catch (Exception e)
-			{
-				System.out.println(e);
-				System.out.println("Exception at Fullname");
-			}
-			
-			try {
-				String inputShortname = ExcelUtility.getCellData("CreateSTP", 2, column);
-				String shortname = StpShortname.getText();
-				if(inputShortname.equalsIgnoreCase(shortname))
-				{
-					System.out.println("Short name Verified");
-				}
-				else
-				{
-					System.out.println("Short name didnt match with the input data");
-				}
-			}
-			catch (Exception e)
-			{
-				System.out.println("Exception at short name");
-			}
-		}
-		
-		
 	}
 }

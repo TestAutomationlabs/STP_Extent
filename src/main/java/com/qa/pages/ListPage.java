@@ -13,8 +13,6 @@ import org.openqa.selenium.support.PageFactory;
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
 
-
-
 public class ListPage extends TestBase
 
 

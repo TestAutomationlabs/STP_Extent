@@ -1,6 +1,9 @@
 package com.qa.testcases;
 
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -26,7 +29,7 @@ public class ListPageTest extends TestBase {
 		list = new ListPage();
 	}
 	
-	@Test(priority = 1)
+	@Test(priority = 4)
 	public void SearchSTPTest() throws Exception
 	{
 		home.verifyListTab();
@@ -34,7 +37,7 @@ public class ListPageTest extends TestBase {
 		list.searchSTP();
 	}
 	
-	@Test(priority = 2)
+	@Test(priority = 5)
 	public void categoryValidation() throws Exception
 	{
 		list.clearSearchField();
