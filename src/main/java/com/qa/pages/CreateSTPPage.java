@@ -10,16 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestMethodFinder;
-import org.testng.ITestNGMethod;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
-import com.qa.ExtentReportListner.ExtentReportNG;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 public class CreateSTPPage extends TestBase
 {
@@ -166,36 +159,21 @@ public class CreateSTPPage extends TestBase
 	@FindBy (xpath = "//a[text()='Relations']")
 	WebElement relations;
 	
-	@FindBy (xpath = "//span[contains(text(),'Discard')]")
-	WebElement discard;
-	
 //CreateSTP Actions
-//	private ExtentReports extent;
-//	private ExtentTest test;
-	
+
 public CreateSTPPage()
 {
 PageFactory.initElements(driver, this);
 }
 
-public WebElement getDiscard()
-{
-	return discard;
-}
-public void clickDiscard()
-{
-	discard.click();
-}
-
 public void HelpToggleValidation() throws Exception
 {
-	//test = new ExtentTest(null, null);
+
 
 if(!((HelpText).isDisplayed()))
 {
 System.out.println("Help Text not present");
 
-	//test.log(LogStatus.FAIL, "Help Text not present");
 }
 else 
 {
@@ -206,24 +184,20 @@ if (HelpToggle.isEnabled())
 {
 	
 	System.out.println("Toggle button clicked");
-	//test.log(LogStatus.INFO, "Toggle button clicked");
 	try
 	{
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	if (HelpText.isDisplayed())
 		{
 			System.out.println("Help text not removed. Hence failed");
-			//test.log(LogStatus.FAIL, "Help text not removed. Hence failed");
 		}
 	}
 	catch(Exception e)
 	{
 		System.out.println("Help text removed as expected");
-		//test.log(LogStatus.PASS, "Help text removed as expected");
 	}
 }
 }
-//test.appendChild(test);
 }		
 
 public void EnterMandatoryFields(int cellNo) throws InterruptedException, IOException
@@ -256,8 +230,8 @@ catch(Exception e)
 System.out.println("Community organiser not maintained");
 }
 Thread.sleep(1000);
-CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, cellNo)+"");
-Thread.sleep(4000);
+CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, cellNo)+" ");
+Thread.sleep(3000);
 CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
 Thread.sleep(1000);
 SavenClose.click();
@@ -345,10 +319,12 @@ public void EnterALLFields() throws Exception
 	
 	String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
 	ReviewarticlesFromOutsideWorld.sendKeys(reivew);
+	ReviewarticlesFromOutsideWorld.sendKeys(Keys.RETURN);
 	callNewDimension(reivew, ReviewarticlesFromOutsideWorld);
 	
 	String patent = ExcelUtility.getCellData("CreateSTP", 23, 6);
 	patents.sendKeys(patent);
+	patents.sendKeys(Keys.RETURN);
 	callNewDimension(patent, patents);
 	//____________________________________ Page 5 ______________________________
 	
@@ -356,18 +332,22 @@ public void EnterALLFields() throws Exception
 	
 	String application = ExcelUtility.getCellData("CreateSTP", 12, 6);
 	Applications.sendKeys(application);
+	Applications.sendKeys(Keys.RETURN);
 	callNewDimension(application, Applications);
 	
 	String ongoing = ExcelUtility.getCellData("CreateSTP", 13, 6);
 	ongoingProjects.sendKeys(ongoing);
+	ongoingProjects.sendKeys(Keys.RETURN);
 	callNewDimension(ongoing, ongoingProjects);
 
 	String products = ExcelUtility.getCellData("CreateSTP", 14, 6);
 	ProductsnServices.sendKeys(products);
+	ProductsnServices.sendKeys(Keys.RETURN);
 	callNewDimension(products, ProductsnServices);
 	
 	String example = ExcelUtility.getCellData("CreateSTP", 15, 6);
 	Externalexample.sendKeys(example);
+	Externalexample.sendKeys(Keys.RETURN);
 	callNewDimension(example, Externalexample);
 	//____________________________________ Page 6 __________________________________
 	
@@ -375,10 +355,12 @@ public void EnterALLFields() throws Exception
 	
 	String collaboration = ExcelUtility.getCellData("CreateSTP", 22, 6);
 	ExternalCollaboration.sendKeys(collaboration);
+	ExternalCollaboration.sendKeys(Keys.RETURN);
 	callNewDimension(collaboration,ExternalCollaboration);
 	
 	String competitor = ExcelUtility.getCellData("CreateSTP", 24, 6);
 	Competitors.sendKeys(competitor);
+	Competitors.sendKeys(Keys.RETURN);
 	callNewDimension(competitor,Competitors);
 	
 	SavenClose.click();
