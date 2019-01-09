@@ -8,9 +8,15 @@ import java.util.Calendar;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 
 import com.qa.Base.TestBase;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 public class TestUtil extends TestBase {
 
@@ -20,6 +26,8 @@ public class TestUtil extends TestBase {
 	public static WebDriverWait wait =new WebDriverWait(driver,200);
 
 	public static long IMPLICIT_WAIT = 200;
+	
+	
 	
 
 	//public static String fileName;
@@ -35,13 +43,32 @@ public class TestUtil extends TestBase {
 }
 	
 	
-	
-	public static  void takeScreenshotAtEndOfTest() throws IOException {
+	public static void takeScreenshotAtEndOfTest() throws IOException {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
-		FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getTimeStamp() + System.currentTimeMillis() + ".png"));
-		//FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getName() + ".png"));
-		//FileUtils.copyFile(scrFile, new File("D:\\SoftwareTestingMaterial.png"));
+		FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
+		
+	}
+	
+	
+
+	
+
+	
+	/*public static String takeScreenshotAtEndOfTest(WebDriver driver, String screenshotName) throws IOException {
+
+		String currentDir = System.getProperty("user.dir");
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String dest= currentDir + "\\screenshots\\"  +screenshotName + ".png";
+		File destFile= new File(dest);
+		FileUtils.copyFile(scrFile, destFile);
+		System.out.println("Screenshot taken");
+		return dest;
+		
+		
+	}*/
+	
+	
 	}
 
-}
+

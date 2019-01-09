@@ -27,7 +27,7 @@ public class PostPages extends TestBase{
 	WebElement selectdropdownvalidation;
 	
 	@FindBy(xpath = "//label/following::input")
-	WebElement Title;
+	public WebElement Title;
 	
 	//@FindBy(xpath=)
 	@FindBy(xpath="//div/following::label[contains(text(),'Your')]/following::textarea")
@@ -47,6 +47,7 @@ public class PostPages extends TestBase{
 	String Titletextbox1;
 	String Yourpostbox1;
 	String STPsbox1;
+	public String titledata_valdn;
 	public PostPages() {
 		PageFactory.initElements(driver, this);
 	}
@@ -56,7 +57,6 @@ public class PostPages extends TestBase{
 	
 	public void verifySTPToolcategoryBox() throws IOException, Exception{
 		try {	
-			System.out.println("try element to avoid exception");
 		selectdropdownvalidation= TestUtil.wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@class='form-control']//option[3]")));
 		System.out.println("selectdropdownvalidation is " +selectdropdownvalidation);
 		selectdropdownvalidation.click();
@@ -64,6 +64,10 @@ public class PostPages extends TestBase{
 		
 		Titletextbox1=ExcelUtility.getCellData("PostDetails", 1, 0);
 		Title.sendKeys(Titletextbox1);
+		
+		Thread.sleep(3000);
+		titledata_valdn=Title.getAttribute("value");
+		System.out.println("Title data validation data" +titledata_valdn);
 		
 		Yourpostbox1=ExcelUtility.getCellData("PostDetails", 1, 1);
 		YourPost.sendKeys(Yourpostbox1);

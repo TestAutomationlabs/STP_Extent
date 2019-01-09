@@ -3,6 +3,7 @@ package com.qa.pages;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -13,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
@@ -64,7 +66,10 @@ public class STPDetailsValidationPage extends TestBase{
 	@FindBy(xpath="//div[@data-toggle='tooltip']")
 	WebElement resources_communityorganizer_button;
 	
-	String STPTextbox;
+	@FindBy(xpath="//button[@data-original-title='Add to Interesting STPs']")
+	WebElement intrestingbutton;
+	
+	public static String STPTextbox;
 	String stp_valntextbox;
 	String enteredstpname;
 	String stp_valdndesc;
@@ -80,19 +85,18 @@ public class STPDetailsValidationPage extends TestBase{
 	public void STPFields() throws IOException, InterruptedException 
 	{		
 		System.out.println(ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 2));
-		STPTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 0);
+		STPTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",3, 0);
 		Stpname.sendKeys(STPTextbox);
 		
 		System.out.println("The text value of stptexbox" +Stpname.getAttribute("value"));
 		enteredstpname=Stpname.getAttribute("value");
 		System.out.println("Enteredstpname"+enteredstpname);
 		
-		String STPShortNameTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 1);
+		String STPShortNameTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",3, 1);
 		StpShortname.sendKeys(STPShortNameTextbox);
+			
 		
-		
-		
-		String DescriptionTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 2);
+		String DescriptionTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 3, 2);
 		Description.sendKeys(DescriptionTextbox);
 		
 		System.out.println("The text value of stpdescription is: " +Description.getAttribute("value"));
@@ -100,7 +104,7 @@ public class STPDetailsValidationPage extends TestBase{
 		System.out.println(" Enteredstpdesc " + enteredstpdesc);
 		
 		resources.click();
-		String CommunityorgTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 2, 3);
+		String CommunityorgTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 3, 3);
 		communityorganizer.sendKeys(CommunityorgTextbox,Keys.SPACE);
 		Thread.sleep(3000);
 		communityorganizer.sendKeys(Keys.ENTER);
@@ -247,5 +251,20 @@ public class STPDetailsValidationPage extends TestBase{
 		}
 		
 		
+		
+		
 	}
-}
+	public void verifyIntrestingButton(){
+		if(!intrestingbutton.isDisplayed())
+		{
+			System.out.println("Failed to click the Intresting button");
+		} else {
+
+			intrestingbutton.click();
+			System.out.println("List tab is clicked");
+		}
+		
+		}
+	
+	
+	}

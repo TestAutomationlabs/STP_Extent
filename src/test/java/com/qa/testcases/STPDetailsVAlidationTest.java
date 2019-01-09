@@ -1,7 +1,10 @@
 package com.qa.testcases;
 
 import java.io.IOException;
+import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -73,6 +76,38 @@ STPDetailsValidationPage stpdetails;
 		
 		}
 	
+	@Test(priority=7)
+	public void verifyIntrestingButtonTest() throws Exception {
+		stpdetails.verifyIntrestingButton();
+		System.out.println("Naviagated to Intresting page");
+		homepage.verifyHomeIconClick();
+		System.out.println("homepage icon is present");
+		
+		
 	}
+	
+	@Test(priority=8)
+	public void verifyIntrestingSTPSList()
+	{
+		List<WebElement>intrestinglist=driver.findElements(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[3]/div/div"));
+		int interstinglistsize=intrestinglist.size();
+		  System.out.println("size of intresting list is" +interstinglistsize);
+		  
+		for(int i=0; i<interstinglistsize;i++)
+		{
+			System.out.println(intrestinglist.get(i).getText());
+		
+		if(intrestinglist.get(i).getText().equalsIgnoreCase(STPDetailsValidationPage.STPTextbox))
+		{
+			System.out.println("Actual and expected details matched, Hence Intresting details are marking as "
+					+ "passed test case");
+			break;
+		}
+
+	}
+	}
+	
+}
+
 
 
