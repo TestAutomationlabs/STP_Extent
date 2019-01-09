@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
+
 import com.qa.Base.TestBase;
 
 public class WebEventListener extends TestBase implements WebDriverEventListener {
@@ -54,10 +55,11 @@ public class WebEventListener extends TestBase implements WebDriverEventListener
 		System.out.println("Navigated forward to next page");
 	}
 
+
 	public void onException(Throwable error, WebDriver driver) {
-		System.out.println("Exception occured: " + error);
+	System.out.println("Exception occured: " + error);
 		try {
-			TestUtil.takeScreenshotAtEndOfTest();
+		TestUtil.takeScreenshotAtEndOfTest();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
