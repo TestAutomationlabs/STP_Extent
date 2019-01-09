@@ -15,8 +15,8 @@ import com.qa.Base.TestBase;
 public class TestUtil extends TestBase {
 
 
-	public static long PAGE_LOAD_TIMEOUT = 40;
-	public static long IMPLICIT_WAIT = 40;
+	public static long PAGE_LOAD_TIMEOUT = 30;
+	public static long IMPLICIT_WAIT = 30;
 	public static WebDriverWait wait =new WebDriverWait(driver,20);
 
 	//public static String fileName;
