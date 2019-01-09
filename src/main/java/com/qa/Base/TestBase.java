@@ -14,8 +14,6 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
 
 import com.qa.Util.TestUtil;
 import com.qa.Util.WebEventListener;
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
 
 
 public class TestBase {
@@ -25,7 +23,6 @@ public class TestBase {
 	
 	public  static EventFiringWebDriver e_driver;
 	public static WebDriverEventListener eventListener;
-	
 	
 	
 	
@@ -77,18 +74,4 @@ public class TestBase {
 		driver.get(prop.getProperty("url"));
 		
 	}
-	
-	/*public void ExtentReportInitilization()
-	{
-		String currentDir = System.getProperty("user.dir");		
-		report = new ExtentReports(currentDir+ "/test-output/"+"STP_ExtentOutputhome.html");
-		logger=report.startTest("testName");
-		
-	}
-	
-	public void ExtentReportEnds()
-	{
-		report.endTest(logger);
-		  report.flush();
-	}*/
 }
