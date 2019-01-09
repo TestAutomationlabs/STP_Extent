@@ -1,24 +1,17 @@
 package com.qa.pages;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
-//import com.qa.library.ExcelUtilityForMultiple;
 
 public class STPDetailsValidationPage extends TestBase{
 	static int i;
@@ -171,6 +164,7 @@ public class STPDetailsValidationPage extends TestBase{
 		System.out.println("Failed to validate Resoucrce community organizer in Details page");
 		}
 	}
+
 	
 
 	public void detailsValidation(int column)
@@ -268,3 +262,5 @@ public class STPDetailsValidationPage extends TestBase{
 	
 	
 	}
+
+

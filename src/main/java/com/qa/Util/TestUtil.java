@@ -20,18 +20,14 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class TestUtil extends TestBase {
 
-	public static long PAGE_LOAD_TIMEOUT = 200;
+
 
 	
 	public static WebDriverWait wait =new WebDriverWait(driver,200);
 
-	public static long IMPLICIT_WAIT = 200;
+	public static long IMPLICIT_WAIT = 100;
+	public static long PAGE_LOAD_TIMEOUT = 40;
 	
-	
-	
-
-	//public static String fileName;
-	//public static methodname;
 	
 	public static String getTimeStamp() {
 	    String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
