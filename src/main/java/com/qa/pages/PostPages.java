@@ -25,6 +25,7 @@ public class PostPages extends TestBase{
 	@FindBy(xpath="//select[@class='form-control']")
 	WebElement selectdropdown;
 	WebElement selectdropdownvalidation;
+	WebElement successstoryvalidation;
 	
 	@FindBy(xpath = "//label/following::input")
 	public WebElement Title;
@@ -58,6 +59,7 @@ public class PostPages extends TestBase{
 	public void verifySTPToolcategoryBox() throws IOException, Exception{
 		try {	
 		selectdropdownvalidation= TestUtil.wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@class='form-control']//option[3]")));
+		Thread.sleep(2000);
 		System.out.println("selectdropdownvalidation is " +selectdropdownvalidation);
 		selectdropdownvalidation.click();
 	
@@ -129,6 +131,10 @@ public class PostPages extends TestBase{
 	
 	public void PostbuttonClickAfterSuccessStories() throws IOException, Exception
 	{
+		//div/following::button[@class='btn btn-highlight ml-0']
+		//div/following::button[@class='btn btn-highlight ml-0']
+		//successstoryvalidation=TestUtil.wait.until(ExpectedConditions.elementToBeClickable(By.xpath("homepagenew.PostButton")));
+		successstoryvalidation=TestUtil.wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div/following::button[@class='btn btn-highlight ml-0']")));
 		System.out.println("Postbutton again");
 		homepagenew.ClickOnPostButton();
 		

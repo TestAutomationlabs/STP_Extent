@@ -6,15 +6,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import com.qa.pages.STPDetailsValidationPage;
 
 import com.qa.Base.TestBase;
+import com.qa.Util.TestUtil;
 
 public class HomePage extends TestBase {
 	
-	//@FindBy(xpath = "//*[@class='svg-inline--fa fa-home fa-w-18 ']")
-	@FindBy(xpath = "//*[@class='gdfdfdsvg-inline--fa fa-home fa-w-18sssfdfsfsd ']")
+	@FindBy(xpath="//div/button[@type='button']/span[text()='Close']")
+	WebElement GetHelpPopup;
+	
+	@FindBy(xpath = "//*[@class='svg-inline--fa fa-home fa-w-18 ']")
 	WebElement HomeIcon;
 
 	@FindBy(xpath = "//button[@class='btn btn-highlight']")
@@ -38,12 +42,26 @@ public class HomePage extends TestBase {
 	@FindBy(xpath="//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div")
 	public List<WebElement> STPwebtablerows;
 	
-	
+	public WebElement postbuttonvalidationbutton;
 	
 	  
 	
 	public HomePage() {
 		PageFactory.initElements(driver, this);
+	}
+	
+	public void verifyHelpPopup() throws Exception
+	{
+		Thread.sleep(2000);
+		if(!GetHelpPopup.isDisplayed())
+		{
+			System.out.println("Helppopup is not present");
+		}
+		else
+		{
+			GetHelpPopup.click();
+			System.out.println("Helppopup is present and it has clicked");
+		}
 	}
 
 	public boolean verifyHomeIcon() {
@@ -75,8 +93,10 @@ public class HomePage extends TestBase {
 		}
 		else
 		{
-			PostButton.click();
-			System.out.println("Post Button is clicked");
+			postbuttonvalidationbutton=TestUtil.wait.until(ExpectedConditions.elementToBeClickable(PostButton));
+			//PostButton.click();
+			postbuttonvalidationbutton.click();
+			System.out.println("Post Button validation buttonis clicked");
 		}
 		return new PostPages();
 	}

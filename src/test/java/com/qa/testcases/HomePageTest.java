@@ -34,7 +34,15 @@ public class HomePageTest extends TestBase {
 
 	}
 
-	@Test
+	@Test(priority=1)
+	public void verifyHelpPopupTest() throws Exception {
+		homepage.verifyHelpPopup();
+		System.out.println("Helppoup is present");
+
+	}
+
+	
+	@Test(priority = 2)
 	public void verifyHomeIconTest() {
 		Assert.assertTrue(homepage.verifyHomeIcon());
 
@@ -42,7 +50,7 @@ public class HomePageTest extends TestBase {
 
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void verifyListTabTest() throws Exception {
 		homepage.verifyListTab();
 		System.out.println("Naviagated to listpage");

@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.qa.Base.TestBase;
+import com.qa.Util.TestUtil;
 import com.qa.pages.HomePage;
 import com.qa.pages.PostPages;
 
@@ -17,7 +19,7 @@ public class PostButtonTest extends TestBase {
 	HomePage homepage;
 	PostPages post;
 
-	public String stptooldata_valdn;
+	public String stptoolnews_valdn;
 	// public String post_stptitle_vladn;
 
 	public PostButtonTest() {
@@ -36,24 +38,21 @@ public class PostButtonTest extends TestBase {
 	}
 
 	@Test(priority = 1)
-	public void AddPostTest() {
+	public void AddPostTest() throws Exception {
+		homepage.verifyHelpPopup();
 		homepage.ClickOnPostButton();
 		System.out.println("Navigated to the AddPost");
 
 	}
 
+	
+
 	@Test(priority = 2)
-	public void verifyPostPageTest() throws Exception {
-		// post.verifySuccessStoriescategoryBox();
-
-	}
-
-	@Test(priority = 3)
 	public void verifyPostbuttonClickAfterSuccessStories() throws IOException, Exception {
 		// post.PostbuttonClickAfterSuccessStories();
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 3)
 	public void verifySTPToolStory() throws IOException, Exception {
 		post.verifySTPToolcategoryBox();
 
@@ -81,8 +80,8 @@ public class PostButtonTest extends TestBase {
 	 * }
 	 */
 
-	@Test(priority = 5)
-	public void verifySTPToolIcon() throws Exception {
+	@Test(priority = 4)
+	public void verifySTPNews() throws Exception {
 		// *[@id="root"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[2]/span/div[1]
 		String beforexpath = "//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[";
 		String afterxpath = "]/span/div[1]";
@@ -93,8 +92,8 @@ public class PostButtonTest extends TestBase {
 			String name = driver.findElement(By.xpath(beforexpath + i + afterxpath)).getText();
 			System.out.println(name);
 			if (name.contains(post.titledata_valdn)) {
-				stptooldata_valdn = homepage.EnteredSTPToolData.getText();
-				System.out.println("STP Tool data validation" + stptooldata_valdn);
+				stptoolnews_valdn = homepage.EnteredSTPToolData.getText();
+				System.out.println("STP News data validation" + stptoolnews_valdn);
 				break;
 
 			}
@@ -102,9 +101,19 @@ public class PostButtonTest extends TestBase {
 		}
 	}
 
+	
+	@Test(priority = 5)
+	public void verifyPostPageTest() throws Exception {
+		
+		Thread.sleep(2000);
+		homepage.ClickOnPostButton();
+		System.out.println("Navigated to the AddPost for success stories");
+		post.verifySuccessStoriescategoryBox();
+
+	}
 	@AfterClass
 	public void TearDown() {
-		driver.close();
+		//driver.close();
 	}
 
 }
