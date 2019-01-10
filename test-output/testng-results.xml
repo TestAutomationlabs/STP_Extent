@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testng-results skipped="0" failed="1" ignored="0" total="4" passed="3">
   <reporter-output>
   </reporter-output>
@@ -109,4 +110,45 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
       </class> <!-- com.qa.testcases.PostButtonTest -->
     </test> <!-- STP Test Cases in Maven -->
   </suite> <!-- Test STPNew Maven_Suite -->
+=======
+<testng-results skipped="0" failed="0" ignored="0" total="5" passed="5">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="30656" started-at="2019-01-09T11:37:17Z" finished-at="2019-01-09T11:37:47Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="30656" started-at="2019-01-09T11:37:17Z" finished-at="2019-01-09T11:37:47Z">
+      <class name="com.qa.testcases.PostButtonTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.qa.testcases.PostButtonTest@464bee09]" name="setUp" is-config="true" duration-ms="24047" started-at="2019-01-09T11:37:17Z" finished-at="2019-01-09T11:37:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="AddPostTest()[pri:1, instance:com.qa.testcases.PostButtonTest@464bee09]" name="AddPostTest" duration-ms="263" started-at="2019-01-09T11:37:41Z" finished-at="2019-01-09T11:37:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddPostTest -->
+        <test-method status="PASS" signature="verifyPostPageTest()[pri:2, instance:com.qa.testcases.PostButtonTest@464bee09]" name="verifyPostPageTest" duration-ms="4" started-at="2019-01-09T11:37:41Z" finished-at="2019-01-09T11:37:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyPostPageTest -->
+        <test-method status="PASS" signature="verifyPostbuttonClickAfterSuccessStories()[pri:3, instance:com.qa.testcases.PostButtonTest@464bee09]" name="verifyPostbuttonClickAfterSuccessStories" duration-ms="2" started-at="2019-01-09T11:37:41Z" finished-at="2019-01-09T11:37:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyPostbuttonClickAfterSuccessStories -->
+        <test-method status="PASS" signature="verifySTPToolStory()[pri:4, instance:com.qa.testcases.PostButtonTest@464bee09]" name="verifySTPToolStory" duration-ms="5912" started-at="2019-01-09T11:37:41Z" finished-at="2019-01-09T11:37:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifySTPToolStory -->
+        <test-method status="PASS" signature="verifySTPToolIcon()[pri:5, instance:com.qa.testcases.PostButtonTest@464bee09]" name="verifySTPToolIcon" duration-ms="136" started-at="2019-01-09T11:37:47Z" finished-at="2019-01-09T11:37:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifySTPToolIcon -->
+        <test-method status="PASS" signature="TearDown()[pri:0, instance:com.qa.testcases.PostButtonTest@464bee09]" name="TearDown" is-config="true" duration-ms="217" started-at="2019-01-09T11:37:47Z" finished-at="2019-01-09T11:37:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TearDown -->
+      </class> <!-- com.qa.testcases.PostButtonTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+>>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
 </testng-results>

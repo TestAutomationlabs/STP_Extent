@@ -13,6 +13,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
+<<<<<<< HEAD
+=======
+
+import com.qa.ExtentReportListner.ExtentReportNG;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
+>>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
 
 public class CreateSTPPage extends TestBase
 {

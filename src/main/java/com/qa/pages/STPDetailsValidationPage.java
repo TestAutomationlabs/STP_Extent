@@ -12,8 +12,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+<<<<<<< HEAD
 import org.testng.Assert;
 
+=======
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+>>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
 //import com.qa.library.ExcelUtilityForMultiple;
@@ -80,19 +86,31 @@ public class STPDetailsValidationPage extends TestBase{
 	public void STPFields() throws IOException, InterruptedException 
 	{		
 		System.out.println(ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 2));
+<<<<<<< HEAD
 		STPTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 0);
+=======
+		STPTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",6, 0);
+>>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
 		Stpname.sendKeys(STPTextbox);
 		
 		System.out.println("The text value of stptexbox" +Stpname.getAttribute("value"));
 		enteredstpname=Stpname.getAttribute("value");
 		System.out.println("Enteredstpname"+enteredstpname);
 		
+<<<<<<< HEAD
 		String STPShortNameTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 1);
+=======
+		String STPShortNameTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",6, 1);
+>>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
 		StpShortname.sendKeys(STPShortNameTextbox);
 		
+<<<<<<< HEAD
 		
 		
 		String DescriptionTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 2);
+=======
+		String DescriptionTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 6, 2);
+>>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
 		Description.sendKeys(DescriptionTextbox);
 		
 		System.out.println("The text value of stpdescription is: " +Description.getAttribute("value"));
@@ -100,7 +118,11 @@ public class STPDetailsValidationPage extends TestBase{
 		System.out.println(" Enteredstpdesc " + enteredstpdesc);
 		
 		resources.click();
+<<<<<<< HEAD
 		String CommunityorgTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 2, 3);
+=======
+		String CommunityorgTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 5, 3);
+>>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
 		communityorganizer.sendKeys(CommunityorgTextbox,Keys.SPACE);
 		Thread.sleep(3000);
 		communityorganizer.sendKeys(Keys.ENTER);
@@ -167,6 +189,10 @@ public class STPDetailsValidationPage extends TestBase{
 		System.out.println("Failed to validate Resoucrce community organizer in Details page");
 		}
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
 	
 
 	public void detailsValidation(int column)
@@ -248,4 +274,9 @@ public class STPDetailsValidationPage extends TestBase{
 		
 		
 	}
+<<<<<<< HEAD
 }
+=======
+
+
+>>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
