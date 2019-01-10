@@ -4,12 +4,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+
 import com.qa.Base.TestBase;
 import com.qa.pages.CreateSTPPage;
 import com.qa.pages.HomePage;
 import com.qa.pages.ListPage;
 import com.qa.pages.STPDetails;
 import com.qa.pages.STPDetailsValidationPage;
+
 import com.qa.pages.ToastMessages;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -17,30 +19,29 @@ import com.relevantcodes.extentreports.ExtentTest;
 
 public class STPTesting extends TestBase{
 	
+	STPDetailsValidationPage validation;
 	CreateSTPPage create;
 	HomePage home;
 	ToastMessages toast;
-	STPDetailsValidationPage validation;
 	STPDetails details;
 	ExtentTest test;
 	ExtentReports report;
 	ListPage list;
+
 
 	public STPTesting()
 	{
 		super();
 	}
 	
+
 	@BeforeClass
 	public void setup() {
 		initialization();
 		create = new CreateSTPPage();
 		home = new HomePage();
 		toast = new ToastMessages();
-		details = new STPDetails();
-		list = new ListPage();
 	}
-	
 		@Test(priority = 1)
 		public void HelpTextValidation() throws Exception {
 			//Reporter		
@@ -57,7 +58,6 @@ public class STPTesting extends TestBase{
 		@Test(priority = 2)
 		public void MandatoryFieldValidation() throws Exception
 		{
-			
 			//test = report.startTest("Create STP Mandatory field validation");
 			for (int i=5; i<6 ; i++)
 			{

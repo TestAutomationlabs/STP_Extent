@@ -74,4 +74,19 @@ public class TestBase {
 		driver.get(prop.getProperty("url"));
 		
 	}
+	
+	/*public void ExtentReportInitilization()
+	{
+		String currentDir = System.getProperty("user.dir");		
+		report = new ExtentReports(currentDir+ "/test-output/"+"STP_ExtentOutputhome.html");
+		logger=report.startTest("testName");
+		
+	}
+	
+	public void ExtentReportEnds()
+	{
+		report.endTest(logger);
+		  report.flush();
+	}*/
+
 }

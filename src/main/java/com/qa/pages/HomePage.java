@@ -21,6 +21,7 @@ public class HomePage extends TestBase {
 	@FindBy(xpath="//div/button[@type='button']/span[text()='Close']")
     WebElement GetHelpPopup;
 	
+	
 
 	// Initializing the Page Objects:
 

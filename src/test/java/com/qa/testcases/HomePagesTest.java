@@ -8,7 +8,6 @@ import com.qa.pages.HomePage;
 
 public class HomePagesTest extends TestBase {
 
-	
 	HomePage home;
 
 	public HomePagesTest() {
@@ -21,7 +20,7 @@ public class HomePagesTest extends TestBase {
 		home = new HomePage();
 	}
 
-	@Test (priority=1)
+	@Test(priority = 1)
 	public void verifyHomeIconTest() throws Exception {
 
 		home.verifyHomeIcon();
@@ -30,13 +29,12 @@ public class HomePagesTest extends TestBase {
 
 	}
 
-	@Test (priority=2)
+	@Test(priority = 2)
 	public void verifyListTabTest() throws Exception {
 		home.verifyListTab();
 		System.out.println("Naviagated to listpage");
 	}
 
-	
 //
 //	@AfterClass
 //	public void CloseBrowser() {

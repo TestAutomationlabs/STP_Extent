@@ -8,17 +8,15 @@ import com.qa.Base.TestBase;
 import com.qa.pages.HomePage;
 import com.qa.pages.ListPage;
 
-
 public class ListPageTest extends TestBase {
 
 	HomePage home;
 	ListPage list;
-	
-	public ListPageTest()
-	{
+
+	public ListPageTest() {
 		super();
 	}
-	
+
 	@BeforeClass
 	public void setup() {
 		initialization();
@@ -29,6 +27,7 @@ public class ListPageTest extends TestBase {
 	@Test(priority = 1)
 	public void SearchSTPTest() throws Exception
 	{
+
 		home.Closepopup();
 		Thread.sleep(2000);
 		home.verifyListTab();
@@ -43,10 +42,9 @@ public class ListPageTest extends TestBase {
 		Thread.sleep(1000);
 		list.FilterByCategory();
 	}
-	
+
 	@AfterClass
-	public void KillBrowser()
-	{
+	public void TearDown() {
 		driver.close();
 	}
 }
