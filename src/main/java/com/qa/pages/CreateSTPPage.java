@@ -13,16 +13,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 
 public class CreateSTPPage extends TestBase
 {
 
+	ExtentTest test;
+	ExtentReports report;
+	
 //	CreateSTP Elements
 	
 	WebDriverWait wait=new WebDriverWait(driver,30);
 	
 	@FindBy(xpath="//div[text()='Create']")
 	WebElement createStpText ;
+	
+	@FindBy (xpath = "//button[@type='button'][text()='Close']")
+	WebElement closeHelpPopup;
 	
 	@FindBy(xpath="//span[contains(@class,'slider round')]")
 	WebElement HelpToggle;
@@ -99,7 +107,7 @@ public class CreateSTPPage extends TestBase
 	@FindBy (xpath = "//input[@placeholder='Keywords']")
 	WebElement Keywords;
 	
-	@FindBy (xpath = "//input[@placeholder='Publications by Merck']")
+	@FindBy (xpath = "//input[@placeholder='Publications by Merck/EMD']")
 	WebElement PublicationsbyMerck;
 	
 	@FindBy (xpath = "//input[@placeholder='Review articles of outside world']")
@@ -159,6 +167,9 @@ public class CreateSTPPage extends TestBase
 	@FindBy (xpath = "//a[text()='Relations']")
 	WebElement relations;
 	
+	@FindBy (xpath = "//span[text()='Discard']")
+	WebElement discard;
+	
 //CreateSTP Actions
 
 public CreateSTPPage()
@@ -166,38 +177,65 @@ public CreateSTPPage()
 PageFactory.initElements(driver, this);
 }
 
-public void HelpToggleValidation() throws Exception
-{
 
-
-if(!((HelpText).isDisplayed()))
+public void closeHelppopup()
 {
-System.out.println("Help Text not present");
-
-}
-else 
-{
-System.out.println("Help Text present");
-HelpToggle.click();
-
-if (HelpToggle.isEnabled())
-{
-	
-	System.out.println("Toggle button clicked");
 	try
-	{
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	if (HelpText.isDisplayed())
-		{
-			System.out.println("Help text not removed. Hence failed");
-		}
+	{	if (closeHelpPopup.isDisplayed())
+			{
+				closeHelpPopup.click();
+				Thread.sleep(2000);
+			}
 	}
 	catch(Exception e)
 	{
-		System.out.println("Help text removed as expected");
+		System.out.println("Help pop-up not present");
 	}
 }
+
+
+
+public WebElement Discard()
+{
+	return discard;
 }
+
+public void HelpToggleValidation() throws Exception
+{
+	//report = ExtentContent.reporter("Help Text Validation");
+	//test = report.startTest("Help Text Validation");
+	if(!((HelpText).isDisplayed()))
+	{
+	System.out.println("Help Text not present");
+	//test.log(LogStatus.PASS, "Help Text is present");
+	}
+	else 
+	{
+	System.out.println("Help Text present");
+	HelpToggle.click();
+	
+	//test.log(LogStatus.FAIL, "Help Text not expected here");
+	
+	if (HelpToggle.isEnabled())
+	{		
+		System.out.println("Toggle button clicked");
+		//test.log(LogStatus.PASS, "Help toggle click successful");
+		try
+		{
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			if (HelpText.isDisplayed())
+				{
+					//test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+					System.out.println("Help text not removed. Hence failed");
+				}
+		}
+		catch(Exception e)
+		{
+			//test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+			System.out.println("Help text removed as expected");
+		}
+	}
+	}
 }		
 
 public void EnterMandatoryFields(int cellNo) throws InterruptedException, IOException
@@ -230,8 +268,8 @@ catch(Exception e)
 System.out.println("Community organiser not maintained");
 }
 Thread.sleep(1000);
-CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, cellNo)+" ");
-Thread.sleep(3000);
+CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, cellNo));
+Thread.sleep(4000);
 CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
 Thread.sleep(1000);
 SavenClose.click();
@@ -253,32 +291,76 @@ public void EnterALLFields() throws Exception
 	Thread.sleep(3000);
 	Location.sendKeys(Keys.RETURN);
 	
-	BusinessSector.sendKeys(ExcelUtility.getCellData("CreateSTP", 6, 6)+" ");
-	Thread.sleep(3000);
-	BusinessSector.sendKeys(Keys.RETURN);
+	try {
+		BusinessSector.sendKeys(ExcelUtility.getCellData("CreateSTP", 6, 6)+" ");
+		Thread.sleep(3000);
+		BusinessSector.sendKeys(Keys.RETURN);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at BusinessSector");
+		System.out.println(e);
+	}
+	
 	//___________________________________ Page 2 ________________________________________
 	resources.click();
 	Thread.sleep(1000);
 	
-	CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, 6)+" ");
-	Thread.sleep(3000);
-	CommunityOrganiser.sendKeys(Keys.RETURN);
+	try {
+		CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, 6));
+		Thread.sleep(4000);
+		CommunityOrganiser.sendKeys(Keys.RETURN);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at CommunityOrganiser");
+		System.out.println(e);
+	}
 	
-	Experts.sendKeys(ExcelUtility.getCellData("CreateSTP", 5, 6)+" ");
-	Thread.sleep(3000);
-	Experts.sendKeys(Keys.RETURN);
+	try {
+		Experts.sendKeys(ExcelUtility.getCellData("CreateSTP", 5, 6));
+		Thread.sleep(4000);
+		Experts.sendKeys(Keys.RETURN);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at Experts");
+		System.out.println(e);
+	}
 	
-	String asset = ExcelUtility.getCellData("CreateSTP", 9, 6);
-	Assets.sendKeys(asset);
-	callNewDimension(asset, Assets);
+	try {
+		String asset = ExcelUtility.getCellData("CreateSTP", 9, 6);
+		Assets.sendKeys(asset);
+		callNewDimension(asset, Assets);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at Assets");
+		System.out.println(e);
+	}
 	
-	String database = ExcelUtility.getCellData("CreateSTP", 17, 6);
-	Database.sendKeys(database);
-	callNewDimension(database, Database);
+	try {
+		String database = ExcelUtility.getCellData("CreateSTP", 17, 6);
+		Database.sendKeys(database);
+		callNewDimension(database, Database);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at Database");
+		System.out.println(e);
+	}
 	
-	String materials = ExcelUtility.getCellData("CreateSTP", 11, 6);
-	MaterialUsed.sendKeys(materials);
-	callNewDimension(materials, MaterialUsed);
+	try {
+		String materials = ExcelUtility.getCellData("CreateSTP", 11, 6);
+		MaterialUsed.sendKeys(materials);
+		callNewDimension(materials, MaterialUsed);
+		
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
 	//__________________________________ Page 3 ___________________________
 	
@@ -328,42 +410,103 @@ public void EnterALLFields() throws Exception
 	callNewDimension(patent, patents);
 	//____________________________________ Page 5 ______________________________
 	
-	ApplicationsnProductsTab.click();
+	try {
+		ApplicationsnProductsTab.click();
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at ApplicationsnProductsTab");
+		System.out.println(e);
+	}
 	
-	String application = ExcelUtility.getCellData("CreateSTP", 12, 6);
-	Applications.sendKeys(application);
-	Applications.sendKeys(Keys.RETURN);
-	callNewDimension(application, Applications);
+	try {
+		String application = ExcelUtility.getCellData("CreateSTP", 12, 6);
+		Applications.sendKeys(application);
+		callNewDimension(application, Applications);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at Applications");
+		System.out.println(e);
+	}
 	
-	String ongoing = ExcelUtility.getCellData("CreateSTP", 13, 6);
-	ongoingProjects.sendKeys(ongoing);
-	ongoingProjects.sendKeys(Keys.RETURN);
-	callNewDimension(ongoing, ongoingProjects);
-
-	String products = ExcelUtility.getCellData("CreateSTP", 14, 6);
-	ProductsnServices.sendKeys(products);
-	ProductsnServices.sendKeys(Keys.RETURN);
-	callNewDimension(products, ProductsnServices);
+	try {
+		String ongoing = ExcelUtility.getCellData("CreateSTP", 13, 6);
+		ongoingProjects.sendKeys(ongoing);
+		callNewDimension(ongoing, ongoingProjects);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at ongoingProjects");
+		System.out.println(e);
+	}
 	
-	String example = ExcelUtility.getCellData("CreateSTP", 15, 6);
-	Externalexample.sendKeys(example);
-	Externalexample.sendKeys(Keys.RETURN);
-	callNewDimension(example, Externalexample);
+	try {
+		String products = ExcelUtility.getCellData("CreateSTP", 14, 6);
+		ProductsnServices.sendKeys(products);
+		callNewDimension(products, ProductsnServices);
+		}
+	catch (Exception e)
+	{
+		System.out.println("Error at ProductsnServices");
+		System.out.println(e);
+	}
+	
+	try {
+		String example = ExcelUtility.getCellData("CreateSTP", 15, 6);
+		Externalexample.sendKeys(example);
+		callNewDimension(example, Externalexample);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at Externalexample");
+		System.out.println(e);
+	}
+	
 	//____________________________________ Page 6 __________________________________
 	
-	relations.click();
 	
-	String collaboration = ExcelUtility.getCellData("CreateSTP", 22, 6);
-	ExternalCollaboration.sendKeys(collaboration);
-	ExternalCollaboration.sendKeys(Keys.RETURN);
-	callNewDimension(collaboration,ExternalCollaboration);
+	try {
+		relations.click();
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at relations");
+		System.out.println(e);
+	}
 	
-	String competitor = ExcelUtility.getCellData("CreateSTP", 24, 6);
-	Competitors.sendKeys(competitor);
-	Competitors.sendKeys(Keys.RETURN);
-	callNewDimension(competitor,Competitors);
+	try {
+		String collaboration = ExcelUtility.getCellData("CreateSTP", 22, 6);
+		ExternalCollaboration.sendKeys(collaboration);
+		callNewDimension(collaboration,ExternalCollaboration);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at ExternalCollaboration");
+		System.out.println(e);
+	}
 	
-	SavenClose.click();
+	try {
+		String competitor = ExcelUtility.getCellData("CreateSTP", 24, 6);
+		Competitors.sendKeys(competitor);
+		callNewDimension(competitor,Competitors);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at Competitors");
+		System.out.println(e);
+	}
+	
+
+	try {
+		SavenClose.click();
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at ");
+		System.out.println(e);
+	}
+	
 }
 
 public void callNewDimension(String value, WebElement ele) throws InterruptedException
@@ -428,4 +571,5 @@ public void callNewDimension(String value, WebElement ele) throws InterruptedExc
 	}
 	
 	}
+
 }

@@ -3,12 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.testcases.PostButtonTest">
+      <class name="com.qa.testcases.STPTesting">
         <methods>
-          <include name="setUp"/>
-          <include name="verifyPostPageTest"/>
+          <include name="SearchSTPTest"/>
+          <include name="CloseBrowser"/>
+          <include name="AllFieldValidation"/>
+          <include name="setup"/>
+          <include name="categoryValidation"/>
         </methods>
-      </class> <!-- com.qa.testcases.PostButtonTest -->
+      </class> <!-- com.qa.testcases.STPTesting -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
