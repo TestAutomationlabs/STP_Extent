@@ -29,6 +29,8 @@ public class ListPageTest extends TestBase {
 	@Test(priority = 1)
 	public void SearchSTPTest() throws Exception
 	{
+		home.Closepopup();
+		Thread.sleep(2000);
 		home.verifyListTab();
 		Thread.sleep(1000);
 		list.searchSTP();

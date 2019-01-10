@@ -112,7 +112,7 @@ public class ListPage extends TestBase
 	@FindBy (xpath = "//p[contains(text(),'Competitor')]")
 	WebElement popupCompetitor;
 	
-	@FindBy (xpath = "//p[contains(text(),'Publications by Merck')]")
+	@FindBy (xpath = "//p[contains(text(),'Publications by Merck/EMD')]")
 	WebElement popupPublicationInternal;
 	
 	@FindBy (xpath = "//p[contains(text(),'Review articles of outside world')]")
