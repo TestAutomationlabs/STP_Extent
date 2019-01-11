@@ -37,6 +37,9 @@ public class HomePage extends TestBase {
 	@FindBy(xpath="//button[@data-original-title='STP Tool']")
 	WebElement STPToolButton;
 	
+	@FindBy(xpath="/html/body/div[2]/div/div[1]/div/div/div[3]/button")
+	WebElement ClosePopupAddSTPButton;
+	
 	@FindBy(xpath="//div[@class='news-title fs-15p font-weight-bold break-word']")
 	public WebElement EnteredSTPToolData;
 	// Initializing the Page Objects:
@@ -90,10 +93,10 @@ public class HomePage extends TestBase {
 		return HomeIcon.isDisplayed();
 	}
 
-//	public void verifyHomeIconClick()
-//	{
-//		HomeIcon.click();
-//	}
+	public void verifyHomeIconClick()
+	{
+		HomeIcon.click();
+	}
 	public boolean verifyListTab() {
 //		if (!ListTab.isDisplayed()) {
 //			System.out.println("Listtab is not displayed");
@@ -144,7 +147,17 @@ public class HomePage extends TestBase {
 	}
 	}
 
-	
+	public void ClickonAddSTPButton()
+	{
+		if(!ClosePopupAddSTPButton.isDisplayed())
+		{
+			System.out.println("Failed to click on the ClosePopup for AddSTP Button");
+		}
+		else {
+		ClosePopupAddSTPButton.click();
+		System.out.println("AddSTP butoon clicked");
+	}
+	}
 	public void ClickOnSTPToolIcon() throws Exception
 	{
 		Thread.sleep(2000);

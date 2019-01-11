@@ -26,9 +26,10 @@ public class HomePageTest extends TestBase {
 	}
 
 	@BeforeClass
-	public void setUp() {
+	public void setUp() throws Exception {
 
 		initialization();
+		Thread.sleep(3000);
 		homepage=new HomePage();
 	}
 	

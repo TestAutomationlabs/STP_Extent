@@ -87,8 +87,7 @@ public class STPDetailsValidationPage extends TestBase{
 	public void STPFields() throws IOException, InterruptedException 
 	{		
 		System.out.println(ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 2));
-		STPTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 0);
-		STPTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",3, 0);
+		STPTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",4, 0);
 		Stpname.sendKeys(STPTextbox);
 		
 		System.out.println("The text value of stptexbox" +Stpname.getAttribute("value"));
@@ -96,13 +95,13 @@ public class STPDetailsValidationPage extends TestBase{
 		System.out.println("Enteredstpname"+enteredstpname);
 		
 		
-		String STPShortNameTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",3, 1);
+		String STPShortNameTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",4, 1);
 		StpShortname.sendKeys(STPShortNameTextbox);
 			
 		
 		
 		
-		String DescriptionTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 3, 2);
+		String DescriptionTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 4, 2);
 		Description.sendKeys(DescriptionTextbox);
 		
 		System.out.println("The text value of stpdescription is: " +Description.getAttribute("value"));

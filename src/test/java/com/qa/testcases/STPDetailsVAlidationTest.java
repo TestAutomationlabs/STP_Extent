@@ -22,54 +22,64 @@ public class STPDetailsVAlidationTest extends TestBase {
 	}
 
 	@BeforeClass
-	public void setUp() {
+	public void setUp() throws InterruptedException {
 		initialization();
-
+		Thread.sleep(3000);
 		homepage = new HomePage();
 		stpdetails = new STPDetailsValidationPage();
 
 	}
-
-	@Test(priority = 1)
-	public void CreateSTPValidateTest() {
+	@Test(priority=1)
+	public void HelpPoupTest() throws Exception
+	{
+		//Assert.assertTrue(homepage.verifyHelpPopup());
+		homepage.verifyHelpPopup();
+		System.out.println("Validation of helpopup is completed");
+	}
+	
+	@Test(priority = 2)
+	public void CreateSTPValidateTest() throws Exception {
 		homepage.ClickOnSTPLink();
 		System.out.println("User tap on STPButton");
+		Thread.sleep(1000);
+		homepage.ClickonAddSTPButton();
+		
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void STPDetails() throws IOException, InterruptedException {
 		stpdetails = new STPDetailsValidationPage();
 		stpdetails.STPFields();
 		System.out.println("User is validating Details page");
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 4)
 	public void verifyUserNameTest() {
 		Assert.assertTrue(stpdetails.verifyCorrectUserName());
 		System.out.println("Username text label is present");
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 5)
 	public void validateUserLabelTest() throws Exception {
 		stpdetails.validateuserlabel();
 		System.out.println("Validation completed for userlabel");
 
 	}
 
-	@Test(priority = 5)
+	@Test(priority = 6)
 	public void verifyDescriptionLabelTest() throws Exception {
 		stpdetails.validatedescrptionlabel();
 		System.out.println("Validation completed for descritption label");
 
 	}
 
-	@Test(priority = 6)
+	@Test(priority = 7)
 	public void verifyResourceValidationTest() throws Exception {
 		stpdetails.resourcesvalidation();
 		System.out.println("Resource validation is completed");
 
 	}
-	@Test(priority = 7)
+	@Test(priority = 8)
 	public void verifyIntrestingButtonTest() throws Exception {
 		stpdetails.verifyIntrestingButton();
 		System.out.println("Naviagated to Intresting page");
@@ -78,7 +88,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 
 	}
 
-	@Test(priority = 8)
+	@Test(priority = 9)
 	public void verifyIntrestingSTPSList() {
 		List<WebElement> intrestinglist = driver.findElements(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[3]/div/div"));
 		int interstinglistsize = intrestinglist.size();
@@ -97,9 +107,9 @@ public class STPDetailsVAlidationTest extends TestBase {
 
 	}
 
-	@AfterClass
-	public void TearDown() {
-		driver.close();
-	}
+//	@AfterClass
+//	public void TearDown() {
+//		driver.close();
+//	}
 
 }
