@@ -1,4 +1,4 @@
-package com.qa.testcases;
+/*package com.qa.testcases;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -101,3 +101,4 @@ public class STPTesting extends TestBase {
 		driver.close();
 	}
 }
+*/

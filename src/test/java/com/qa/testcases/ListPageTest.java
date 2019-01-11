@@ -1,4 +1,4 @@
-package com.qa.testcases;
+/*package com.qa.testcases;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -57,3 +57,4 @@ public class ListPageTest extends TestBase {
 		driver.close();
 	}
 }
+*/

@@ -1,7 +1,10 @@
 package com.qa.testcases;
 
 import java.io.IOException;
+import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -64,15 +67,8 @@ public class STPDetailsVAlidationTest extends TestBase {
 	public void verifyResourceValidationTest() throws Exception {
 		stpdetails.resourcesvalidation();
 		System.out.println("Resource validation is completed");
-<<<<<<< HEAD
-		
-		}
-	
-	}
-=======
 
 	}
-
 	@Test(priority = 7)
 	public void verifyIntrestingButtonTest() throws Exception {
 		stpdetails.verifyIntrestingButton();
@@ -84,8 +80,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 
 	@Test(priority = 8)
 	public void verifyIntrestingSTPSList() {
-		List<WebElement> intrestinglist = driver
-				.findElements(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[3]/div/div"));
+		List<WebElement> intrestinglist = driver.findElements(By.xpath("//*[@id=\"root\"]/div/div[2]/div[2]/div[2]/div[2]/div[3]/div/div"));
 		int interstinglistsize = intrestinglist.size();
 		System.out.println("size of intresting list is" + interstinglistsize);
 
@@ -101,7 +96,6 @@ public class STPDetailsVAlidationTest extends TestBase {
 		}
 
 	}
->>>>>>> 026ffc38bf0740e5e287cdc3ec65c270f5371d1e
 
 	@AfterClass
 	public void TearDown() {

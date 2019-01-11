@@ -47,6 +47,7 @@ public class PostPages extends TestBase{
 	String Titletextbox1;
 	String Yourpostbox1;
 	String STPsbox1;
+	public String titledata_valdn;
 	public PostPages() {
 		PageFactory.initElements(driver, this);
 	}
@@ -62,10 +63,14 @@ public class PostPages extends TestBase{
 		selectdropdownvalidation.click();
 	
 		
-		Titletextbox1=ExcelUtility.getCellData("PostDetails", 1, 0);
+		Titletextbox1=ExcelUtility.getCellData("PostDetails", 2, 0);
 		Title.sendKeys(Titletextbox1);
 		
-		Yourpostbox1=ExcelUtility.getCellData("PostDetails", 1, 1);
+		
+		titledata_valdn=Title.getAttribute("value");
+		System.out.println("Entered titletextbox value is" + titledata_valdn);
+		
+		Yourpostbox1=ExcelUtility.getCellData("PostDetails", 2, 1);
 		YourPost.sendKeys(Yourpostbox1);
 		YourPost.sendKeys(Keys.TAB,Keys.ENTER);
 		
