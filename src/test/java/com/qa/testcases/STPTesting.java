@@ -1,5 +1,7 @@
 package com.qa.testcases;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,7 +21,7 @@ import com.relevantcodes.extentreports.ExtentTest;
 
 public class STPTesting extends TestBase{
 	
-	STPDetailsValidationPage validation;
+	//STPDetailsValidationPage validation;
 	CreateSTPPage create;
 	HomePage home;
 	ToastMessages toast;
@@ -41,17 +43,26 @@ public class STPTesting extends TestBase{
 		create = new CreateSTPPage();
 		home = new HomePage();
 		toast = new ToastMessages();
+		details = new STPDetails();
 	}
 		@Test(priority = 1)
 		public void HelpTextValidation() throws Exception {
 			//Reporter		
 			//test = report.startTest("Create STP Help Text Validation");
 			//Thread.sleep(5000);
+			
+			//WebDriverWait wait = new WebDriverWait(driver, 45, 1000);
+			
+			
+			
+			Thread.sleep(20000);
+			
 			home.Closepopup();
 			Thread.sleep(2000);
 			home.ClickOnSTPLink();
 			Thread.sleep(1000);
 			create.closeHelppopup();
+			Thread.sleep(3000);
 			create.HelpToggleValidation();
 		}
 
@@ -87,36 +98,20 @@ public class STPTesting extends TestBase{
 				System.out.println("Discard Button not present. ready to go with home button");
 			}
 			home.Closepopup();
+			
 			home.ClickOnSTPLink();
 			Thread.sleep(1000);
 			create.closeHelppopup();
 			create.EnterALLFields();
 			Thread.sleep(2000);
 			toast.successfulToast(6);
-			validation.detailsValidation(6);
+			details.detailsValidation(6);
+			//validation.detailsValidation(6);
 		}
 
 	@AfterClass
 	public void CloseBrowser()
 	{
 		driver.close();
-//		if (result.getStatus() == ITestResult.SUCCESS)
-//		{
-//			test.log(LogStatus.PASS, "Test Passed at "+ result.getName());
-//		}
-//		else if (result.getStatus() == ITestResult.FAILURE)
-//		{
-//			test.log(LogStatus.FAIL, "Test Failed at "+ result.getName());	
-//			test.log(LogStatus.FAIL, "Error accured was:"+ result.getThrowable());
-//		}
-//		else if (result.getStatus() == ITestResult.SKIP)
-//		{
-//			test.log(LogStatus.SKIP, "Test skipped at "+ result.getName());
-//			test.log(LogStatus.SKIP, "Error accured was:"+ result.getThrowable());
-//		}
-//		report.endTest(test);
-//		report.flush();
-//		report.close();
-		
 	}	
 }

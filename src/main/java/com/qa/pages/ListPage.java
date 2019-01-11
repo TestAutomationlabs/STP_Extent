@@ -285,8 +285,14 @@ public class ListPage extends TestBase
 	
 	public void clearSearchField()
 	{
+		try {
 		removeSearchdata.click();
 		listSearch.sendKeys(Keys.RETURN);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Search term not present. lets continue");
+		}
 	}
 	
 	public void FilterByCategory() throws Exception

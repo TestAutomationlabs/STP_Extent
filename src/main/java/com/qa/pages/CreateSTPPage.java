@@ -9,6 +9,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.Base.TestBase;
@@ -20,6 +22,7 @@ import com.relevantcodes.extentreports.ExtentTest;
 public class CreateSTPPage extends TestBase
 {
 
+	
 	ExtentTest test;
 	ExtentReports report;
 	
@@ -178,14 +181,24 @@ public CreateSTPPage()
 PageFactory.initElements(driver, this);
 }
 
-
-public void closeHelppopup()
+public WebElement closeHelpPopup()
 {
+	return closeHelpPopup;
+}
+
+public void closeHelppopup() throws InterruptedException
+{
+//	WebDriverWait wait = new WebDriverWait(driver, 45, 1000);
+//	wait.until(ExpectedConditions.visibilityOf(closeHelpPopup));
+	//Thread.sleep(2000);
+	wait.until(ExpectedConditions.visibilityOf(closeHelpPopup));
+	Thread.sleep(1000);
 	try
 	{	if (closeHelpPopup.isDisplayed())
 			{
-				closeHelpPopup.click();
 				Thread.sleep(2000);
+				closeHelpPopup.click();
+				
 			}
 	}
 	catch(Exception e)
@@ -367,17 +380,40 @@ public void EnterALLFields() throws Exception
 	
 	technologytab.click();
 	
-	String techniqueUsed = ExcelUtility.getCellData("CreateSTP", 10, 6);
-	TechniqueUsed.sendKeys(techniqueUsed);
-	callNewDimension(techniqueUsed, TechniqueUsed);
+	try {
+		String techniqueUsed = ExcelUtility.getCellData("CreateSTP", 10, 6);
+		TechniqueUsed.sendKeys(techniqueUsed);
+		callNewDimension(techniqueUsed, TechniqueUsed);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String relatedTech = ExcelUtility.getCellData("CreateSTP", 16, 6);
-	RelatedTechnology.sendKeys(relatedTech);
-	callNewDimension(relatedTech, RelatedTechnology);
+	try {
+		String relatedTech = ExcelUtility.getCellData("CreateSTP", 16, 6);
+		RelatedTechnology.sendKeys(relatedTech);
+		callNewDimension(relatedTech, RelatedTechnology);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String keyword = ExcelUtility.getCellData("CreateSTP", 19, 6);
-	Keywords.sendKeys(keyword);
-	callNewDimension(keyword, Keywords);
+	try {
+		String keyword = ExcelUtility.getCellData("CreateSTP", 19, 6);
+		Keywords.sendKeys(keyword);
+		callNewDimension(keyword, Keywords);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
+	
+	
 	//____________________________________ Page 4 ___________________________
 	
 	Knowledgetab.click();
@@ -390,25 +426,59 @@ public void EnterALLFields() throws Exception
 		System.out.println(e);
 	}
 	
-	String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
-	AssociatedTrends.sendKeys(trend);
-	callNewDimension(trend, AssociatedTrends);
+	try {
+		String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
+		AssociatedTrends.sendKeys(trend);
+		callNewDimension(trend, AssociatedTrends);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	TechnologyReadiness.click();
+	try {
+		TechnologyReadiness.click();
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String merckPubli = ExcelUtility.getCellData("CreateSTP", 20, 6);
-	PublicationsbyMerck.sendKeys(merckPubli);
-	callNewDimension(merckPubli, PublicationsbyMerck);
+	try {
+		String merckPubli = ExcelUtility.getCellData("CreateSTP", 20, 6);
+		PublicationsbyMerck.sendKeys(merckPubli);
+		callNewDimension(merckPubli, PublicationsbyMerck);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
-	ReviewarticlesFromOutsideWorld.sendKeys(reivew);
-	ReviewarticlesFromOutsideWorld.sendKeys(Keys.RETURN);
-	callNewDimension(reivew, ReviewarticlesFromOutsideWorld);
+
+	try {
+		String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
+		ReviewarticlesFromOutsideWorld.sendKeys(reivew);
+		callNewDimension(reivew, ReviewarticlesFromOutsideWorld);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String patent = ExcelUtility.getCellData("CreateSTP", 23, 6);
-	patents.sendKeys(patent);
-	patents.sendKeys(Keys.RETURN);
-	callNewDimension(patent, patents);
+	try {
+		String patent = ExcelUtility.getCellData("CreateSTP", 23, 6);
+		patents.sendKeys(patent);
+		callNewDimension(patent, patents);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	//____________________________________ Page 5 ______________________________
 	
 	try {

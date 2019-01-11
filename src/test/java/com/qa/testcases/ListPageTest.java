@@ -24,20 +24,25 @@ public class ListPageTest extends TestBase {
 		list = new ListPage();
 	}
 	
-	@Test(priority = 1)
+	@Test(priority = 4)
 	public void SearchSTPTest() throws Exception
 	{
-
+		Thread.sleep(30000);
 		home.Closepopup();
 		Thread.sleep(2000);
 		home.verifyListTab();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		list.searchSTP();
 	}
 	
-	@Test(priority = 2)
+	//@Test(priority = 5)
 	public void categoryValidation() throws Exception
 	{
+		Thread.sleep(30000);
+		home.Closepopup();
+		Thread.sleep(2000);
+		home.verifyListTab();
+		Thread.sleep(2000);
 		list.clearSearchField();
 		Thread.sleep(1000);
 		list.FilterByCategory();

@@ -29,12 +29,18 @@ public class HomePage extends TestBase {
 		PageFactory.initElements(driver, this);
 	}
 
+	public WebElement closeHelpPopup()
+	{
+		return GetHelpPopup;
+	}
+	
 	public void Closepopup()
 	{
 		try {
 			if (GetHelpPopup.isDisplayed())
 			{
 				GetHelpPopup.click();
+				
 			}	
 		}
 		catch(Exception e)
