@@ -9,15 +9,14 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
-
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 public class CreateSTPPage extends TestBase
 {
@@ -188,9 +187,6 @@ public WebElement closeHelpPopup()
 
 public void closeHelppopup() throws InterruptedException
 {
-//	WebDriverWait wait = new WebDriverWait(driver, 45, 1000);
-//	wait.until(ExpectedConditions.visibilityOf(closeHelpPopup));
-	//Thread.sleep(2000);
 	wait.until(ExpectedConditions.visibilityOf(closeHelpPopup));
 	Thread.sleep(1000);
 	try
@@ -214,62 +210,66 @@ public WebElement Discard()
 	return discard;
 }
 
-public void HelpToggleValidation() throws Exception
+public void HelpToggleValidation(ExtentTest test) throws Exception
 {
-	//report = ExtentContent.reporter("Help Text Validation");
+	
+	
 	//test = report.startTest("Help Text Validation");
 	if(!((HelpText).isDisplayed()))
 	{
 	System.out.println("Help Text not present");
-	//test.log(LogStatus.PASS, "Help Text is present");
-	}
+	test.log(LogStatus.FAIL, "Help Text not present");
+			}
 	else 
 	{
 	System.out.println("Help Text present");
 	HelpToggle.click();
 	
-	//test.log(LogStatus.FAIL, "Help Text not expected here");
+	test.log(LogStatus.PASS, "Help Text not expected here");
 	
 	if (HelpToggle.isEnabled())
 	{		
 		System.out.println("Toggle button clicked");
-		//test.log(LogStatus.PASS, "Help toggle click successful");
+		test.log(LogStatus.PASS, "Help toggle click successful");
 		try
 		{
 			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			if (HelpText.isDisplayed())
 				{
-					//test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+					test.log(LogStatus.PASS, "Help text not removed. Hence failed");
 					System.out.println("Help text not removed. Hence failed");
 				}
 		}
 		catch(Exception e)
 		{
-			//test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+			test.log(LogStatus.PASS, "Help text not removed. Hence failed");
 			System.out.println("Help text removed as expected");
 		}
 	}
 	}
 }		
 
-public void EnterMandatoryFields(int cellNo) throws InterruptedException, IOException
+public void EnterMandatoryFields(int cellNo, ExtentTest test) throws InterruptedException, IOException
 {
-
 	
 generalInfo.click();
 Thread.sleep(1000);
 STPName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
 Thread.sleep(1000);
 STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, cellNo));
+test.log(LogStatus.INFO, "STP Full name is Entered");
 Description.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
 Thread.sleep(1000);
 Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, cellNo));
+test.log(LogStatus.INFO, "Description is Entered");
 Thread.sleep(1000);
 ShortName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
 Thread.sleep(1000);
 ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, cellNo));
+test.log(LogStatus.INFO, "STP Short name is Entered");
 Thread.sleep(1000);
 resources.click();
+test.log(LogStatus.INFO, "Switching to Resources tab");
 Thread.sleep(1000);
 try {
 if (removeCommunityOrgainser.isDisplayed())
@@ -285,8 +285,10 @@ Thread.sleep(1000);
 CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, cellNo));
 Thread.sleep(4000);
 CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+test.log(LogStatus.INFO, "Community orgainser name data entered");
 Thread.sleep(1000);
 SavenClose.click();
+test.log(LogStatus.INFO, "Clicked on Save and close Button");
 Thread.sleep(1000);
 }
 

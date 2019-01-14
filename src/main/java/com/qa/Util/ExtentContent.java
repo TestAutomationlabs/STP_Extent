@@ -2,6 +2,9 @@ package com.qa.Util;
 
 
 import java.io.File;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.testng.ITestResult;
 
 import com.relevantcodes.extentreports.ExtentReports;
@@ -10,8 +13,8 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class ExtentContent {
 	
-	static ExtentTest test;
-	static ExtentReports report;
+	private static ExtentTest test;
+	private static ExtentReports report;
 	static String browserinfo;
 	//static LogTime timelog;
 	//private static  data = new DataHandlers();
@@ -35,19 +38,18 @@ public class ExtentContent {
 //		else 
 //		{
 //		browserinfo = "Chrome Browser";
-//		} 
+//		}
 			
 		report = new ExtentReports("./Reports/Report of   "+ClassName+".html",true);
-
+		
 		report.addSystemInfo("Browser: ", browserinfo);
 			
 		report.loadConfig(new File("./extent-config.xml"));
-		
+		//test = report.startTest("Test start");
 	 
 	 return report;
 	}
 	
-
 	public static ExtentReports reportEnd(ITestResult result)
 	{
 		if (result.getStatus() == ITestResult.SUCCESS)
@@ -70,4 +72,9 @@ public class ExtentContent {
 		
 		return report;
 	}
+//	private Date getTime(long millis) {
+//		Calendar calendar = Calendar.getInstance();
+//		calendar.setTimeInMillis(millis);
+//		return calendar.getTime();
+//	}
 }
