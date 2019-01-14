@@ -53,9 +53,39 @@ public class HomePageTest extends TestBase {
 	@Test(priority = 3)
 	public void verifyListTabTest() throws Exception {
 		homepage.verifyListTab();
-		System.out.println("Naviagated to listpage");
+		System.out.println("ListPage is present");
 
 	}
+	
+	@Test(priority = 4)
+	public void verifyNetworkTabTest() throws Exception {
+		homepage.verifyNetworkTab();
+		System.out.println("NetworkPage is present");
+
+	}
+	
+	@Test(priority = 5)
+	public void verifyConnectionTabTest() throws Exception {
+		homepage.verifyConnectionTab();
+		System.out.println("ConnectionPage is present");
+
+	}
+	
+	@Test(priority = 6)
+	public void verifySuccessStoriesIConTest() throws Exception {
+		homepage.VerifySuccessStoriesIconButton();
+		System.out.println("ConnectionPage is present");
+
+	}
+
+	
+	@Test(priority = 7)
+	public void verifySTPToolIconTest() throws Exception {
+		homepage.VerifySTPToolIconButton();
+		System.out.println("ConnectionPage is present");
+
+	}
+
 
 	@AfterClass
 	public void TearDown() {

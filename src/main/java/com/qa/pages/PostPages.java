@@ -24,6 +24,7 @@ public class PostPages extends TestBase{
 	//@FindBy(xpath="//label/following::select[@class='form-control']")
 	@FindBy(xpath="//select[@class='form-control']")
 	WebElement selectdropdown;
+	
 	WebElement selectdropdownvalidation;
 	WebElement successstoryvalidation;
 	
@@ -34,7 +35,8 @@ public class PostPages extends TestBase{
 	@FindBy(xpath="//div/following::label[contains(text(),'Your')]/following::textarea")
 	WebElement YourPost;
 	
-	@FindBy(xpath="//input[@placeholder='Select STPs']")
+	//@FindBy(xpath="//input[@placeholder='Select STPs']")
+	@FindBy(xpath="//div[@class='undefined tokenizer-container position-relative']//following::input")
 	WebElement STPs;
 
 	@FindBy(xpath="//button[@type='submit']")
@@ -45,10 +47,26 @@ public class PostPages extends TestBase{
 	String STPsbox;
 	
 	
+	/* Variable Declaration
+	 * Title=Title;
+	 * YourPost=YourPostTextbox;
+	 * SelectCategory=selectdropdown;
+	 * Post=Postbutton;
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	
 	String Titletextbox1;
 	String Yourpostbox1;
 	String STPsbox1;
-	public String titledata_valdn;
+	public String stp_titledata_valdn;
+	public String Success_titledata_valdn;
 	public PostPages() {
 		PageFactory.initElements(driver, this);
 	}
@@ -64,14 +82,14 @@ public class PostPages extends TestBase{
 		selectdropdownvalidation.click();
 	
 		
-		Titletextbox1=ExcelUtility.getCellData("PostDetails", 1, 0);
+		Titletextbox1=ExcelUtility.getCellData("PostDetails", 6, 0);
 		Title.sendKeys(Titletextbox1);
 		
 		Thread.sleep(3000);
-		titledata_valdn=Title.getAttribute("value");
-		System.out.println("Title data validation data" +titledata_valdn);
+		stp_titledata_valdn=Title.getAttribute("value");
+		System.out.println("Title data validation data" +stp_titledata_valdn);
 		
-		Yourpostbox1=ExcelUtility.getCellData("PostDetails", 1, 1);
+		Yourpostbox1=ExcelUtility.getCellData("PostDetails", 6, 1);
 		YourPost.sendKeys(Yourpostbox1);
 		YourPost.sendKeys(Keys.TAB,Keys.ENTER);
 		
@@ -85,6 +103,8 @@ public class PostPages extends TestBase{
 	
 	
 	public void verifySuccessStoriescategoryBox() throws IOException, Exception{
+		try {
+			
 		List<WebElement>dropdown = driver.findElements(By.xpath("//select[@class='form-control']//option"));
 		
 		System.out.println("Click on the select dropdown");
@@ -99,35 +119,51 @@ public class PostPages extends TestBase{
 			Thread.sleep(2000);
 			dropdown.get(i).click();
 			System.out.println("Element has clicked");
-			Titletextbox=ExcelUtility.getCellData("PostDetails", 1, 0);
+			Titletextbox=ExcelUtility.getCellData("PostDetails", 3, 0);
 			Title.sendKeys(Titletextbox);
 			
-				
-			STPsbox=ExcelUtility.getCellData("PostDetails", 1, 2);
+			Success_titledata_valdn=Title.getAttribute("value");
+			System.out.println("Success Title data validation data" +Success_titledata_valdn);	
+			
+			STPsbox=ExcelUtility.getCellData("PostDetails", 3, 2);
 			STPs.sendKeys(STPsbox);
-			Thread.sleep(3000);
+			System.out.println("STPs Box text value is "+ STPsbox);
+			Thread.sleep(4000);
 			STPs.sendKeys(Keys.ENTER);
 			
+			Thread.sleep(3000);
+			//String stptooltip= driver.findElement(By.xpath("//div[@data-toggle='tooltip']")).getText();
+			//String stptooltip=driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/div/div[3]/form/div[3]/div/div")).getText();
+			String stptooltip=driver.findElement(By.xpath("//*[@class='svg-inline--fa fa-times fa-w-11 ']")).getText();
+			System.out.println("STP tool tip is " +stptooltip);
 			
-			String stptooltip= driver.findElement(By.xpath("//div[@data-toggle='tooltip']")).getText();
-			System.out.println(stptooltip);
+//			if(STPsbox.contains(stptooltip))
+//			{
+				if(STPsbox.contains(stptooltip))
+				{
 			
-			if(STPsbox.contains(stptooltip))
-			{
-			
-			STPsbox=ExcelUtility.getCellData("PostDetails", 1, 3);
+			STPsbox=ExcelUtility.getCellData("PostDetails", 3, 3);
 			STPs.sendKeys(STPsbox);
 			Thread.sleep(3000);
+			System.out.println("STPs value is "+ STPs);
 			STPs.sendKeys(Keys.ENTER);
 			
-			Yourpostbox=ExcelUtility.getCellData("PostDetails", 1, 1);
+			Yourpostbox=ExcelUtility.getCellData("PostDetails",3, 1);
 			YourPost.sendKeys(Yourpostbox);
+			System.out.println("your post value is "+ YourPost);
 			YourPost.sendKeys(Keys.TAB,Keys.ENTER);
 			
+				}
+			}
 		}
 		}
+		catch(StaleElementReferenceException e)
+		{
+			System.out.println("Staleelementexception found");
 		}
 		}
+	
+		
 	
 	public void PostbuttonClickAfterSuccessStories() throws IOException, Exception
 	{
@@ -151,3 +187,4 @@ public class PostPages extends TestBase{
 	
 
 }
+

@@ -28,6 +28,11 @@ public class HomePage extends TestBase {
 	@FindBy(xpath = "//span[contains(text(),'List')]")
 	WebElement ListTab;
 	
+	@FindBy(xpath="//span[contains(text(),'Network')]")
+	WebElement NetworkTab;
+	
+	@FindBy(xpath="//span[contains(text(),'Connection')]")
+	WebElement ConnectionTab;
 	
 	@FindBy(xpath = "//div/following::button[@class='btn btn-highlight ml-0']")
 	WebElement PostButton;
@@ -35,16 +40,48 @@ public class HomePage extends TestBase {
 	@FindBy(xpath="//button[@data-original-title='STP Tool']")
 	WebElement STPToolButton;
 	
+	@FindBy(xpath="//button[@data-original-title='Add to Interesting STPs']")
+	WebElement intrestingbutton;
+	
+	@FindBy(xpath="//button[@data-original-title='STP Success Stories']/*[@class='svg-inline--fa fa-trophy fa-w-18 ']")
+	public WebElement STPSuccessStoriesIcon;
+	
+	@FindBy(xpath="//*[@class='svg-inline--fa fa-bell fa-w-14 ']")
+	public WebElement STPToolIcon;
+	
+	
+	
 	@FindBy(xpath="//div[@class='news-title fs-15p font-weight-bold break-word']")
-	public WebElement EnteredSTPToolData;
+	public WebElement Success_EnteredSTPToolData;
+	
+	@FindBy(xpath="//div[@class='news-title fs-15p font-weight-bold break-word']")
+	public WebElement STP_EnteredSTPToolData;
 	// Initializing the Page Objects:
+	
+	@FindBy(xpath="//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div")
+	public List<WebElement> Successwebtablerows;
 	
 	@FindBy(xpath="//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div")
 	public List<WebElement> STPwebtablerows;
 	
 	public WebElement postbuttonvalidationbutton;
 	
-	  
+	  /* Variables Declaration
+	   * GetHelpPoup;
+	   * HomeIcon;
+	   * ListLink=ListTab;
+	   * NetworkLink=NetworkTab;
+	   * ConnectionLink=ConnectionTab;
+	   * PostButton=PostButton
+	   * AddSTP=STPToolButton;
+	   * STPNews=STPwebtablerows;
+	   * 
+	   * 
+	   * 
+	   * 
+	   * 
+	   * 
+	   */
 	
 	public HomePage() {
 		PageFactory.initElements(driver, this);
@@ -52,7 +89,7 @@ public class HomePage extends TestBase {
 	
 	public void verifyHelpPopup() throws Exception
 	{
-		Thread.sleep(2000);
+		
 		if(!GetHelpPopup.isDisplayed())
 		{
 			System.out.println("Helppopup is not present");
@@ -76,11 +113,33 @@ public class HomePage extends TestBase {
 
 	public void verifyListTab() {
 		if (!ListTab.isDisplayed()) {
-			System.out.println("Failed to click the listtab");
+			System.out.println("ListTab is not present");
 		} else {
 
-			ListTab.click();
-			System.out.println("List tab is clicked");
+			//ListTab.click();
+			System.out.println("ListTab is present");
+		}
+
+	}
+	
+	public void verifyNetworkTab() {
+		if (!NetworkTab.isDisplayed()) {
+			System.out.println("NetworkTab is not present");
+		} else {
+
+			//NetworkTab.click();
+			System.out.println("ListTab is present");
+		}
+
+	}
+	
+	public void verifyConnectionTab() {
+		if (!ConnectionTab.isDisplayed()) {
+			System.out.println("ConnectionTab is not present");
+		} else {
+
+			//ConnectionTab.click();
+			System.out.println("ConnectionTab is present");
 		}
 
 	}
@@ -106,7 +165,32 @@ public class HomePage extends TestBase {
 		CreateSTP.click();
 		return new ClickOnSTPLink();
 	}
-
+	
+	public void VerifySuccessStoriesIconButton()
+	{
+		if(!STPSuccessStoriesIcon.isDisplayed())
+		{
+			System.out.println("Success stories Icon button is not displayed");
+		}
+		
+		else {
+			System.out.println("Success stories Icon button is displayed");
+		}
+	}
+	
+	
+	
+	public void VerifySTPToolIconButton()
+	{
+		if(!STPToolIcon.isDisplayed())
+		{
+			System.out.println("STP Icon button is not displayed");
+		}
+		
+		else {
+			System.out.println("Success stories Icon button is displayed");
+		}
+	}
 	
 	public void ClickOnSTPToolIcon() throws Exception
 	{
