@@ -17,6 +17,7 @@ public class ListPageTest extends TestBase {
 		super();
 	}
 
+	
 	@BeforeClass
 	public void setup() {
 		initialization();
