@@ -20,7 +20,6 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class CreateSTPPage extends TestBase
 {
-
 	
 	ExtentTest test;
 	ExtentReports report;

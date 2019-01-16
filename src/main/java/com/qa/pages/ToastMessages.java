@@ -18,6 +18,7 @@ public class ToastMessages extends TestBase
 	ExtentReports report;
 	//Toast Message elements
 	
+	
 	@FindBy (xpath = "//div[text()='Required Full Name']")
 	WebElement fullNameToast;
 	
