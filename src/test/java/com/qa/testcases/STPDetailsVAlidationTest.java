@@ -42,7 +42,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 		homepage.ClickOnSTPLink();
 		System.out.println("User tap on STPButton");
 		Thread.sleep(1000);
-		homepage.ClickonAddSTPButton();
+		homepage.ClickOnSTPToolIcon();
 		
 	}
 
