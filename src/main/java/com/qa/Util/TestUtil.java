@@ -15,14 +15,10 @@ import com.qa.Base.TestBase;
 public class TestUtil extends TestBase {
 
 
-	public static long PAGE_LOAD_TIMEOUT = 30;
-	public static long IMPLICIT_WAIT = 30;
-	public static WebDriverWait wait =new WebDriverWait(driver,50);
+	public static long PAGE_LOAD_TIMEOUT = 60;
+	public static long IMPLICIT_WAIT = 40;
+	public static WebDriverWait wait =new WebDriverWait(driver,40);
 
-
-	
-
-	
 	public static String getTimeStamp() {
 	    String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 	    return timestamp;

@@ -9,14 +9,22 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
 public class CreateSTPPage extends TestBase
 {
-
+	
+	ExtentTest test;
+	ExtentReports report;
+	
 //	CreateSTP Elements
 	
 	WebDriverWait wait=new WebDriverWait(driver,30);
@@ -159,6 +167,12 @@ public class CreateSTPPage extends TestBase
 	@FindBy (xpath = "//a[text()='Relations']")
 	WebElement relations;
 	
+	@FindBy (xpath = "//button[@type='button'][text()='Close']")
+	WebElement closeHelpPopup;
+	
+	@FindBy (xpath = "//span[text()='Discard']")
+	WebElement discard;
+	
 //CreateSTP Actions
 
 public CreateSTPPage()
@@ -166,58 +180,92 @@ public CreateSTPPage()
 PageFactory.initElements(driver, this);
 }
 
-public void HelpToggleValidation() throws Exception
+public WebElement closeHelpPopup()
 {
-
-
-if(!((HelpText).isDisplayed()))
-{
-System.out.println("Help Text not present");
-
+	return closeHelpPopup;
 }
-else 
-{
-System.out.println("Help Text present");
-HelpToggle.click();
 
-if (HelpToggle.isEnabled())
+public void closeHelppopup() throws InterruptedException
 {
-	
-	System.out.println("Toggle button clicked");
+	wait.until(ExpectedConditions.visibilityOf(closeHelpPopup));
+	Thread.sleep(1000);
 	try
-	{
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	if (HelpText.isDisplayed())
-		{
-			System.out.println("Help text not removed. Hence failed");
-		}
+	{	if (closeHelpPopup.isDisplayed())
+			{
+				Thread.sleep(2000);
+				closeHelpPopup.click();
+				
+			}
 	}
 	catch(Exception e)
 	{
-		System.out.println("Help text removed as expected");
+		System.out.println("Help pop-up not present");
 	}
 }
-}
-}		
 
-public void EnterMandatoryFields(int cellNo) throws InterruptedException, IOException
+public WebElement Discard()
 {
+	return discard;
+}
 
+public void HelpToggleValidation(ExtentTest test) throws Exception
+{	
+	//test = report.startTest("Help Text Validation");
+	if(!((HelpText).isDisplayed()))
+	{
+	System.out.println("Help Text not present");
+	test.log(LogStatus.FAIL, "Help Text not present");
+			}
+	else 
+	{
+	System.out.println("Help Text present");
+	HelpToggle.click();
+	
+	test.log(LogStatus.PASS, "Help Text not expected here");
+	
+	if (HelpToggle.isEnabled())
+	{		
+		System.out.println("Toggle button clicked");
+		test.log(LogStatus.PASS, "Help toggle click successful");
+		try
+		{
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			if (HelpText.isDisplayed())
+				{
+					test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+					System.out.println("Help text not removed. Hence failed");
+				}
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+			System.out.println("Help text removed as expected");
+		}
+	}
+}
+	}
+
+public void EnterMandatoryFields(int cellNo, ExtentTest test) throws InterruptedException, IOException
+{
 	
 generalInfo.click();
 Thread.sleep(1000);
 STPName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
 Thread.sleep(1000);
 STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, cellNo));
+test.log(LogStatus.INFO, "STP Full name is Entered");
 Description.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
 Thread.sleep(1000);
 Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, cellNo));
+test.log(LogStatus.INFO, "Description is Entered");
 Thread.sleep(1000);
 ShortName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
 Thread.sleep(1000);
 ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, cellNo));
+test.log(LogStatus.INFO, "STP Short name is Entered");
 Thread.sleep(1000);
 resources.click();
+test.log(LogStatus.INFO, "Switching to Resources tab");
 Thread.sleep(1000);
 try {
 if (removeCommunityOrgainser.isDisplayed())
@@ -233,8 +281,10 @@ Thread.sleep(1000);
 CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, cellNo)+" ");
 Thread.sleep(3000);
 CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+test.log(LogStatus.INFO, "Community orgainser name data entered");
 Thread.sleep(1000);
 SavenClose.click();
+test.log(LogStatus.INFO, "Clicked on Save and close Button");
 Thread.sleep(1000);
 }
 
@@ -284,17 +334,40 @@ public void EnterALLFields() throws Exception
 	
 	technologytab.click();
 	
-	String techniqueUsed = ExcelUtility.getCellData("CreateSTP", 10, 6);
-	TechniqueUsed.sendKeys(techniqueUsed);
-	callNewDimension(techniqueUsed, TechniqueUsed);
+	try {
+		String techniqueUsed = ExcelUtility.getCellData("CreateSTP", 10, 6);
+		TechniqueUsed.sendKeys(techniqueUsed);
+		callNewDimension(techniqueUsed, TechniqueUsed);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String relatedTech = ExcelUtility.getCellData("CreateSTP", 16, 6);
-	RelatedTechnology.sendKeys(relatedTech);
-	callNewDimension(relatedTech, RelatedTechnology);
+	try {
+		String relatedTech = ExcelUtility.getCellData("CreateSTP", 16, 6);
+		RelatedTechnology.sendKeys(relatedTech);
+		callNewDimension(relatedTech, RelatedTechnology);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String keyword = ExcelUtility.getCellData("CreateSTP", 19, 6);
-	Keywords.sendKeys(keyword);
-	callNewDimension(keyword, Keywords);
+	try {
+		String keyword = ExcelUtility.getCellData("CreateSTP", 19, 6);
+		Keywords.sendKeys(keyword);
+		callNewDimension(keyword, Keywords);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
+	
+	
 	//____________________________________ Page 4 ___________________________
 	
 	Knowledgetab.click();
@@ -307,25 +380,59 @@ public void EnterALLFields() throws Exception
 		System.out.println(e);
 	}
 	
-	String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
-	AssociatedTrends.sendKeys(trend);
-	callNewDimension(trend, AssociatedTrends);
+	try {
+		String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
+		AssociatedTrends.sendKeys(trend);
+		callNewDimension(trend, AssociatedTrends);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	TechnologyReadiness.click();
+	try {
+		TechnologyReadiness.click();
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String merckPubli = ExcelUtility.getCellData("CreateSTP", 20, 6);
-	PublicationsbyMerck.sendKeys(merckPubli);
-	callNewDimension(merckPubli, PublicationsbyMerck);
+	try {
+		String merckPubli = ExcelUtility.getCellData("CreateSTP", 20, 6);
+		PublicationsbyMerck.sendKeys(merckPubli);
+		callNewDimension(merckPubli, PublicationsbyMerck);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
-	ReviewarticlesFromOutsideWorld.sendKeys(reivew);
-	ReviewarticlesFromOutsideWorld.sendKeys(Keys.RETURN);
-	callNewDimension(reivew, ReviewarticlesFromOutsideWorld);
+
+	try {
+		String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
+		ReviewarticlesFromOutsideWorld.sendKeys(reivew);
+		callNewDimension(reivew, ReviewarticlesFromOutsideWorld);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	
-	String patent = ExcelUtility.getCellData("CreateSTP", 23, 6);
-	patents.sendKeys(patent);
-	patents.sendKeys(Keys.RETURN);
-	callNewDimension(patent, patents);
+	try {
+		String patent = ExcelUtility.getCellData("CreateSTP", 23, 6);
+		patents.sendKeys(patent);
+		callNewDimension(patent, patents);
+	}
+	catch (Exception e)
+	{
+		System.out.println("Error at MaterialUsed");
+		System.out.println(e);
+	}
 	//____________________________________ Page 5 ______________________________
 	
 	ApplicationsnProductsTab.click();
