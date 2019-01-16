@@ -3,6 +3,7 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
+<<<<<<< HEAD
       <class name="com.qa.testcases.STPDetailsVAlidationTest">
         <methods>
           <include name="validateUserLabelTest"/>
@@ -16,6 +17,18 @@
           <include name="verifyIntrestingButtonTest"/>
         </methods>
       </class> <!-- com.qa.testcases.STPDetailsVAlidationTest -->
+=======
+      <class name="com.qa.testcases.PostButtonTest">
+        <methods>
+          <include name="TearDown"/>
+          <include name="verifySTPNews"/>
+          <include name="verifySTPToolStory"/>
+          <include name="AddPostTest"/>
+          <include name="setUp"/>
+          <include name="verifyPostPageTest"/>
+        </methods>
+      </class> <!-- com.qa.testcases.PostButtonTest -->
+>>>>>>> 498d5684e312d732ead2f54769112ab78b218cc8
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
