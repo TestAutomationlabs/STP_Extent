@@ -1,6 +1,7 @@
 
 package com.qa.testcases;
 
+import java.io.File;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -13,10 +14,14 @@ import org.testng.annotations.Test;
 import com.qa.Base.TestBase;
 import com.qa.pages.HomePage;
 import com.qa.pages.STPDetailsValidationPage;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class HomePageTest extends TestBase {
 	HomePage homepage;
+	ExtentTest test;
+	ExtentReports report;
 
 	public HomePageTest() {
 		super();
@@ -28,16 +33,19 @@ public class HomePageTest extends TestBase {
 		initialization();
 
 		homepage = new HomePage();
-
 		System.out.println("Browser launched of STP");
+		String ClassName = this.getClass().getSimpleName().toString();
+		report = new ExtentReports("./Reports/Report of   "+ClassName+".html",true);
+		report.loadConfig(new File("./extent-config.xml"));
 
 	}
 
 	@Test(priority=1)
 	public void verifyHelpPopupTest() throws Exception {
+		test = report.startTest("Help pop-up in Home Page");	
 		homepage.verifyHelpPopup();
 		System.out.println("Helppoup is present");
-
+		report.endTest(test);
 	}
 
 	
@@ -51,7 +59,7 @@ public class HomePageTest extends TestBase {
 
 	@Test(priority = 3)
 	public void verifyListTabTest() throws Exception {
-		homepage.verifyListTab();
+		homepage.verifyListTab(test);
 		System.out.println("ListPage is present");
 
 	}
@@ -89,6 +97,8 @@ public class HomePageTest extends TestBase {
 	@AfterClass
 	public void TearDown() {
 		driver.close();
+		report.flush();
+		report.close();
 	}
 }
 

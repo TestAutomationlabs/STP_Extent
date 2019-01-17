@@ -4,14 +4,12 @@ package com.qa.pages;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-import com.qa.pages.STPDetailsValidationPage;
-
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import com.qa.Base.TestBase;
 import com.qa.Util.TestUtil;
 
@@ -120,14 +118,28 @@ public class HomePage extends TestBase {
 		HomeIcon.click();
 	}
 
-	public void verifyListTab() {
+	public void verifyListTab(ExtentTest test) {
+		
 		if (!ListTab.isDisplayed()) {
 			System.out.println("ListTab is not present");
+			test.log(LogStatus.FAIL,"ListTab not present in UI");
 		} else {
 
 			//ListTab.click();
 			System.out.println("ListTab is present");
+			test.log(LogStatus.PASS, "List tab present in the UI");
 		}
+	}
+		
+		public void verifyListTabClick(ExtentTest test) {
+			if (!ListTab.isDisplayed()) {
+				System.out.println("ListTab is not present");
+			} else {
+
+				ListTab.click();
+				System.out.println("ListTab is present");
+				test.log(LogStatus.PASS, "List tab present in the UI");
+			}
 
 	}
 	

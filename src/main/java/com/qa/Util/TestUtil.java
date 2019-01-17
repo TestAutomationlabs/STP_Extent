@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -38,4 +39,9 @@ public class TestUtil extends TestBase {
 		//FileUtils.copyFile(scrFile, new File("D:\\SoftwareTestingMaterial.png"));
 	}
 
+	public Date getTime(long millis) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(millis);
+		return calendar.getTime();
+	}
 }

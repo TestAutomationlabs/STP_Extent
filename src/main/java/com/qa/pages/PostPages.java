@@ -1,4 +1,3 @@
-
 package com.qa.pages;
 
 import java.io.IOException;
@@ -188,6 +187,3 @@ public class PostPages extends TestBase{
 	
 
 }
-
-
-s
