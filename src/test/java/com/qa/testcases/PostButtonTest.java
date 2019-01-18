@@ -1,4 +1,4 @@
-
+/*
 package com.qa.testcases;
 
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class PostButtonTest extends TestBase {
 	@Test(priority = 1)
 	public void AddPostTest() throws Exception {
 		Thread.sleep(20000);
-		homepage.verifyHelpPopup();
+		homepage.verifyHelpPopup(test);
 		Thread.sleep(2000);
 		homepage.ClickOnPostButton();
 		System.out.println("Navigated to the AddPost");
@@ -160,7 +160,7 @@ public class PostButtonTest extends TestBase {
 	 * 
 	 * 
 	 * }
-	 */
+	 
 	
 	@AfterClass
 	public void TearDown() {
@@ -168,3 +168,4 @@ public class PostButtonTest extends TestBase {
 	}
 
 }
+*/

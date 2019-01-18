@@ -1,3 +1,4 @@
+/*
 package com.qa.testcases;
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 	public void HelpPoupTest() throws Exception
 	{
 		//Assert.assertTrue(homepage.verifyHelpPopup());
-		homepage.verifyHelpPopup();
+		homepage.verifyHelpPopup(test);
 		System.out.println("Validation of helpopup is completed");
 	}
 	
@@ -113,3 +114,4 @@ public class STPDetailsVAlidationTest extends TestBase {
 //	}
 
 }
+*/

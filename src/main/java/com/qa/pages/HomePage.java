@@ -87,30 +87,43 @@ public class HomePage extends TestBase {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void verifyHelpPopup() throws Exception
+	public void verifyHelpPopup(ExtentTest test) throws Exception
 	{
 		try {
-			if(!GetHelpPopup.isDisplayed())
+			if(!(GetHelpPopup.isDisplayed()))
 			{
 				System.out.println("Helppopup is not present");
+				test.log(LogStatus.FAIL,"Helppopup is not present");
 			}
 			else
 			{
 				GetHelpPopup.click();
 				System.out.println("Helppopup is present and it has clicked");
+				test.log(LogStatus.PASS,"Helppopup is present and it has clicked");
 			}	
 		}
 		catch (Exception e)
 		{
-			System.out.println("Exception at Home Page help text pop-up. ");
+			System.out.println("Exception at Home Page help text pop-up.");
+			test.log(LogStatus.FAIL,"Helppopup is not present");
 			System.out.println(e);
 		}
 		
 	}
 
-	public boolean verifyHomeIcon() {
-		return HomeIcon.isDisplayed();
-
+	public void verifyHomeIcon(ExtentTest test) {
+		try {
+			if(HomeIcon.isDisplayed())
+			{
+				test.log(LogStatus.PASS, "Home icon present");
+			}
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.PASS, "Home icon not present");
+		}
+		
+		//return HomeIcon.isDisplayed();
 	}
 	
 	public void verifyHomeIconClick()
@@ -143,26 +156,42 @@ public class HomePage extends TestBase {
 
 	}
 	
-	public void verifyNetworkTab() {
+	public void verifyNetworkTab(ExtentTest test) {
+		try {
 		if (!NetworkTab.isDisplayed()) {
 			System.out.println("NetworkTab is not present");
+			test.log(LogStatus.FAIL, "Network tab is not displayed");
 		} else {
 
 			//NetworkTab.click();
 			System.out.println("ListTab is present");
+			test.log(LogStatus.PASS, "Network tab is displayed");
 		}
-
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "Network tab is not displayed");
+		}
 	}
 	
-	public void verifyConnectionTab() {
-		if (!ConnectionTab.isDisplayed()) {
-			System.out.println("ConnectionTab is not present");
-		} else {
+	public void verifyConnectionTab(ExtentTest test) {
+		
+		try {
+			if (!ConnectionTab.isDisplayed()) {
+				System.out.println("ConnectionTab is not present");
+				test.log(LogStatus.FAIL, "Connection Tab is not displayed");
+			} else {
 
-			//ConnectionTab.click();
-			System.out.println("ConnectionTab is present");
+				//ConnectionTab.click();
+				System.out.println("ConnectionTab is present");
+				test.log(LogStatus.PASS, "Connection Tab is displayed");
+			}	
 		}
-
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "Connection Tab is not displayed");
+		}
+		
 	}
 	
 	public PostPages ClickOnPostButton() {
@@ -187,29 +216,45 @@ public class HomePage extends TestBase {
 		return new ClickOnSTPLink();
 	}
 	
-	public void VerifySuccessStoriesIconButton()
+	public void VerifySuccessStoriesIconButton(ExtentTest test)
 	{
+		try {
 		if(!STPSuccessStoriesIcon.isDisplayed())
 		{
 			System.out.println("Success stories Icon button is not displayed");
+			test.log(LogStatus.FAIL, "Success stories Icon button is not displayed");
 		}
 		
 		else {
 			System.out.println("Success stories Icon button is displayed");
+			test.log(LogStatus.PASS, "Success stories Icon button is displayed");
+		}
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "Success stories Icon button is not displayed");
 		}
 	}
 	
 	
 	
-	public void VerifySTPToolIconButton()
+	public void VerifySTPToolIconButton(ExtentTest test)
 	{
+		try {
 		if(!STPToolIcon.isDisplayed())
 		{
 			System.out.println("STP Icon button is not displayed");
+			test.log(LogStatus.FAIL, "STP Icon button is not displayed");
 		}
 		
 		else {
 			System.out.println("Success stories Icon button is displayed");
+			test.log(LogStatus.PASS, "STP Icon Icon button is displayed");
+		}
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "STP Icon button is not displayed");
 		}
 	}
 	

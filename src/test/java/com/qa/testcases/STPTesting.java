@@ -64,14 +64,14 @@ public class STPTesting extends TestBase{
 				
 			}
 			
-		//@Test(priority = 1)
+		@Test(priority = 8)
 		public void HelpTextValidation() throws Exception {
 			
 			test = report.startTest("Create STP Help Text Validation");	
 			
 			Thread.sleep(20000);
 			
-			home.verifyHelpPopup();
+			home.verifyHelpPopup(test);
 			Thread.sleep(2000);
 			home.ClickOnSTPLink();
 			Thread.sleep(1000);
@@ -83,7 +83,7 @@ public class STPTesting extends TestBase{
 			
 		}
 
-		//@Test(priority = 2)
+		@Test(priority = 9)
 		public void MandatoryFieldValidation() throws Exception
 		{
 			test = report.startTest("Create STP Mandatory field validation");
@@ -110,7 +110,7 @@ public class STPTesting extends TestBase{
 		}
 		
 		
-		@Test(priority = 3)
+		@Test(priority = 10)
 		public void AllFieldValidation() throws Exception
 		{
 			test = report.startTest("Create STP All Fields Validation");	
@@ -125,7 +125,7 @@ public class STPTesting extends TestBase{
 			{
 				System.out.println("Discard Button not present. ready to go with home button");
 			}
-			home.verifyHelpPopup();
+			//home.verifyHelpPopup(test);
 			Thread.sleep(2000);
 			home.ClickOnSTPLink();
 			Thread.sleep(2000);

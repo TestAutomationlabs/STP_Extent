@@ -43,7 +43,7 @@ public class HomePageTest extends TestBase {
 	@Test(priority=1)
 	public void verifyHelpPopupTest() throws Exception {
 		test = report.startTest("Help pop-up in Home Page");	
-		homepage.verifyHelpPopup();
+		homepage.verifyHelpPopup(test);
 		System.out.println("Helppoup is present");
 		report.endTest(test);
 	}
@@ -51,46 +51,52 @@ public class HomePageTest extends TestBase {
 	
 	@Test(priority = 2)
 	public void verifyHomeIconTest() {
-		Assert.assertTrue(homepage.verifyHomeIcon());
-
+		test = report.startTest("Home Icon Home Page");
+		//Assert.assertTrue(homepage.verifyHomeIcon());
+		homepage.verifyHomeIcon(test);
 		System.out.println("homepage icon is present");
-
+		report.endTest(test);
 	}
 
 	@Test(priority = 3)
 	public void verifyListTabTest() throws Exception {
+		test = report.startTest("List Tab Home Page");
 		homepage.verifyListTab(test);
 		System.out.println("ListPage is present");
-
+		report.endTest(test);
 	}
 	
 	@Test(priority = 4)
 	public void verifyNetworkTabTest() throws Exception {
-		homepage.verifyNetworkTab();
+		test = report.startTest("Network Tab Home Page");
+		homepage.verifyNetworkTab(test);
 		System.out.println("NetworkPage is present");
-
+		report.endTest(test);
 	}
 	
 	@Test(priority = 5)
 	public void verifyConnectionTabTest() throws Exception {
-		homepage.verifyConnectionTab();
+		test = report.startTest("Connection Tab Home Page");
+		homepage.verifyConnectionTab(test);
 		System.out.println("ConnectionPage is present");
-
+		report.endTest(test);
 	}
 	
 	@Test(priority = 6)
 	public void verifySuccessStoriesIConTest() throws Exception {
-		homepage.VerifySuccessStoriesIconButton();
+		test = report.startTest("Success Stories ICon Home Page");
+		homepage.VerifySuccessStoriesIconButton(test);
 		System.out.println("ConnectionPage is present");
-
+		report.endTest(test);
 	}
 
 	
 	@Test(priority = 7)
 	public void verifySTPToolIconTest() throws Exception {
-		homepage.VerifySTPToolIconButton();
+		test = report.startTest("STP Tool Icon Home Page");
+		homepage.VerifySTPToolIconButton(test);
 		System.out.println("ConnectionPage is present");
-
+		report.endTest(test);
 	}
 
 

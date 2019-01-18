@@ -34,12 +34,12 @@ public class ListPageTest extends TestBase {
 		report.loadConfig(new File("./extent-config.xml"));
 	}
 	
-	@Test(priority = 4)
+	@Test(priority = 11)
 	public void SearchSTPTest() throws Exception
 	{
 		test = report.startTest("Search Field Validation");	
 		Thread.sleep(25000);
-		home.verifyHelpPopup();
+		home.verifyHelpPopup(test);
 		Thread.sleep(2000);
 		home.verifyListTabClick(test);
 		Thread.sleep(2000);
@@ -47,7 +47,7 @@ public class ListPageTest extends TestBase {
 		report.endTest(test);
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 12)
 	public void categoryValidation() throws Exception
 	{
 		test = report.startTest("Category Validation");	

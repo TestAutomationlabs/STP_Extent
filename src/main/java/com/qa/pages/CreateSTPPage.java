@@ -232,13 +232,13 @@ public void HelpToggleValidation(ExtentTest test) throws Exception
 			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			if (HelpText.isDisplayed())
 				{
-					test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+					test.log(LogStatus.FAIL, "Help text not removed. Hence failed");
 					System.out.println("Help text not removed. Hence failed");
 				}
 		}
 		catch(Exception e)
 		{
-			test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+			test.log(LogStatus.PASS, "Help text not removed as expected");
 			System.out.println("Help text removed as expected");
 		}
 	}
