@@ -4,14 +4,17 @@ import java.io.File;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.qa.Base.TestBase;
+import com.qa.Util.CustomListner;
 import com.qa.pages.HomePage;
 import com.qa.pages.ListPage;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 
+//@Listeners(CustomListner.class)
 public class ListPageTest extends TestBase {
 
 	HomePage home;

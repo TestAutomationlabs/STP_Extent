@@ -2,22 +2,16 @@
 package com.qa.testcases;
 
 import java.io.File;
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.qa.Base.TestBase;
 import com.qa.pages.HomePage;
-import com.qa.pages.STPDetailsValidationPage;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
 
+//@Listeners(CustomListner.class)
 public class HomePageTest extends TestBase {
 	HomePage homepage;
 	ExtentTest test;
@@ -35,14 +29,16 @@ public class HomePageTest extends TestBase {
 		homepage = new HomePage();
 		System.out.println("Browser launched of STP");
 		String ClassName = this.getClass().getSimpleName().toString();
-		report = new ExtentReports("./Reports/Report of   "+ClassName+".html",true);
+		report = new ExtentReports("./Reports/"+ClassName+".html",true);
 		report.loadConfig(new File("./extent-config.xml"));
 
 	}
 
 	@Test(priority=1)
 	public void verifyHelpPopupTest() throws Exception {
-		test = report.startTest("Help pop-up in Home Page");	
+		
+		Thread.sleep(10000);
+		test = report.startTest("Help pop-up in Home Page");
 		homepage.verifyHelpPopup(test);
 		System.out.println("Helppoup is present");
 		report.endTest(test);
@@ -98,7 +94,16 @@ public class HomePageTest extends TestBase {
 		System.out.println("ConnectionPage is present");
 		report.endTest(test);
 	}
-
+	
+	@Test(priority = 8)
+	public void VerifyHelpMark() throws InterruptedException 
+	{
+		test = report.startTest("Help icon in Home Page");
+		homepage.getHelpMark(test);
+		Thread.sleep(1000);
+		homepage.getCloseHelpMark(test);
+		report.endTest(test);
+	}
 
 	@AfterClass
 	public void TearDown() {

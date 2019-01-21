@@ -31,17 +31,17 @@ public class TestUtil extends TestBase {
 	
 	
 	
-	public static  void takeScreenshotAtEndOfTest() throws IOException {
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String currentDir = System.getProperty("user.dir");
-		FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getTimeStamp() + System.currentTimeMillis() + ".png"));
-		//FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getName() + ".png"));
-		//FileUtils.copyFile(scrFile, new File("D:\\SoftwareTestingMaterial.png"));
-	}
+//	public static  void takeScreenshotAtEndOfTest() throws IOException {
+//		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//		String currentDir = System.getProperty("user.dir");
+//		FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getTimeStamp() + System.currentTimeMillis() + ".png"));
+//		//FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getName() + ".png"));
+//		//FileUtils.copyFile(scrFile, new File("D:\\SoftwareTestingMaterial.png"));
+//	}
 
-	public Date getTime(long millis) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(millis);
-		return calendar.getTime();
-	}
+//	public Date getTime(long millis) {
+//		Calendar calendar = Calendar.getInstance();
+//		calendar.setTimeInMillis(millis);
+//		return calendar.getTime();
+//	}
 }

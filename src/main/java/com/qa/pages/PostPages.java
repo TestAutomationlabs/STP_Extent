@@ -1,3 +1,4 @@
+
 package com.qa.pages;
 
 import java.io.IOException;
@@ -14,9 +15,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import com.qa.Base.TestBase;
-import com.qa.pages.HomePage;
 import com.qa.DataDriven.ExcelUtility;
 import com.qa.Util.TestUtil;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+
 
 public class PostPages extends TestBase{
 	HomePage homepagenew=new HomePage();
@@ -74,12 +78,13 @@ public class PostPages extends TestBase{
 	
 
 	
-	public void verifySTPToolcategoryBox() throws IOException, Exception{
+	/*public void verifySTPToolcategoryBox() throws IOException, Exception{
 		try {	
 		selectdropdownvalidation= TestUtil.wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@class='form-control']//option[3]")));
-		Thread.sleep(2000);
+			Thread.sleep(2000);
 		System.out.println("selectdropdownvalidation is " +selectdropdownvalidation);
 		selectdropdownvalidation.click();
+		
 	
 		
 		Titletextbox1=ExcelUtility.getCellData("PostDetails", 6, 0);
@@ -99,14 +104,51 @@ public class PostPages extends TestBase{
 			System.out.println("Staleelementexception found");
 		}
 		
+	}*/
+	
+	public void verifySTPToolcategoryBox(ExtentTest test) throws IOException, Exception{
+		try {
+			
+		List<WebElement>dropdown = driver.findElements(By.xpath("//select[@class='form-control']//option[3]"));
+		System.out.println("Click on the select dropdown");
+		System.out.println(dropdown.size());
+		for(int i=0; i<dropdown.size();i++){
+			System.out.println(dropdown.get(i).getText());
+			Thread.sleep(3000);
+			
+	
+		if(dropdown.get(i).getText().contains("STP Tool"))
+			{
+			Thread.sleep(2000);
+			dropdown.get(i).click();
+			System.out.println("STP Tool Element is clicked");
+			Titletextbox1=ExcelUtility.getCellData("PostDetails", 6, 0);
+			Title.sendKeys(Titletextbox1);
+			
+			Thread.sleep(3000);
+			stp_titledata_valdn=Title.getAttribute("value");
+			System.out.println("STP Title data validation data" +stp_titledata_valdn);
+			
+			Yourpostbox1=ExcelUtility.getCellData("PostDetails", 6, 1);
+			YourPost.sendKeys(Yourpostbox1);
+			YourPost.sendKeys(Keys.TAB,Keys.ENTER);
+			
+			
+			}
+		}
+	}
+	
+		catch(StaleElementReferenceException e)
+		{
+			System.out.println("Staleelementexception found");
+		}
 	}
 	
 	
-	public void verifySuccessStoriescategoryBox() throws IOException, Exception{
+	public void verifySuccessStoriescategoryBox(ExtentTest test) throws IOException, Exception{
 		try {
 			
-		List<WebElement>dropdown = driver.findElements(By.xpath("//select[@class='form-control']//option"));
-		
+		List<WebElement>dropdown = driver.findElements(By.xpath("//select[@class='form-control']//option[2]"));
 		System.out.println("Click on the select dropdown");
 		System.out.println(dropdown.size());
 		for(int i=0; i<dropdown.size();i++){
@@ -119,14 +161,18 @@ public class PostPages extends TestBase{
 			Thread.sleep(2000);
 			dropdown.get(i).click();
 			System.out.println("Element has clicked");
+			test.log(LogStatus.PASS, "Element has been clicked");
 			Titletextbox=ExcelUtility.getCellData("PostDetails", 3, 0);
 			Title.sendKeys(Titletextbox);
+			test.log(LogStatus.PASS, "STP title has been entered");
 			
 			Success_titledata_valdn=Title.getAttribute("value");
 			System.out.println("Success Title data validation data" +Success_titledata_valdn);	
 			
-			STPsbox=ExcelUtility.getCellData("PostDetails", 3, 2);
+			Thread.sleep(3000);
+			STPsbox=ExcelUtility.getCellData("PostDetails", 1, 2);
 			STPs.sendKeys(STPsbox);
+			test.log(LogStatus.PASS, "STP Success message has been entered");
 			System.out.println("STPs Box text value is "+ STPsbox);
 			Thread.sleep(4000);
 			STPs.sendKeys(Keys.ENTER);
@@ -142,7 +188,7 @@ public class PostPages extends TestBase{
 				if(STPsbox.contains(stptooltip))
 				{
 			
-			STPsbox=ExcelUtility.getCellData("PostDetails", 3, 3);
+			STPsbox=ExcelUtility.getCellData("PostDetails", 2, 2);
 			STPs.sendKeys(STPsbox);
 			Thread.sleep(3000);
 			System.out.println("STPs value is "+ STPs);
@@ -165,14 +211,16 @@ public class PostPages extends TestBase{
 	
 		
 	
-	public void PostbuttonClickAfterSuccessStories() throws IOException, Exception
+	public void PostbuttonClickAfterSuccessStories(ExtentTest test) throws IOException, Exception
 	{
 		//div/following::button[@class='btn btn-highlight ml-0']
 		//div/following::button[@class='btn btn-highlight ml-0']
 		//successstoryvalidation=TestUtil.wait.until(ExpectedConditions.elementToBeClickable(By.xpath("homepagenew.PostButton")));
-		successstoryvalidation=TestUtil.wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div/following::button[@class='btn btn-highlight ml-0']")));
-		System.out.println("Postbutton again");
-		homepagenew.ClickOnPostButton();
+		//successstoryvalidation=TestUtil.wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div/following::button[@class='btn btn-highlight ml-0']")));
+		successstoryvalidation=driver.findElement(By.xpath("//div/following::button[@class='btn btn-highlight ml-0']"));
+		successstoryvalidation.click();
+		System.out.println("Postbutton clicked for successstory validation");
+		//homepagenew.ClickOnPostButton();
 		
 	}
 	

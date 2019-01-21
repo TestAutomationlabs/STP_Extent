@@ -1,5 +1,3 @@
-
-
 package com.qa.pages;
 
 import java.util.List;
@@ -64,6 +62,12 @@ public class HomePage extends TestBase {
 	@FindBy(xpath="//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div")
 	public List<WebElement> STPwebtablerows;
 	
+	@FindBy (xpath="//*[@class='svg-inline--fa fa-question-circle fa-w-16 cursor-pointer']")
+	public WebElement HelpMark;
+	
+	@FindBy (xpath="//*[text()='Close']")
+	public WebElement HelpMarkClose;
+	
 	public WebElement postbuttonvalidationbutton;
 	
 	  /* Variables Declaration
@@ -87,9 +91,51 @@ public class HomePage extends TestBase {
 		PageFactory.initElements(driver, this);
 	}
 	
+	public void getHelpMark(ExtentTest test)
+	{
+		try {
+		if (HelpMark.isDisplayed())
+		{
+			test.log(LogStatus.PASS, "Help mark displayed in Home Page");
+		}
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, " '?'Help Mark not present");
+		}
+	}
+	public void getCloseHelpMark(ExtentTest test)
+	{
+		
+		try {
+			HelpMark.click();
+			try {
+				test.log(LogStatus.PASS, "Help mark clicked");
+				HelpMarkClose.click();
+				try{
+					HelpMarkClose.click();
+					test.log(LogStatus.PASS, "Close button present in Help pop-up and clicked");
+				}
+				catch(Exception e)
+				{
+					test.log(LogStatus.FATAL, "Unable to close the Help pop-up");
+				}
+			}
+			catch(Exception e)
+			{
+				test.log(LogStatus.FAIL, "Unable to close the Help pop-up");
+			}
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "Unable to click the '?' Help mark");
+		}
+	}
+	
 	public void verifyHelpPopup(ExtentTest test) throws Exception
 	{
 		try {
+			Thread.sleep(2000);
 			if(!(GetHelpPopup.isDisplayed()))
 			{
 				System.out.println("Helppopup is not present");
@@ -97,6 +143,7 @@ public class HomePage extends TestBase {
 			}
 			else
 			{
+				
 				GetHelpPopup.click();
 				System.out.println("Helppopup is present and it has clicked");
 				test.log(LogStatus.PASS,"Helppopup is present and it has clicked");
