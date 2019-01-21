@@ -32,7 +32,8 @@
         <version>2.19.1</version>
         <configuration>
           <suiteXmlFiles>
-         <suiteXmlFile>src/main/resourc/Regression1.xml</suiteXmlFile>
+        <suiteXmlFile>src/main/resourc/Regression.xml</suiteXmlFile> 
+        <!--   <suiteXmlFile>src/main/resourc/Regression1.xml</suiteXmlFile>-->
         </suiteXmlFiles>
         </configuration>
       </plugin>

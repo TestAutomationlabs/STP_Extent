@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 
 import com.qa.Base.TestBase;
 
@@ -30,12 +31,28 @@ public class TestUtil extends TestBase {
 	
 	
 	
-	public static  void takeScreenshotAtEndOfTest() throws IOException {
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String currentDir = System.getProperty("user.dir");
-		FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getTimeStamp() + System.currentTimeMillis() + ".png"));
-		//FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getName() + ".png"));
-		//FileUtils.copyFile(scrFile, new File("D:\\SoftwareTestingMaterial.png"));
-	}
+//	public static  void takeScreenshotAtEndOfTest() throws IOException {
+//		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//		String currentDir = System.getProperty("user.dir");
+//		FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getTimeStamp() + System.currentTimeMillis() + ".png"));
+//		//FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getName() + ".png"));
+//		//FileUtils.copyFile(scrFile, new File("D:\\SoftwareTestingMaterial.png"));
+//	}
+	
+//	public void takeScreenshotAtEndOfTest(String testMethodName)
+//	{
+//		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//		String currentDir = System.getProperty("user.dir");
+//		try {
+//			//FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
+//		
+//			FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/"+testMethodName+"_"+".jpg"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		//FileUtils.copyFile(scrFile, new File());
+//	
+//	}
 
 }

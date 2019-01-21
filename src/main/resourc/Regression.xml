@@ -2,14 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test STPNew Maven_Suite">
 	
-	<listeners>
-		<listener class-name="com.qa.ExtentReportListner.ExtentReportNG" />
-	</listeners>
+	
 	
   <test name="STP Test Cases in Maven">
   <classes>
-		  <class name="com.qa.testcases.STPTesting"/>
-		  
+		 <class name="com.qa.testcases.HomePageTest"/>  
   </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

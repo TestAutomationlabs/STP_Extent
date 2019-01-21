@@ -13,12 +13,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
 //import com.qa.library.ExcelUtilityForMultiple;
+import com.qa.Util.CustomListner;
 
+@Listeners(CustomListner.class)
 public class STPDetailsValidationPage extends TestBase{
 	static int i;
 
@@ -69,6 +73,9 @@ public class STPDetailsValidationPage extends TestBase{
 	@FindBy(xpath="//button[@data-original-title='Add to Interesting STPs']")
 	WebElement intrestingbutton;
 	
+	@FindBy (xpath = "//button[@type='button'][text()='Close']")
+	WebElement closeHelpPopup;
+	
 	public static String STPTextbox;
 	String stp_valntextbox;
 	String enteredstpname;
@@ -81,6 +88,24 @@ public class STPDetailsValidationPage extends TestBase{
 	
 	public STPDetailsValidationPage(){
 		PageFactory.initElements(driver, this);
+	}
+	
+	public void closeHelppopup() throws InterruptedException
+	{
+		//wait.until(ExpectedConditions.visibilityOf(closeHelpPopup));
+		Thread.sleep(1000);
+		try
+		{	if (closeHelpPopup.isDisplayed())
+				{
+					Thread.sleep(2000);
+					closeHelpPopup.click();
+					
+				}
+		}
+		catch(Exception e)
+		{
+			System.out.println("Help pop-up not present");
+		}
 	}
 	
 	//Excel Read for Individual(single data)

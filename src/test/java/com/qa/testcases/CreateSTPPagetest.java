@@ -1,4 +1,4 @@
-package com.qa.testcases;
+/*package com.qa.testcases;
 
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -48,7 +48,7 @@ public class CreateSTPPagetest extends TestBase {
 		test = report.startTest("Create STP Help Text Validation");
 		home.ClickOnSTPLink();
 		Thread.sleep(1000);
-		create.HelpToggleValidation();
+		create.HelpToggleValidation(test);
 
 	}
 
@@ -60,11 +60,11 @@ public class CreateSTPPagetest extends TestBase {
 		//test = report.startTest("Create STP Mandatory field validation");
 		for (int i=1; i<6 ; i++)
 		{
-		create.EnterMandatoryFields(i);
-		toast.fullnameToast(i);
-		toast.DescriptionToast(i);
-		toast.CommunityOrganiserToast(i);
-		toast.successfulToast(i);
+		create.EnterMandatoryFields(i, test);
+		toast.fullnameToast(i, test);
+		toast.DescriptionToast(i, test);
+		toast.CommunityOrganiserToast(i, test);
+		toast.successfulToast(i, test);
 		details.detailsValidation(5);
 		
 		
@@ -79,7 +79,7 @@ public class CreateSTPPagetest extends TestBase {
 		Thread.sleep(1000);
 		create.EnterALLFields();
 		Thread.sleep(3000);
-		toast.successfulToast(6);
+		toast.successfulToast(6, test);
 		//validation.detailsValidation(6);
 		
 		
@@ -104,3 +104,4 @@ public void CloseBrowser(ITestResult result)
 	driver.close();
 }
 }
+*/

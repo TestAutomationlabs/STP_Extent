@@ -12,14 +12,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 
 
 public class ListPage extends TestBase
-
-
-
 {
+
+	ExtentTest test;
+	ExtentReports report;
+	
 	int SearchCount = 0;
 	String value = null;
 	private static WebElement element = null;
@@ -145,7 +149,7 @@ public class ListPage extends TestBase
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void searchSTP() throws Exception
+	public void searchSTP(ExtentTest test) throws Exception
 	{
 		try
 		{
@@ -159,28 +163,28 @@ public class ListPage extends TestBase
 						listSearch.sendKeys(Keys.RETURN);
 						Thread.sleep(1000);			
 						try{
-							elementSearch(searching);
+							elementSearch(searching, test);
 						}
 						catch(Exception e)
 						{
 							System.out.println("Search Ended");
-							//test.log(LogStatus.INFO, "End of search");
+							test.log(LogStatus.INFO, "All Matches searched in the list");
 						}
 				if (SearchCount>0)
 				{
 					System.out.println("Searched STP name matched the full name");
-					//test.log(LogStatus.PASS, "Searched STP name matched the full name");
+					test.log(LogStatus.PASS, "Searched STP name matched the full name");
 				}
 				else
 				{
 					System.out.println("search parameter was not present");
-					//test.log(LogStatus.FAIL, "Searched STP name not found");
+					test.log(LogStatus.FAIL, "Searched STP name not found");
 				}
 				}
 				catch(Exception e)
 				{
 					System.out.println("Exception occured at search field");
-					//test.log(LogStatus.FAIL, e);
+					test.log(LogStatus.FAIL, e);
 				}
 				}
 				else
@@ -202,7 +206,7 @@ public class ListPage extends TestBase
 		}
 		}
 	
-	public void elementSearch(String SearchValue)
+	public void elementSearch(String SearchValue, ExtentTest test)
 	{
 		do		
 		{
@@ -212,7 +216,7 @@ public class ListPage extends TestBase
 			System.out.println(FetchedValue);
 			System.out.println(value);
 			
-			if (value.equalsIgnoreCase(FetchedValue))
+			if (!(FetchedValue==null))
 			{
 				SearchCount++;
 				//test.log(LogStatus.PASS, "Searched STP name matched the full name");
@@ -238,6 +242,7 @@ public class ListPage extends TestBase
 					if (value.equalsIgnoreCase(FetchedValue))
 					{
 						SearchCount++;
+						System.out.println("Search in Else loop");
 						//test.log(LogStatus.PASS, "Searched STP name matched the full name");
 						break;
 					}
@@ -247,7 +252,7 @@ public class ListPage extends TestBase
 		}
 	catch(Exception e)
 	{
-		//test.log(LogStatus.FAIL, "Name not found");
+		test.log(LogStatus.FAIL, "Name not found");
 	}
 }
 		while(loadMore.isDisplayed());
@@ -296,21 +301,23 @@ public class ListPage extends TestBase
 		}
 	}
 	
-	public void FilterByCategory() throws Exception
+	public void FilterByCategory(ExtentTest test) throws Exception
 	{
 		
-		for (int i=4; i<22; i++)
+		for (int i=4; i<25; i++)
 		{
 			String value = ExcelUtility.getCellData("CreateSTP", i, 0);
 			String valueToMatch = ExcelUtility.getCellData("CreateSTP", i, 6);
 			
 		if (value.equalsIgnoreCase("Technology Readiness"))
 			{
-				
+				//Technology readiness cannot be validated
 			}
-			
-		else
+		
+		else if (value.equalsIgnoreCase("Community Organizer")|| value.equalsIgnoreCase("Experts"))
 		{
+			valueToMatch = ExcelUtility.getCellData("CreateSTP", i, 7);
+			
 			try 
 			{
 				categoryButton.click();
@@ -324,10 +331,12 @@ public class ListPage extends TestBase
 				if(searchedWord.contains(filterTipinList))
 				{
 					System.out.println("Category pass");
+					test.log(LogStatus.PASS, value+"  filter applied sucessfully");
 				}
 				else 
 				{
 					System.out.println("Category failed");
+					test.log(LogStatus.FAIL, value+"  filter not working as expected");
 				}
 				
 				
@@ -344,6 +353,51 @@ public class ListPage extends TestBase
 			catch(Exception e)
 			{
 				System.out.println("Unable to close the category");
+				break;
+			}
+		}
+			
+		else
+		{
+			try 
+			{
+				categoryButton.click();
+				driver.findElement(By.xpath("//p[contains(text(),'"+value+"')]")).click();
+				searchInSelectedFilter.sendKeys(valueToMatch);
+				Thread.sleep(2000);
+				searchInSelectedFilter.sendKeys(Keys.RETURN);
+				Thread.sleep(3000);
+				String searchedWord = filterTip.getText();
+				String filterTipinList = getfilterTipinList().getText();
+				if(searchedWord.contains(filterTipinList))
+				{
+					System.out.println("Category pass");
+					test.log(LogStatus.PASS, value+"  filter applied sucessfully");
+				}
+				else
+				{
+					System.out.println("Category failed");
+					test.log(LogStatus.FAIL, value+"  filter not working as expected");
+				}
+				
+				
+			}
+			catch(Exception e)
+				{
+					System.out.println("An Error occured at "+value);
+					test.log(LogStatus.INFO, "An Error occured at "+value );
+					test.log(LogStatus.FAIL, e);
+					System.out.println(e);
+				}
+			try {
+				closeCategory.click();
+				
+			}
+			catch(Exception e)
+			{
+				System.out.println("Unable to close the category");
+				test.log(LogStatus.INFO, "Unable to close the category");
+				test.log(LogStatus.FAIL, e);
 				break;
 			}
 		}

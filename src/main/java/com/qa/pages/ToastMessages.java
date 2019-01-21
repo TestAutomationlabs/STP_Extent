@@ -45,8 +45,9 @@ public class ToastMessages extends TestBase
 	PageFactory.initElements(driver, this);
 	}
 	
-	public void fullnameToast(int FullNameCell, ExtentTest test) throws IOException
+	public void fullnameToast(int FullNameCell, ExtentTest test) throws IOException, InterruptedException
 	{
+		Thread.sleep(1000);
 		String blankFulltoast = (ExcelUtility.getCellData("CreateSTP", 1, FullNameCell));
 		System.out.println(blankFulltoast+" ----Blank name");
 		if (blankFulltoast.trim().equals(""))
@@ -66,8 +67,9 @@ public class ToastMessages extends TestBase
 		}
 	}
 	
-	public void DescriptionToast(int DescriptionCell, ExtentTest test) throws IOException
+	public void DescriptionToast(int DescriptionCell, ExtentTest test) throws IOException, InterruptedException
 	{
+		Thread.sleep(1000);
 		String blankDesctoast = (ExcelUtility.getCellData("CreateSTP", 3, DescriptionCell));
 		System.out.println(blankDesctoast+" ----Blank Description");
 		if (blankDesctoast.trim().equals(""))
@@ -87,8 +89,9 @@ public class ToastMessages extends TestBase
 		}
 	}
 	
-	public void CommunityOrganiserToast(int CommunityOrganiserCell, ExtentTest test) throws IOException
+	public void CommunityOrganiserToast(int CommunityOrganiserCell, ExtentTest test) throws IOException, InterruptedException
 	{
+		Thread.sleep(1000);
 		String blankcommorgtoast = (ExcelUtility.getCellData("CreateSTP", 2, CommunityOrganiserCell));
 		System.out.println(blankcommorgtoast+" ----Blank community organiser");
 		if (blankcommorgtoast.trim().equals(""))

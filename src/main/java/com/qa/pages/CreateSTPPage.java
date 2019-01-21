@@ -107,7 +107,7 @@ public class CreateSTPPage extends TestBase
 	@FindBy (xpath = "//input[@placeholder='Keywords']")
 	WebElement Keywords;
 	
-	@FindBy (xpath = "//input[@placeholder='Publications by Merck']")
+	@FindBy (xpath = "//input[@placeholder='Publications by Merck/EMD']")
 	WebElement PublicationsbyMerck;
 	
 	@FindBy (xpath = "//input[@placeholder='Review articles of outside world']")
@@ -187,7 +187,7 @@ public WebElement closeHelpPopup()
 
 public void closeHelppopup() throws InterruptedException
 {
-	wait.until(ExpectedConditions.visibilityOf(closeHelpPopup));
+	//wait.until(ExpectedConditions.visibilityOf(closeHelpPopup));
 	Thread.sleep(1000);
 	try
 	{	if (closeHelpPopup.isDisplayed())
@@ -221,7 +221,7 @@ public void HelpToggleValidation(ExtentTest test) throws Exception
 	System.out.println("Help Text present");
 	HelpToggle.click();
 	
-	test.log(LogStatus.PASS, "Help Text not expected here");
+	test.log(LogStatus.PASS, "Help Text present");
 	
 	if (HelpToggle.isEnabled())
 	{		
@@ -232,183 +232,302 @@ public void HelpToggleValidation(ExtentTest test) throws Exception
 			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			if (HelpText.isDisplayed())
 				{
-					test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+					test.log(LogStatus.FAIL, "Help text not removed. Hence failed");
 					System.out.println("Help text not removed. Hence failed");
 				}
 		}
 		catch(Exception e)
 		{
-			test.log(LogStatus.PASS, "Help text not removed. Hence failed");
+			test.log(LogStatus.PASS, "Help text not removed as expected");
 			System.out.println("Help text removed as expected");
 		}
 	}
 }
 	}
 
+//______________________________________________________________________________________________________
 public void EnterMandatoryFields(int cellNo, ExtentTest test) throws InterruptedException, IOException
 {
 	
-generalInfo.click();
-Thread.sleep(1000);
-STPName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
-Thread.sleep(1000);
-STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, cellNo));
-test.log(LogStatus.INFO, "STP Full name is Entered");
-Description.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
-Thread.sleep(1000);
-Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, cellNo));
-test.log(LogStatus.INFO, "Description is Entered");
-Thread.sleep(1000);
-ShortName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
-Thread.sleep(1000);
-ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, cellNo));
-test.log(LogStatus.INFO, "STP Short name is Entered");
-Thread.sleep(1000);
-resources.click();
-test.log(LogStatus.INFO, "Switching to Resources tab");
-Thread.sleep(1000);
-try {
-if (removeCommunityOrgainser.isDisplayed())
-{
-	removeCommunityOrgainser.click();
-}
-}
-catch(Exception e)
-{
-System.out.println("Community organiser not maintained");
-}
-Thread.sleep(1000);
-CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, cellNo)+" ");
-Thread.sleep(3000);
-CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
-test.log(LogStatus.INFO, "Community orgainser name data entered");
-Thread.sleep(1000);
-SavenClose.click();
-test.log(LogStatus.INFO, "Clicked on Save and close Button");
-Thread.sleep(1000);
-}
-
-public void EnterALLFields() throws Exception
-{
-	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, 6));
+	generalInfo.click();
+	Thread.sleep(1000);
 	
-	Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, 6));
+	STPName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+	Thread.sleep(1000);
+	STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, cellNo));
+	test.log(LogStatus.INFO, "STP Full name is Entered");
+	
+	Description.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+	Thread.sleep(1000);
+	Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, cellNo));
+	test.log(LogStatus.INFO, "Description is Entered");
 	Thread.sleep(1000);
 	
 	ShortName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
-	ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, 6));
-	
-	Location.sendKeys(ExcelUtility.getCellData("CreateSTP", 7, 6)+" ");
-	Thread.sleep(3000);
-	Location.sendKeys(Keys.RETURN);
-	
-	BusinessSector.sendKeys(ExcelUtility.getCellData("CreateSTP", 6, 6)+" ");
-	Thread.sleep(3000);
-	BusinessSector.sendKeys(Keys.RETURN);
-	//___________________________________ Page 2 ________________________________________
-	resources.click();
+	Thread.sleep(1000);
+	ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, cellNo));
+	test.log(LogStatus.INFO, "STP Short name is Entered");
 	Thread.sleep(1000);
 	
-	CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, 6)+" ");
+	resources.click();
+	test.log(LogStatus.INFO, "Switching to Resources tab");
+	Thread.sleep(1000);
+	
+	try {
+			if (removeCommunityOrgainser.isDisplayed())
+			{
+				removeCommunityOrgainser.click();
+			}
+		}
+	catch(Exception e)
+		{
+				System.out.println("Community organiser not maintained");
+		}
+	Thread.sleep(1000);
+	CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, cellNo));
 	Thread.sleep(3000);
-	CommunityOrganiser.sendKeys(Keys.RETURN);
+	CommunityOrganiser.sendKeys(Keys.ARROW_DOWN,Keys.RETURN);
+	test.log(LogStatus.INFO, "Community orgainser name data entered");
+	Thread.sleep(1000);
 	
-	Experts.sendKeys(ExcelUtility.getCellData("CreateSTP", 5, 6)+" ");
-	Thread.sleep(3000);
-	Experts.sendKeys(Keys.RETURN);
+	SavenClose.click();
+	test.log(LogStatus.INFO, "Clicked on Save and close Button");
+	Thread.sleep(1000);
+}
+
+//______________________________________________________________________________________________________
+public void EnterALLFields(ExtentTest test) throws Exception
+{
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	
-	String asset = ExcelUtility.getCellData("CreateSTP", 9, 6);
-	Assets.sendKeys(asset);
-	callNewDimension(asset, Assets);
+	try {
+		STPName.sendKeys(ExcelUtility.getCellData("CreateSTP", 1, 6));
+		test.log(LogStatus.PASS, "validated STP Full name Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate STP Full name field");
+		test.log(LogStatus.FAIL, e);
+	}
 	
-	String database = ExcelUtility.getCellData("CreateSTP", 17, 6);
-	Database.sendKeys(database);
-	callNewDimension(database, Database);
+	try {
+		Description.sendKeys(ExcelUtility.getCellData("CreateSTP", 3, 6));
+		Thread.sleep(1000);
+		test.log(LogStatus.PASS, "validated Description Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate Description Field");
+		test.log(LogStatus.FAIL, e);
+	}
 	
-	String materials = ExcelUtility.getCellData("CreateSTP", 11, 6);
-	MaterialUsed.sendKeys(materials);
-	callNewDimension(materials, MaterialUsed);
+	try {
+		ShortName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+		ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, 6));
+		test.log(LogStatus.PASS, "validated Short Name Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate Short Name Field");
+		test.log(LogStatus.FAIL, e);
+	}
+	
+	try {
+		Location.sendKeys(ExcelUtility.getCellData("CreateSTP", 7, 6)+" ");
+		Thread.sleep(4000);
+		Location.sendKeys(Keys.RETURN);
+		test.log(LogStatus.PASS, "validated Location Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate Location Field");
+		test.log(LogStatus.FAIL, e);
+	}
+	
+	try {
+		BusinessSector.sendKeys(ExcelUtility.getCellData("CreateSTP", 6, 6)+" ");
+		Thread.sleep(3000);
+		BusinessSector.sendKeys(Keys.RETURN);
+		test.log(LogStatus.PASS, "validated BusinessSector Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate BusinessSector Field");
+		test.log(LogStatus.FAIL, e);
+	}
+	
+	//___________________________________ Page 2 ________________________________________
+	try {
+		resources.click();
+		Thread.sleep(1000);
+		test.log(LogStatus.PASS, "validated resources tab");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate resources tab");
+		test.log(LogStatus.FAIL, e);
+	}
+	
+	try {
+		CommunityOrganiser.sendKeys(ExcelUtility.getCellData("CreateSTP", 4, 6));
+		Thread.sleep(4000);
+		CommunityOrganiser.sendKeys(Keys.RETURN);
+		test.log(LogStatus.PASS, "validated CommunityOrganiser Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate CommunityOrganiser Field");
+		test.log(LogStatus.FAIL, e);
+	}
+	
+	try {
+		Experts.sendKeys(ExcelUtility.getCellData("CreateSTP", 5, 6)+" ");
+		Thread.sleep(4000);
+		Experts.sendKeys(Keys.RETURN);
+		test.log(LogStatus.PASS, "validated Experts Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate Experts Field");
+		test.log(LogStatus.FAIL, e);
+	}
+	
+	try {
+		String asset = ExcelUtility.getCellData("CreateSTP", 9, 6);
+		Assets.sendKeys(asset);
+		callNewDimension(asset, Assets);
+		test.log(LogStatus.PASS, "validated Assets Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate Assets Field");
+		test.log(LogStatus.FAIL, e);
+	}
+	
+	try {
+		String database = ExcelUtility.getCellData("CreateSTP", 17, 6);
+		Database.sendKeys(database);
+		callNewDimension(database, Database);
+		test.log(LogStatus.PASS, "validated Database Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate Database Field");
+		test.log(LogStatus.FAIL, e);
+	}
+	
+	try {
+		String materials = ExcelUtility.getCellData("CreateSTP", 11, 6);
+		MaterialUsed.sendKeys(materials);
+		callNewDimension(materials, MaterialUsed);
+		test.log(LogStatus.PASS, "validated MaterialUsed Field");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate MaterialUsed Field");
+		test.log(LogStatus.FAIL, e);
+	}
 	
 	//__________________________________ Page 3 ___________________________
-	
-	technologytab.click();
+	try {
+		technologytab.click();
+		test.log(LogStatus.PASS, "validated technologytab tab");
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate technologytab tab");
+		test.log(LogStatus.FAIL, e);
+	}
 	
 	try {
 		String techniqueUsed = ExcelUtility.getCellData("CreateSTP", 10, 6);
 		TechniqueUsed.sendKeys(techniqueUsed);
 		callNewDimension(techniqueUsed, TechniqueUsed);
+		test.log(LogStatus.PASS, "validated TechniqueUsed Filed");
 	}
 	catch (Exception e)
 	{
-		System.out.println("Error at MaterialUsed");
-		System.out.println(e);
+		test.log(LogStatus.INFO, "Failed to validate TechniqueUsed tab");
+		test.log(LogStatus.FAIL, e);
 	}
 	
 	try {
 		String relatedTech = ExcelUtility.getCellData("CreateSTP", 16, 6);
 		RelatedTechnology.sendKeys(relatedTech);
 		callNewDimension(relatedTech, RelatedTechnology);
+		test.log(LogStatus.PASS, "validated RelatedTechnology Filed");
 	}
 	catch (Exception e)
 	{
-		System.out.println("Error at MaterialUsed");
-		System.out.println(e);
+		test.log(LogStatus.INFO, "Failed to validate RelatedTechnology field");
+		test.log(LogStatus.FAIL, e);
 	}
 	
 	try {
 		String keyword = ExcelUtility.getCellData("CreateSTP", 19, 6);
 		Keywords.sendKeys(keyword);
 		callNewDimension(keyword, Keywords);
+		test.log(LogStatus.PASS, "validated Keywords Filed");
 	}
 	catch (Exception e)
 	{
-		System.out.println("Error at MaterialUsed");
-		System.out.println(e);
+		test.log(LogStatus.INFO, "Failed to validate Keywords field");
+		test.log(LogStatus.FAIL, e);
 	}
-	
 	
 	//____________________________________ Page 4 ___________________________
-	
-	Knowledgetab.click();
-	
 	try {
-	ExpertiseLevel.click();
+		Knowledgetab.click();
+		test.log(LogStatus.PASS, "validated Knowledge tab");
 	}
 	catch (Exception e)
 	{
-		System.out.println(e);
+		test.log(LogStatus.INFO, "Failed to validate Knowledge tab");
+		test.log(LogStatus.FAIL, e);
+	}
+		
+	try {
+	ExpertiseLevel.click();
+	test.log(LogStatus.PASS, "validated ExpertiseLevel field");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate ExpertiseLevel field");
+		test.log(LogStatus.FAIL, e);
 	}
 	
 	try {
 		String trend = ExcelUtility.getCellData("CreateSTP", 18, 6);
 		AssociatedTrends.sendKeys(trend);
 		callNewDimension(trend, AssociatedTrends);
+		test.log(LogStatus.PASS, "validated AssociatedTrends field");
 	}
 	catch (Exception e)
 	{
-		System.out.println("Error at MaterialUsed");
-		System.out.println(e);
+		test.log(LogStatus.INFO, "Failed to validate AssociatedTrends field");
+		test.log(LogStatus.FAIL, e);
 	}
 	
 	try {
 		TechnologyReadiness.click();
+		test.log(LogStatus.PASS, "validated TechnologyReadiness field");
 	}
 	catch (Exception e)
 	{
-		System.out.println("Error at MaterialUsed");
-		System.out.println(e);
+		test.log(LogStatus.INFO, "Failed to validate TechnologyReadiness field");
+		test.log(LogStatus.FAIL, e);
 	}
 	
 	try {
 		String merckPubli = ExcelUtility.getCellData("CreateSTP", 20, 6);
 		PublicationsbyMerck.sendKeys(merckPubli);
 		callNewDimension(merckPubli, PublicationsbyMerck);
+		test.log(LogStatus.PASS, "validated PublicationsbyMerck field");
 	}
 	catch (Exception e)
 	{
-		System.out.println("Error at MaterialUsed");
-		System.out.println(e);
+		test.log(LogStatus.INFO, "Failed to validate PublicationsbyMerck field");
+		test.log(LogStatus.FAIL, e);
 	}
 	
 
@@ -416,62 +535,133 @@ public void EnterALLFields() throws Exception
 		String reivew = ExcelUtility.getCellData("CreateSTP", 21, 6);
 		ReviewarticlesFromOutsideWorld.sendKeys(reivew);
 		callNewDimension(reivew, ReviewarticlesFromOutsideWorld);
+		test.log(LogStatus.PASS, "validated ReviewarticlesFromOutsideWorld field");
 	}
 	catch (Exception e)
 	{
-		System.out.println("Error at MaterialUsed");
-		System.out.println(e);
+		test.log(LogStatus.INFO, "Failed to validate ReviewarticlesFromOutsideWorld field");
+		test.log(LogStatus.FAIL, e);
 	}
 	
 	try {
 		String patent = ExcelUtility.getCellData("CreateSTP", 23, 6);
 		patents.sendKeys(patent);
 		callNewDimension(patent, patents);
+		test.log(LogStatus.PASS, "validated ReviewarticlesFromOutsideWorld field");
 	}
 	catch (Exception e)
 	{
-		System.out.println("Error at MaterialUsed");
-		System.out.println(e);
+		test.log(LogStatus.INFO, "Failed to validate ReviewarticlesFromOutsideWorld field");
+		test.log(LogStatus.FAIL, e);
 	}
+	
 	//____________________________________ Page 5 ______________________________
+	try {
+		ApplicationsnProductsTab.click();
+		test.log(LogStatus.PASS, "validated ApplicationsnProducts tab");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate ApplicationsnProducts tab");
+		test.log(LogStatus.FAIL, e);
+	}
 	
-	ApplicationsnProductsTab.click();
+	try {
+		String application = ExcelUtility.getCellData("CreateSTP", 12, 6);
+		Applications.sendKeys(application);
+		callNewDimension(application, Applications);
+		test.log(LogStatus.PASS, "validated Applications field");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate Applications field");
+		test.log(LogStatus.FAIL, e);
+	}
 	
-	String application = ExcelUtility.getCellData("CreateSTP", 12, 6);
-	Applications.sendKeys(application);
-	Applications.sendKeys(Keys.RETURN);
-	callNewDimension(application, Applications);
+	try {
+		String ongoing = ExcelUtility.getCellData("CreateSTP", 13, 6);
+		ongoingProjects.sendKeys(ongoing);
+		callNewDimension(ongoing, ongoingProjects);
+		test.log(LogStatus.PASS, "validated ongoingProjects field");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate ongoingProjects field");
+		test.log(LogStatus.FAIL, e);
+	}
 	
-	String ongoing = ExcelUtility.getCellData("CreateSTP", 13, 6);
-	ongoingProjects.sendKeys(ongoing);
-	ongoingProjects.sendKeys(Keys.RETURN);
-	callNewDimension(ongoing, ongoingProjects);
+	try {
+		String products = ExcelUtility.getCellData("CreateSTP", 14, 6);
+		ProductsnServices.sendKeys(products);
+		callNewDimension(products, ProductsnServices);
+		test.log(LogStatus.PASS, "validated ProductsnServices field");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate ProductsnServices field");
+		test.log(LogStatus.FAIL, e);
+	}
 
-	String products = ExcelUtility.getCellData("CreateSTP", 14, 6);
-	ProductsnServices.sendKeys(products);
-	ProductsnServices.sendKeys(Keys.RETURN);
-	callNewDimension(products, ProductsnServices);
+	try {
+		String example = ExcelUtility.getCellData("CreateSTP", 15, 6);
+		Externalexample.sendKeys(example);
+		callNewDimension(example, Externalexample);
+		test.log(LogStatus.PASS, "validated Externalexample field");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate Externalexample field");
+		test.log(LogStatus.FAIL, e);
+	}
 	
-	String example = ExcelUtility.getCellData("CreateSTP", 15, 6);
-	Externalexample.sendKeys(example);
-	Externalexample.sendKeys(Keys.RETURN);
-	callNewDimension(example, Externalexample);
 	//____________________________________ Page 6 __________________________________
+	try {
+		relations.click();
+		test.log(LogStatus.PASS, "validated relations tab");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate relations tab");
+		test.log(LogStatus.FAIL, e);
+	}
 	
-	relations.click();
+	try {
+		String collaboration = ExcelUtility.getCellData("CreateSTP", 22, 6);
+		ExternalCollaboration.sendKeys(collaboration);
+		callNewDimension(collaboration,ExternalCollaboration);
+		test.log(LogStatus.PASS, "validated ExternalCollaboration field");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate ExternalCollaboration field");
+		test.log(LogStatus.FAIL, e);
+	}
 	
-	String collaboration = ExcelUtility.getCellData("CreateSTP", 22, 6);
-	ExternalCollaboration.sendKeys(collaboration);
-	ExternalCollaboration.sendKeys(Keys.RETURN);
-	callNewDimension(collaboration,ExternalCollaboration);
+	try {
+		String competitor = ExcelUtility.getCellData("CreateSTP", 24, 6);
+		Competitors.sendKeys(competitor);
+		callNewDimension(competitor,Competitors);
+		test.log(LogStatus.PASS, "validated Competitors field");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate Competitors field");
+		test.log(LogStatus.FAIL, e);
+	}
 	
-	String competitor = ExcelUtility.getCellData("CreateSTP", 24, 6);
-	Competitors.sendKeys(competitor);
-	Competitors.sendKeys(Keys.RETURN);
-	callNewDimension(competitor,Competitors);
-	
-	SavenClose.click();
+	try {
+		SavenClose.click();
+		test.log(LogStatus.PASS, "validated SavenClose Button");
+		Thread.sleep(3000);
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.INFO, "Failed to validate SavenClose Button");
+		test.log(LogStatus.FAIL, e);
+	}
 }
+
+//________________________________________________________________________________________________________________________
 
 public void callNewDimension(String value, WebElement ele) throws InterruptedException
 {
@@ -485,7 +675,7 @@ public void callNewDimension(String value, WebElement ele) throws InterruptedExc
 			
 			ele.sendKeys(Keys.RETURN);
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 				
 				if(newDimensionName.isDisplayed())
 				{
