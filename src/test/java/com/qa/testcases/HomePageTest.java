@@ -13,7 +13,7 @@ import com.qa.pages.HomePage;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 
-//@Listeners(CustomListner.class)
+@Listeners(CustomListner.class)
 public class HomePageTest extends TestBase {
 	HomePage homepage;
 	ExtentTest test;

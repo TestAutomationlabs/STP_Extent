@@ -37,7 +37,7 @@ public class ListPageTest extends TestBase {
 		report.loadConfig(new File("./extent-config.xml"));
 	}
 
-	@Test(priority = 11)
+	@Test(priority = 14)
 	public void SearchSTPTest() throws Exception
 	{
 		test = report.startTest("Search Field Validation");
@@ -50,7 +50,7 @@ public class ListPageTest extends TestBase {
 		report.endTest(test);
 	}
 
-	@Test(priority = 12)
+	@Test(priority = 15)
 	public void categoryValidation() throws Exception
 	{
 		test = report.startTest("Category Validation");

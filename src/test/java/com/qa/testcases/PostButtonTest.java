@@ -53,7 +53,7 @@ public class PostButtonTest extends TestBase {
 		post = new PostPages();
 	}
 
-	@Test(priority=8)
+	@Test(priority=16)
 
 	public void AddPostTest() throws Exception {
 
@@ -66,7 +66,7 @@ public class PostButtonTest extends TestBase {
 		report.endTest(test);
 
 	}
-	@Test(priority=9)
+	@Test(priority=17)
 	public void ClickOnPostButtonWithEmptyDetails() throws Exception
 	{
 		test=report.startTest("verifyEmptyPostButton");
@@ -75,7 +75,7 @@ public class PostButtonTest extends TestBase {
 		report.endTest(test);
 	}
 
-	@Test(priority=10)
+	@Test(priority=18)
 	public void verifyCancelButtonTest() throws Exception
 	{
 		test= report.startTest("VerifyCancelbuttontest");
@@ -85,7 +85,7 @@ public class PostButtonTest extends TestBase {
 		report.endTest(test);
 	}
 
-	@Test(priority=11)
+	@Test(priority=19)
 
 	public void verifyPostPageTest() throws Exception {
 		test= report.startTest("verifyPostPageTest");
@@ -98,7 +98,7 @@ public class PostButtonTest extends TestBase {
 	}
 
 
-@Test(priority=12)
+@Test(priority=20)
 
 	public void verifySuccessStoriesIcon() throws InterruptedException
 	{
@@ -117,7 +117,7 @@ public class PostButtonTest extends TestBase {
 		}
 	}
 
-@Test(priority=13)
+@Test(priority=21)
 
 	public void verifySuccessStoryNews() throws Exception {
 
@@ -144,7 +144,7 @@ public class PostButtonTest extends TestBase {
 	}
 
 
-	@Test(priority=14)
+	@Test(priority=22)
 
 	public void verifyPostbuttonClickAfterSuccessStories() throws IOException, Exception {
 		test= report.startTest("ClickAfterSuccessStories");
@@ -155,7 +155,7 @@ public class PostButtonTest extends TestBase {
 		 report.endTest(test);
 	}
 
-	@Test(priority=15)
+	@Test(priority=23)
 
 	public void verifySTPToolStory() throws IOException, Exception {
 		test= report.startTest("STPToolStory");
@@ -168,7 +168,7 @@ public class PostButtonTest extends TestBase {
 
 
 
-	@Test(priority=16)
+	@Test(priority=24)
 
 	public void verifySTPNews() throws Exception {
 		// *[@id="root"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[2]/span/div[1]

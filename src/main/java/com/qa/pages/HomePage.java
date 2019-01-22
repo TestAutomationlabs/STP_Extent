@@ -3,6 +3,7 @@ package com.qa.pages;
 import java.io.IOException;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -69,8 +70,8 @@ public class HomePage extends TestBase {
 	public WebElement HelpMarkClose;
 
 	////a[text()='"+ExcelUtility.getCellData("CreateSTP", 20, 6)+"']
-	@FindBy (xpath ="//a[text()='\"+ExcelUtility.getCellData(\"CreateSTP\", 20, 6)+\"']")
-	public WebElement findInMySTP;
+//	@FindBy (xpath ="//a[text()='"+ExcelUtility.getCellData("CreateSTP", 20, 6)+"']")
+//	public WebElement findInMySTP;
 
 	public WebElement postbuttonvalidationbutton;
 
@@ -98,7 +99,8 @@ public class HomePage extends TestBase {
 	public void testFindInMySTP(ExtentTest test) throws Exception
 	{
 		String toValidate = ExcelUtility.getCellData("CreateSTP", 20, 6);
-		String inMySTP = findInMySTP.getText().toString();
+		
+		String inMySTP = driver.findElement(By.xpath("//a[text()='toValidate'")).getText().toString();
 
 		if(toValidate.equalsIgnoreCase(inMySTP))
 		{
@@ -190,25 +192,6 @@ public class HomePage extends TestBase {
 		//return HomeIcon.isDisplayed();
 	}
 
-
-
-
-
-	public void verifyHomeIcon(ExtentTest test) {
-		try {
-			if(HomeIcon.isDisplayed())
-			{
-				test.log(LogStatus.PASS, "Home icon present");
-			}
-		}
-		catch(Exception e)
-		{
-			test.log(LogStatus.PASS, "Home icon not present");
-		}
-
-		//return HomeIcon.isDisplayed();
-	}
-
 	public void verifyHomeIconClick()
 	{
 		HomeIcon.click();
@@ -227,15 +210,6 @@ public class HomePage extends TestBase {
 		}
 	}
 
-		public void verifyListTabClick(ExtentTest test) {
-			if (!ListTab.isDisplayed()) {
-				System.out.println("ListTab is not present");
-			} else {
-
-				ListTab.click();
-				System.out.println("ListTab is present");
-				test.log(LogStatus.PASS, "List tab present in the UI");
-			}
 
 public void verifyListTabClick(ExtentTest test) {
 	if (!ListTab.isDisplayed()) {
@@ -246,6 +220,7 @@ public void verifyListTabClick(ExtentTest test) {
 		System.out.println("ListTab is present");
 		test.log(LogStatus.PASS, "List tab present in the UI");
 	}
+}
 
 	public void verifyNetworkTab(ExtentTest test) {
 		try {
