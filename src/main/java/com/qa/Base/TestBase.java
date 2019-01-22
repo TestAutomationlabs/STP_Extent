@@ -81,8 +81,22 @@ public class TestBase{
 		driver.get(prop.getProperty("url"));
 		
 	}
-
-
+//
+//	public void takeScreenshotAtEndOfTest(String testMethodName)
+//	{
+//		File scrFile = (TakesScreenshot()).getScreenshotAs(OutputType.FILE);
+//		String currentDir = System.getProperty("user.dir");
+//		try {
+//			//FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
+//		
+//			FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/"+testMethodName+"_"+".jpg"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		//FileUtils.copyFile(scrFile, new File());
+//	
+//	}
 	
 	public void takeScreenshotAtEndOfTest(String testMethodName)
 	{

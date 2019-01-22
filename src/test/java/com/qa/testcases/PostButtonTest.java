@@ -54,9 +54,9 @@ public class PostButtonTest extends TestBase {
 	}
 
 	@Test(priority=8)
-	
+
 	public void AddPostTest() throws Exception {
-		
+
 		test= report.startTest("Add Post test");
 		Thread.sleep(20000);
 		homepage.verifyHelpPopup(test);
@@ -74,7 +74,7 @@ public class PostButtonTest extends TestBase {
 		post.ClickOnPostWithEmptyDetails(test);
 		report.endTest(test);
 	}
-	
+
 	@Test(priority=10)
 	public void verifyCancelButtonTest() throws Exception
 	{
@@ -86,7 +86,7 @@ public class PostButtonTest extends TestBase {
 	}
 
 	@Test(priority=11)
-	
+
 	public void verifyPostPageTest() throws Exception {
 		test= report.startTest("verifyPostPageTest");
 		Thread.sleep(2000);
@@ -96,10 +96,10 @@ public class PostButtonTest extends TestBase {
 		post.verifySuccessStoriescategoryBox(test);
 		report.endTest(test);
 	}
-	
-	
+
+
 @Test(priority=12)
-	
+
 	public void verifySuccessStoriesIcon() throws InterruptedException
 	{
 		test= report.startTest("verifySuccessStoriesIcon");
@@ -116,18 +116,18 @@ public class PostButtonTest extends TestBase {
 			report.endTest(test);
 		}
 	}
-	
+
 @Test(priority=13)
-	
+
 	public void verifySuccessStoryNews() throws Exception {
-			
+
 		test= report.startTest("verifySuccessStoryNews");
 		// *[@id="root"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[2]/span/div[1]
 		String beforexpath = "//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[";
 		String afterxpath = "]/span/div[1]";
 		int success_rowcount = homepage.Successwebtablerows.size();
 		System.out.println("STP Webtable rowcount is " +success_rowcount);
-		
+
 
 		for (int i = 1; i < success_rowcount; i++) {
 			String success_name = driver.findElement(By.xpath(beforexpath + i + afterxpath)).getText();
@@ -136,16 +136,16 @@ public class PostButtonTest extends TestBase {
 				successnews_valdn = homepage.Success_EnteredSTPToolData.getText();
 				System.out.println("Success News data validation" + successnews_valdn);
 				break;
-				
+
 			}
 		}
 		test.log(LogStatus.PASS, "STP SuccessStoryNews is Verified");
-		report.endTest(test);		
+		report.endTest(test);
 	}
 
 
 	@Test(priority=14)
-	
+
 	public void verifyPostbuttonClickAfterSuccessStories() throws IOException, Exception {
 		test= report.startTest("ClickAfterSuccessStories");
 		Thread.sleep(4000);
@@ -156,7 +156,7 @@ public class PostButtonTest extends TestBase {
 	}
 
 	@Test(priority=15)
-	
+
 	public void verifySTPToolStory() throws IOException, Exception {
 		test= report.startTest("STPToolStory");
 		post.verifySTPToolcategoryBox(test);
@@ -164,12 +164,12 @@ public class PostButtonTest extends TestBase {
 		test.log(LogStatus.PASS, "STP Tool category validation is completed");
 		report.endTest(test);
 	}
-	
 
-	
+
+
 
 	@Test(priority=16)
-	
+
 	public void verifySTPNews() throws Exception {
 		// *[@id="root"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[2]/span/div[1]
 		test= report.startTest("verifySTPNews");
@@ -177,7 +177,7 @@ public class PostButtonTest extends TestBase {
 		homepage.STPSuccessStoriesIcon.click();
 		System.out.println("STP SuccessStories Icon button is disabled now");
 		System.out.println("Now STP Tool Icon is to validate the STPNews List");
-		
+
 		String beforexpath = "//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[";
 		String afterxpath = "]/span/div[1]";
 		int stp_rowcount = homepage.STPwebtablerows.size();
@@ -197,7 +197,7 @@ public class PostButtonTest extends TestBase {
 		test.log(LogStatus.PASS, "STPNews is Verified");
 		report.endTest(test);
 	}
-	
+
 
 	/*
 	 * @Test(priority=5) public void verifySTPToolIcon() throws Exception {
@@ -206,25 +206,24 @@ public class PostButtonTest extends TestBase {
 	 * List<WebElement>stpnews_list=driver.findElements(By.
 	 * xpath("//div[@class='news-title fs-15p font-weight-bold break-word']"));
 	 * System.out.println("size of stpnews_list is" +stpnews_list);
-	 * 
+	 *
 	 * stptooldata_valdn=homepage.EnteredSTPToolData.getText();
 	 * System.out.println("Stptooldatavaliation is " +stptooldata_valdn);
-	 * 
-	 * 
+	 *
+	 *
 	 * if(stptooldata_valdn.equalsIgnoreCase(post.titledata_valdn)) {
-	 * 
+	 *
 	 * //Assert.assertEquals(stptooldata_valdn, post.titledata_valdn);
 	 * System.out.println(" Actual and expected results is matched ");
-	 * 
+	 *
 	 * }
-	 * 
-	 * 
+	 *
+	 *
 	 * }
 	 */
-	
+
 	@AfterClass(alwaysRun = true)
 	public void TearDown() {
-		
 		driver.close();
 		report.flush();
 		report.close();
