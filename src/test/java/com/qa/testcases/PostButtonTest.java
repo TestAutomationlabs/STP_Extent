@@ -66,14 +66,14 @@ public class PostButtonTest extends TestBase {
 		report.endTest(test);
 
 	}
-	@Test(priority=9)
-	public void ClickOnPostButtonWithEmptyDetails() throws Exception
-	{
-		test=report.startTest("verifyEmptyPostButton");
-		Thread.sleep(2000);
-		post.ClickOnPostWithEmptyDetails(test);
-		report.endTest(test);
-	}
+//	@Test(priority=9)
+//	public void ClickOnPostButtonWithEmptyDetails() throws Exception
+//	{
+//		test=report.startTest("verifyEmptyPostButton");
+//		//Thread.sleep(2000);
+//		post.ClickOnPostWithEmptyDetails(test);
+//		report.endTest(test);
+//	}
 	
 	@Test(priority=10)
 	public void verifyCancelButtonTest() throws Exception
@@ -91,7 +91,6 @@ public class PostButtonTest extends TestBase {
 		test= report.startTest("verifyPostPageTest");
 		Thread.sleep(2000);
 		homepage.ClickOnPostButton();
-		System.out.println("Navigated to the AddPost for validating success stories");
 		System.out.println("Navigated to the AddPost for validating success stories");
 		post.verifySuccessStoriescategoryBox(test);
 		report.endTest(test);

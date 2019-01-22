@@ -77,6 +77,11 @@ public class PostPages extends TestBase{
 	String STPsbox1;
 	public String stp_titledata_valdn;
 	public String Success_titledata_valdn;
+	
+	
+	String Titletextbox2;
+	String Yourpostbox2;
+	String STPsbox2;
 	public PostPages() {
 		PageFactory.initElements(driver, this);
 	}
@@ -256,14 +261,19 @@ public class PostPages extends TestBase{
 
 }
 	
-	public void ClickOnPostWithEmptyDetails(ExtentTest test) throws Exception
-	{
-		Post.click();
-		Thread.sleep(2000);
-		String toast=Post_EmptyDetails.getText();
-		System.out.println("Toast message is displayed for empty post click");
-		test.log(LogStatus.PASS, "Toast message is displayed for empty post click");
-	}
+//	public void ClickOnPostWithEmptyDetails(ExtentTest test) throws Exception
+//	{
+//		Title.sendKeys(Keys.TAB,Keys.TAB,Keys.TAB,Keys.TAB,Keys.ENTER);
+//		//YourPost.sendKeys(Keys.TAB,Keys.ENTER);
+//		//TestUtil.wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='btn btn-highlight'][contains(text(),'Post')]")));
+//		driver.findElement(By.xpath("//div[@class='Toastify__toast-container Toastify__toast-container--bottom-center ToastContainer']")).click();
+//		System.out.println("Empty post button clicked in postpage");
+//		//Post.click();
+//		Thread.sleep(1000);
+//		String toast=Post_EmptyDetails.getText();
+//		System.out.println("Toast message is displayed for empty post click" +toast);
+//		test.log(LogStatus.PASS, "Toast message is displayed for empty post click");
+//	}
 	
 }
 
