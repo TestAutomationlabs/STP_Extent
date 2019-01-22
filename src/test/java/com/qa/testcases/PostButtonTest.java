@@ -66,18 +66,39 @@ public class PostButtonTest extends TestBase {
 		report.endTest(test);
 
 	}
-
 	@Test(priority=9)
+	public void ClickOnPostButtonWithEmptyDetails() throws Exception
+	{
+		test=report.startTest("verifyEmptyPostButton");
+		Thread.sleep(2000);
+		post.ClickOnPostWithEmptyDetails(test);
+		report.endTest(test);
+	}
+	
+	@Test(priority=10)
+	public void verifyCancelButtonTest() throws Exception
+	{
+		test= report.startTest("VerifyCancelbuttontest");
+		Thread.sleep(2000);
+		post.ClickOnCancelButton(test);
+		System.out.println("Cancel button is validated");
+		report.endTest(test);
+	}
+
+	@Test(priority=11)
 	
 	public void verifyPostPageTest() throws Exception {
 		test= report.startTest("verifyPostPageTest");
 		Thread.sleep(2000);
-		System.out.println("Navigated to the AddPost for success stories");
+		homepage.ClickOnPostButton();
+		System.out.println("Navigated to the AddPost for validating success stories");
+		System.out.println("Navigated to the AddPost for validating success stories");
 		post.verifySuccessStoriescategoryBox(test);
 		report.endTest(test);
 	}
 	
-@Test(priority=10)
+	
+@Test(priority=12)
 	
 	public void verifySuccessStoriesIcon() throws InterruptedException
 	{
@@ -96,7 +117,7 @@ public class PostButtonTest extends TestBase {
 		}
 	}
 	
-@Test(priority=11)
+@Test(priority=13)
 	
 	public void verifySuccessStoryNews() throws Exception {
 			
@@ -123,7 +144,7 @@ public class PostButtonTest extends TestBase {
 	}
 
 
-	@Test(priority=12)
+	@Test(priority=14)
 	
 	public void verifyPostbuttonClickAfterSuccessStories() throws IOException, Exception {
 		test= report.startTest("ClickAfterSuccessStories");
@@ -134,7 +155,7 @@ public class PostButtonTest extends TestBase {
 		 report.endTest(test);
 	}
 
-	@Test(priority=13)
+	@Test(priority=15)
 	
 	public void verifySTPToolStory() throws IOException, Exception {
 		test= report.startTest("STPToolStory");
@@ -147,7 +168,7 @@ public class PostButtonTest extends TestBase {
 
 	
 
-	@Test(priority=14)
+	@Test(priority=16)
 	
 	public void verifySTPNews() throws Exception {
 		// *[@id="root"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[2]/span/div[1]

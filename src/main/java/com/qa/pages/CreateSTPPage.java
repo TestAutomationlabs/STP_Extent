@@ -11,6 +11,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
+import org.sikuli.script.SikuliException;
 
 import com.qa.Base.TestBase;
 import com.qa.DataDriven.ExcelUtility;
@@ -47,7 +51,7 @@ public class CreateSTPPage extends TestBase
 	@FindBy(xpath = "//input[@placeholder='STP Short Name']")
 	WebElement ShortName;
 	
-	@FindBy(xpath = "//span[text()='Upload']")
+	@FindBy(xpath = "//button[@class='btn btn-highlight mt-2 float-right']/span[text()='Upload']")
 	WebElement UploadButton;
 	
 	@FindBy(xpath = "//input[@placeholder='Community Organizer']")
@@ -295,6 +299,25 @@ public void EnterMandatoryFields(int cellNo, ExtentTest test) throws Interrupted
 	Thread.sleep(1000);
 }
 
+//
+
+
+//public void ImgUpload() throws InterruptedException, SikuliException
+//{	Thread.sleep(5000);
+//	driver.findElement(By.xpath("//button[@class='btn btn-highlight mt-2 float-right']/span[text()='Upload']")).sendKeys(Keys.RETURN);
+//	
+//	
+//	 Screen s=new Screen();
+//	Pattern fileNameInput = new Pattern("C:\\Users\\SLANKEGO\\Git\\test-automation-stp\\SikuliImages\\FileInputName_STP.PNG");
+//	 Pattern openButton=new Pattern("C:\\Users\\SLANKEGO\\Git\\test-automation-stp\\SikuliImages\\OpenButton_STP.PNG");
+//	
+//	
+//	 s.type(fileNameInput,"C:\\Users\\SLANKEGO\\Downloads\\snipping.PNG");
+//	s.click(openButton);
+//}
+
+
+
 //______________________________________________________________________________________________________
 public void EnterALLFields(ExtentTest test) throws Exception
 {
@@ -321,6 +344,30 @@ public void EnterALLFields(ExtentTest test) throws Exception
 		test.log(LogStatus.FAIL, e);
 	}
 	
+	try {
+	
+	System.out.println("Trying to get into upload button");
+	
+	Thread.sleep(5000);
+	driver.findElement(By.xpath("//button[@class='btn btn-highlight mt-2 float-right']/span[text()='Upload']")).click();
+	
+	 Screen s=new Screen();
+	Pattern fileNameInput = new Pattern("C:\\Users\\SLANKEGO\\Git\\test-automation-stp\\SikuliImages\\FileInputName_STP.PNG");
+	 Pattern openButton=new Pattern("C:\\Users\\SLANKEGO\\Git\\test-automation-stp\\SikuliImages\\OpenButton_STP.PNG");
+	
+	
+	 s.type(fileNameInput,"C:\\Users\\SLANKEGO\\Downloads\\snipping1.PNG");
+	s.click(openButton);
+	
+	
+	//ImgUpload();
+	System.out.println("upload button is find");
+	test.log(LogStatus.PASS, "Image Uploaded Using Upload button");
+	}
+	catch (Exception e)
+	{
+		test.log(LogStatus.FAIL, "Failed to upload the image");
+	}
 	try {
 		ShortName.sendKeys(Keys.CONTROL,"a", Keys.DELETE);
 		ShortName.sendKeys(ExcelUtility.getCellData("CreateSTP", 2, 6));

@@ -46,6 +46,12 @@ public class PostPages extends TestBase{
 	@FindBy(xpath="//button[@type='submit']")
 	WebElement Post;
 	
+	@FindBy(xpath="//button[contains(text(),'Cancel')]")
+	WebElement cancel;
+	
+	@FindBy(xpath="//div[@class='Toastify__toast-container Toastify__toast-container--bottom-center ToastContainer']")
+	WebElement Post_EmptyDetails;
+	
 	String Titletextbox;
 	String Yourpostbox;
 	String STPsbox;
@@ -227,13 +233,38 @@ public class PostPages extends TestBase{
 	
 
 	
-//	public  void verifyPost()
-//	{
-//		Post.click();
-//		System.out.println("Post button clicked successfully");
-//	}
-	
+	public void ClickOnCancelButton(ExtentTest test)
+	{
+		try {
+		if(!cancel.isEnabled())
+		{
+			test.log(LogStatus.FAIL, "Cancel button is not displayed");
+			System.out.println("Cancel button is not displayed");
+		}
+		else
+		{
+		cancel.click();
+		test.log(LogStatus.PASS, "Cancel button is displayed and clicked successfully");
+		System.out.println("Cancel button clicked successfully");
+	}
+		
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "Cancel button is not displayed");
+		}
 
+}
+	
+	public void ClickOnPostWithEmptyDetails(ExtentTest test) throws Exception
+	{
+		Post.click();
+		Thread.sleep(2000);
+		String toast=Post_EmptyDetails.getText();
+		System.out.println("Toast message is displayed for empty post click");
+		test.log(LogStatus.PASS, "Toast message is displayed for empty post click");
+	}
+	
 }
 
 

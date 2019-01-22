@@ -110,6 +110,9 @@ public class STPTesting extends TestBase{
 		public void AllFieldValidation() throws Exception
 		{
 			test = report.startTest("Create STP All Fields Validation");	
+			
+			Thread.sleep(15000);
+			
 			try
 			{
 				if (create.Discard().isDisplayed())
@@ -121,7 +124,6 @@ public class STPTesting extends TestBase{
 			{
 				System.out.println("Discard Button not present. ready to go with home button");
 			}
-			//home.verifyHelpPopup(test);
 			Thread.sleep(2000);
 			home.ClickOnSTPLink();
 			Thread.sleep(2000);

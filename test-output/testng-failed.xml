@@ -3,14 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.testcases.HomePageTest">
+      <class name="com.qa.testcases.FileUpload">
         <methods>
-          <include name="verifyHomeIconTest"/>
-          <include name="TearDown"/>
-          <include name="setUp"/>
-          <include name="verifyListTabTest"/>
+          <include name="f"/>
         </methods>
-      </class> <!-- com.qa.testcases.HomePageTest -->
+      </class> <!-- com.qa.testcases.FileUpload -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
