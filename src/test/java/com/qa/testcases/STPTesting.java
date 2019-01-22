@@ -25,14 +25,14 @@ import com.relevantcodes.extentreports.LogStatus;
 
 //@Listeners(CustomListner.class)
 public class STPTesting extends TestBase{
-	
+
 	//STPDetailsValidationPage validation;
 	CreateSTPPage create;
 	HomePage home;
 	ToastMessages toast;
 	STPDetails details;
 	ExtentTest test;
-	
+
 	ExtentReports report;
 	ListPage list;
 	TestUtil time;
@@ -42,7 +42,7 @@ public class STPTesting extends TestBase{
 	{
 		super();
 	}
-	
+
 	@BeforeSuite
 	public void beginSuite()
 	{
@@ -51,7 +51,7 @@ public class STPTesting extends TestBase{
 		report = new ExtentReports("./Reports/Report of   "+ClassName+".html",true);
 		report.loadConfig(new File("./extent-config.xml"));
 	}
-	
+
 	@BeforeClass
 	public void setup() {
 		initialization();
@@ -60,38 +60,52 @@ public class STPTesting extends TestBase{
 		toast = new ToastMessages();
 		details = new STPDetails();
 	}
-			@BeforeMethod
-			public void startBrowser()
-			{
-				
-			}
-			
-		@Test(priority = 8)
+
+	@Test(priority = 8)
+	public void DiscardButtonValidation() throws Exception
+	{
+		test = report.startTest("Create STP Discard button Validation");
+
+		Thread.sleep(20000);
+
+		home.verifyHelpPopup(test);
+		Thread.sleep(2000);
+		home.ClickOnSTPLink();
+		Thread.sleep(1000);
+		create.closeHelppopup();
+		Thread.sleep(3000);
+		try
+		{
+		create.Discard().click();
+		test.log(LogStatus.PASS, "Discard button clicked");
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "Discard button not functioning as expected");
+		}
+	}
+
+
+		@Test(priority = 9)
 		public void HelpTextValidation() throws Exception {
-			
-			test = report.startTest("Create STP Help Text Validation");	
-			
-			Thread.sleep(20000);
-			
-			home.verifyHelpPopup(test);
-			Thread.sleep(2000);
+
+			test = report.startTest("Create STP Help Text Validation");
 			home.ClickOnSTPLink();
 			Thread.sleep(1000);
 			create.closeHelppopup();
 			Thread.sleep(3000);
 			create.HelpToggleValidation(test);
-			
+
 			report.endTest(test);
-			
 		}
 
-		@Test(priority = 9)
+		@Test(priority = 10)
 		public void MandatoryFieldValidation() throws Exception
 		{
 			test = report.startTest("Create STP Mandatory field validation");
-			
+
 			try {
-					
+
 					for (int i=5; i<6 ; i++)
 					{
 					create.EnterMandatoryFields(i, test);
@@ -100,7 +114,7 @@ public class STPTesting extends TestBase{
 					toast.CommunityOrganiserToast(i, test);
 					toast.successfulToast(i, test);
 					details.detailsValidation(5);
-					
+
 					}
 				}
 			catch(Exception e)
@@ -110,18 +124,18 @@ public class STPTesting extends TestBase{
 			}
 			report.endTest(test);
 		}
-		
-		
-		@Test(priority = 10)
+
+
+		@Test(priority = 11)
 		public void AllFieldValidation() throws Exception
 		{
-			test = report.startTest("Create STP All Fields Validation");	
+			test = report.startTest("Create STP All Fields Validation");
 			try
 			{
 				if (create.Discard().isDisplayed())
 				{
 					create.Discard().click();
-				}	
+				}
 			}
 			catch(Exception e)
 			{
@@ -134,26 +148,45 @@ public class STPTesting extends TestBase{
 			create.closeHelppopup();
 			Thread.sleep(2000);
 			try {
-			
+
 				create.EnterALLFields(test);
 				Thread.sleep(2000);
 				toast.successfulToast(6, test);
 				details.detailsValidation(6);
-				
+
 			}
 			catch(Exception e)
 			{
 				test.log(LogStatus.INFO, "All Field validation failed due to the below exception");
 				test.log(LogStatus.FAIL, e);
 			}
-			
+
 			report.endTest(test);
 		}
-		
+
+	@Test(priority = 12)
+	public void MySTPTest()
+	{
+		try{
+			home.verifyHomeIconClick();
+			test.log(LogStatus.PASS, "Navigated to Home Page");
+				try{
+						home.testFindInMySTP(test);
+				}
+				catch(Exception e)
+				{
+					test.log(LogStatus.FAIL, "An Exception was found at MySTPs table");
+				}
+			}
+			catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "Navigation to Home Page unsuccessful");
+	}
+	}
 		@AfterMethod
 		public void closeBrowser()
 		{
-			
+
 		}
 
 	@AfterClass
@@ -162,5 +195,5 @@ public class STPTesting extends TestBase{
 		driver.close();
 		report.flush();
 		report.close();
-	}	
+	}
 }

@@ -1,42 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Test STPNew Maven_Suite]">
-  <test thread-count="5" name="STP Test Cases in Maven(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
       <class name="com.qa.testcases.STPTesting">
         <methods>
           <include name="closeReporter"/>
           <include name="AllFieldValidation"/>
           <include name="setup"/>
-          <include name="HelpTextValidation"/>
           <include name="closeBrowser"/>
           <include name="beginSuite"/>
-          <include name="startBrowser"/>
         </methods>
       </class> <!-- com.qa.testcases.STPTesting -->
-      <class name="com.qa.testcases.PostButtonTest">
-        <methods>
-          <include name="TearDown"/>
-          <include name="verifySTPNews"/>
-          <include name="verifySuccessStoriesIcon"/>
-          <include name="verifyPostbuttonClickAfterSuccessStories"/>
-          <include name="setUp"/>
-          <include name="verifySuccessStoryNews"/>
-        </methods>
-      </class> <!-- com.qa.testcases.PostButtonTest -->
-      <class name="com.qa.testcases.STPDetailsVAlidationTest">
-        <methods>
-          <include name="validateUserLabelTest"/>
-          <include name="setUp"/>
-          <include name="STPDetails"/>
-          <include name="verifyUserNameTest"/>
-          <include name="CreateSTPValidateTest"/>
-          <include name="verifyDescriptionLabelTest"/>
-          <include name="TearDown"/>
-          <include name="verifyResourceValidationTest"/>
-          <include name="verifyIntrestingButtonTest"/>
-        </methods>
-      </class> <!-- com.qa.testcases.STPDetailsVAlidationTest -->
     </classes>
-  </test> <!-- STP Test Cases in Maven(failed) -->
-</suite> <!-- Failed suite [Test STPNew Maven_Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
