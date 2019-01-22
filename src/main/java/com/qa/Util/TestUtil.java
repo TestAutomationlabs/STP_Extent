@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -24,13 +25,13 @@ public class TestUtil extends TestBase {
 	    String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 	    return timestamp;
 	}
-	
+
 	public void switchToFrame() {
 		driver.switchTo().frame("mainpanel");
 }
-	
-	
-	
+
+
+
 //	public static  void takeScreenshotAtEndOfTest() throws IOException {
 //		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 //		String currentDir = System.getProperty("user.dir");
@@ -38,21 +39,21 @@ public class TestUtil extends TestBase {
 //		//FileUtils.copyFile(scrFile, new File(currentDir + "\\screenshots\\"  +getName() + ".png"));
 //		//FileUtils.copyFile(scrFile, new File("D:\\SoftwareTestingMaterial.png"));
 //	}
-	
+
 //	public void takeScreenshotAtEndOfTest(String testMethodName)
 //	{
 //		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 //		String currentDir = System.getProperty("user.dir");
 //		try {
 //			//FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
-//		
+//
 //			FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/"+testMethodName+"_"+".jpg"));
 //		} catch (IOException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 //		//FileUtils.copyFile(scrFile, new File());
-//	
+//
 //	}
 
 }

@@ -43,7 +43,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 		stpdetails = new STPDetailsValidationPage();
 
 	}
-	@Test(priority=1)
+	@Test(priority=25)
 	public void HelpPoupTest() throws Exception
 	{
 		test= report.startTest("HelpPopup test");
@@ -54,8 +54,8 @@ public class STPDetailsVAlidationTest extends TestBase {
 		homepage.verifyHelpPopup(test);
 		report.endTest(test);
 	}
-	
-	@Test(priority = 2)
+
+	@Test(priority = 26)
 	public void CreateSTPValidateTest() throws Exception {
 		test= report.startTest("STP Link Validation");
 		homepage.ClickOnSTPLink();
@@ -68,12 +68,12 @@ public class STPDetailsVAlidationTest extends TestBase {
 		//homepage.ClickOnSTPToolIcon();
 		//test.log(LogStatus.PASS, "Click on STP Tool Icon");
 		report.endTest(test);
-		
-	}
-	
-	
 
-	@Test(priority = 3)
+	}
+
+
+
+	@Test(priority = 27)
 	public void STPDetails() throws IOException, InterruptedException {
 		test= report.startTest("STP Details Validation");
 		stpdetails = new STPDetailsValidationPage();
@@ -83,7 +83,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 		report.endTest(test);
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 28)
 	public void verifyUserNameTest() {
 		test= report.startTest("UserNameValidation");
 		Assert.assertTrue(stpdetails.verifyCorrectUserName());
@@ -92,7 +92,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 		report.endTest(test);
 	}
 
-	@Test(priority = 5)
+	@Test(priority = 29)
 	public void validateUserLabelTest() throws Exception {
 		test= report.startTest("ValidateUserLabel");
 		stpdetails.validateuserlabel();
@@ -101,7 +101,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 		report.endTest(test);
 	}
 
-	@Test(priority = 6)
+	@Test(priority = 30)
 	public void verifyDescriptionLabelTest() throws Exception {
 		test= report.startTest("DescriptionLabel");
 		stpdetails.validatedescrptionlabel();
@@ -110,7 +110,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 		report.endTest(test);
 	}
 
-	@Test(priority = 7)
+	@Test(priority = 25)
 	public void verifyResourceValidationTest() throws Exception {
 		test= report.startTest("ResourceValidation");
 		stpdetails.resourcesvalidation();
@@ -118,7 +118,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 		test.log(LogStatus.PASS, "Resource validation is completed");
 		report.endTest(test);
 	}
-	@Test(priority = 8)
+	@Test(priority = 31)
 	public void verifyIntrestingButtonTest() throws Exception {
 		test= report.startTest("IntrestingButtonValidation");
 		stpdetails.verifyIntrestingButton();
@@ -129,7 +129,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 		report.endTest(test);
 	}
 
-	@Test(priority = 9)
+	@Test(priority = 32)
 	public void verifyIntrestingSTPSList() {
 		int passcase = 0;
 		test= report.startTest("IntrestingSTPSList");
@@ -146,7 +146,7 @@ public class STPDetailsVAlidationTest extends TestBase {
 				test.log(LogStatus.PASS, "Intresting STPsList is completed");
 				passcase++;
 				break;
-			
+
 
 		}
 		if (passcase== 0)
@@ -160,6 +160,8 @@ public class STPDetailsVAlidationTest extends TestBase {
 	@AfterClass
 	public void TearDown() {
 		driver.close();
+		report.flush();
+		report.close();
 	}
 
 }
