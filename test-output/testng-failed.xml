@@ -4,18 +4,18 @@
   <test thread-count="5" name="Default test(failed)">
     <classes>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <class name="com.qa.testcases.STPDetailsVAlidationTest">
+=======
+      <class name="com.qa.testcases.HomePageTest">
+>>>>>>> 0eda048fdb04fe5228c1685d3f726d131e2a8135
         <methods>
-          <include name="validateUserLabelTest"/>
-          <include name="verifyIntrestingSTPSList"/>
+          <include name="verifyHomeIconTest"/>
+          <include name="TearDown"/>
           <include name="setUp"/>
-          <include name="STPDetails"/>
-          <include name="verifyUserNameTest"/>
-          <include name="CreateSTPValidateTest"/>
-          <include name="verifyDescriptionLabelTest"/>
-          <include name="verifyResourceValidationTest"/>
-          <include name="verifyIntrestingButtonTest"/>
+          <include name="verifyListTabTest"/>
         </methods>
+<<<<<<< HEAD
       </class> <!-- com.qa.testcases.STPDetailsVAlidationTest -->
 =======
       <class name="com.qa.testcases.PostButtonTest">
@@ -29,6 +29,9 @@
         </methods>
       </class> <!-- com.qa.testcases.PostButtonTest -->
 >>>>>>> 498d5684e312d732ead2f54769112ab78b218cc8
+=======
+      </class> <!-- com.qa.testcases.HomePageTest -->
+>>>>>>> 0eda048fdb04fe5228c1685d3f726d131e2a8135
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

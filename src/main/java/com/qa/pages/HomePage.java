@@ -1,192 +1,15 @@
-<<<<<<< HEAD
+
+
 package com.qa.pages;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-
-import com.qa.Base.TestBase;
-import com.qa.Util.TestUtil;
-
-public class HomePage extends TestBase {
-	//@FindBy(xpath = "//a[@class='navbar-home h2 pt-2 mr-4']")
-	
-	@FindBy(xpath = "//*[@class='svg-inline--fa fa-home fa-w-18 ']")
-	WebElement HomeIcon;
-
-	@FindBy(xpath = "//button[@class='btn btn-highlight']")
-	WebElement CreateSTP;
-
-	//@FindBy(xpath = "//span[contains(text(),'List')]")
-	@FindBy(xpath = "//span[contains(text(),'List')]")
-	WebElement ListTab;
-	
-	@FindBy(xpath="//span[contains(text(),'Network')]")
-	WebElement NetworkTab;
-	
-	@FindBy(xpath="//span[contains(text(),'Connection')]")
-	WebElement ConnectionTab;
-		
-	@FindBy(xpath = "//div/following::button[@class='btn btn-highlight ml-0']")
-	WebElement PostButton;
-	
-	@FindBy(xpath="//button[@data-original-title='STP Tool']")
-	WebElement STPToolButton;
-	
-	@FindBy(xpath="/html/body/div[2]/div/div[1]/div/div/div[3]/button")
-	WebElement ClosePopupAddSTPButton;
-	
-	@FindBy(xpath="//div[@class='news-title fs-15p font-weight-bold break-word']")
-	public WebElement EnteredSTPToolData;
-	// Initializing the Page Objects:
-	
-	@FindBy(xpath="//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div")
-	public List<WebElement> STPwebtablerows;
-	
-	//@FindBy(xpath="//div/button[@type='button']/span[text()='Close']")
-	@FindBy(xpath="//html/body/div[2]/div/div[1]/div/div/div[3]/button/span")
-	WebElement GetHelpopup;
-	
-	WebElement HomeIconValidation;
-	WebElement ListButtonValidation;
-	WebElement HelpPopupValidation;
-	WebElement NetworkTabValidation;
-
-	public HomePage() {
-		PageFactory.initElements(driver, this);
-	}
-
-//	public boolean verifyHelpPopup()
-//	{
-//		HelpPopupValidation=TestUtil.wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("GetHelpopup")));
-//		System.out.println("HelpPopup validation is completed" +HelpPopupValidation);
-//		return GetHelpopup.isDisplayed();
-//	}
-	
-	public void verifyHelpPopup() throws Exception
-	{
-		//HelpPopupValidation=TestUtil.wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("GetHelpopup")));
-		GetHelpopup.click();
-		/*if (!GetHelpopup.isDisplayed()) {
-			System.out.println("Helppopup is not displayed proceed with the Home icon");
-		} else {
-			//Thread.sleep(1000);
-			GetHelpopup.click();
-			System.out.println("HelpPopup validation is completed");
-			//System.out.println("HelpPopup validation is completed" +HelpPopupValidation);
-			//ListButtonValidation=TestUtil.wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("ListTab")));
-			//System.out.println("List tab is clicked");
-		}*/
-		
-		
-	}
-	
-	
-//	
-	public boolean verifyHomeIcon() {
-//	HomeIconValidation=TestUtil.wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("HomeIcon")));
-	System.out.println(" Home Icon is present");
-		return HomeIcon.isDisplayed();
-	}
-
-	public void verifyHomeIconClick()
-	{
-		HomeIcon.click();
-	}
-	public boolean verifyListTab() {
-//		if (!ListTab.isDisplayed()) {
-//			System.out.println("Listtab is not displayed");
-//		} else {
-//			Thread.sleep(3000);
-//			ListTab.click();
-		//	ListButtonValidation=TestUtil.wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("ListTab")));
-			System.out.println("List tab is present");
-			return ListTab.isDisplayed();
-		}
-
-	//}
-	
-	public boolean verifyNetworkTab()
-	{
-//		NetworkTabValidation=TestUtil.wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("NetworkTab")));
-		System.out.println("Network tab is present");
-		return NetworkTab.isDisplayed();
-		
-	}
-	
-	public boolean verifyConnectionTab()
-	{
-//		NetworkTabValidation=TestUtil.wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("NetworkTab")));
-		System.out.println("Network tab is present");
-		return ConnectionTab.isDisplayed();
-		
-	}
-	
-	
-	public CreateSTPPage ClickOnSTPLink() {
-		CreateSTP.click();
-		return new ClickOnSTPLink();
-	}
-	
-	public PostPages ClickOnPostButton() {
-	{
-		if(!PostButton.isDisplayed())
-		{
-			System.out.println("Failed to click the postbutton");
-		}
-		else
-		{
-			PostButton.click();
-			System.out.println("Post Button is clicked");
-		}
-		return new PostPages();
-	}
-	}
-
-	public void ClickonAddSTPButton()
-	{
-		if(!ClosePopupAddSTPButton.isDisplayed())
-		{
-			System.out.println("Failed to click on the ClosePopup for AddSTP Button");
-		}
-		else {
-		ClosePopupAddSTPButton.click();
-		System.out.println("AddSTP butoon clicked");
-	}
-	}
-	public void ClickOnSTPToolIcon() throws Exception
-	{
-		Thread.sleep(2000);
-		STPToolButton.click();
-		System.out.println("STPTool Button clicked");
-	}
-	
-	public void IntrestingSTPSList()
-	{
-		
-		System.out.println("IntrestingSTP List details are follows:");
-		
-	}
-}
-
-=======
-package com.qa.pages;
-
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-import com.qa.pages.STPDetailsValidationPage;
-
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import com.qa.Base.TestBase;
 import com.qa.Util.TestUtil;
 
@@ -226,8 +49,6 @@ public class HomePage extends TestBase {
 	@FindBy(xpath="//*[@class='svg-inline--fa fa-bell fa-w-14 ']")
 	public WebElement STPToolIcon;
 	
-	
-	
 	@FindBy(xpath="//div[@class='news-title fs-15p font-weight-bold break-word']")
 	public WebElement Success_EnteredSTPToolData;
 	
@@ -264,19 +85,47 @@ public class HomePage extends TestBase {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void verifyHelpPopup() throws Exception
+	public void verifyHelpPopup(ExtentTest test) throws Exception
 	{
+		try {
+			if(!(GetHelpPopup.isDisplayed()))
+			{
+				System.out.println("Helppopup is not present");
+				test.log(LogStatus.FAIL,"Helppopup is not present");
+			}
+			else
+			{
+				GetHelpPopup.click();
+				System.out.println("Helppopup is present and it has clicked");
+				test.log(LogStatus.PASS,"Helppopup is present and it has clicked");
+			}	
+		}
+		catch (Exception e)
+		{
+			System.out.println("Exception at Home Page help text pop-up.");
+			test.log(LogStatus.FAIL,"Helppopup is not present");
+			System.out.println(e);
+		}
 		
-		if(!GetHelpPopup.isDisplayed())
-		{
-			System.out.println("Helppopup is not present");
-		}
-		else
-		{
-			GetHelpPopup.click();
-			System.out.println("Helppopup is present and it has clicked");
-		}
 	}
+	public void verifyHomeIcon(ExtentTest test) {
+		try {
+			if(HomeIcon.isDisplayed())
+			{
+				test.log(LogStatus.PASS, "Home icon present");
+			}
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.PASS, "Home icon not present");
+		}
+		
+		//return HomeIcon.isDisplayed();
+	}
+	
+	
+
+
 
 	public boolean verifyHomeIcon() {
 		return HomeIcon.isDisplayed();
@@ -288,40 +137,72 @@ public class HomePage extends TestBase {
 		HomeIcon.click();
 	}
 
-	public void verifyListTab() {
+public void verifyListTab(ExtentTest test) {
+		
 		if (!ListTab.isDisplayed()) {
 			System.out.println("ListTab is not present");
+			test.log(LogStatus.FAIL,"ListTab not present in UI");
 		} else {
 
 			//ListTab.click();
 			System.out.println("ListTab is present");
+			test.log(LogStatus.PASS, "List tab present in the UI");
 		}
-
 	}
-	
-	public void verifyNetworkTab() {
-		if (!NetworkTab.isDisplayed()) {
-			System.out.println("NetworkTab is not present");
-		} else {
 
-			//NetworkTab.click();
-			System.out.println("ListTab is present");
-		}
+public void verifyListTabClick(ExtentTest test) {
+	if (!ListTab.isDisplayed()) {
+		System.out.println("ListTab is not present");
+	} else {
 
+		ListTab.click();
+		System.out.println("ListTab is present");
+		test.log(LogStatus.PASS, "List tab present in the UI");
 	}
+
+}
+
 	
-	public void verifyConnectionTab() {
+public void verifyNetworkTab(ExtentTest test) {
+	try {
+	if (!NetworkTab.isDisplayed()) {
+		System.out.println("NetworkTab is not present");
+		test.log(LogStatus.FAIL, "Network tab is not displayed");
+	} else {
+
+		//NetworkTab.click();
+		System.out.println("ListTab is present");
+		test.log(LogStatus.PASS, "Network tab is displayed");
+	}
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.FAIL, "Network tab is not displayed");
+	}
+}
+
+public void verifyConnectionTab(ExtentTest test) {
+	
+	try {
 		if (!ConnectionTab.isDisplayed()) {
 			System.out.println("ConnectionTab is not present");
+			test.log(LogStatus.FAIL, "Connection Tab is not displayed");
 		} else {
 
 			//ConnectionTab.click();
 			System.out.println("ConnectionTab is present");
-		}
-
+			test.log(LogStatus.PASS, "Connection Tab is displayed");
+		}	
+	}
+	catch(Exception e)
+	{
+		test.log(LogStatus.FAIL, "Connection Tab is not displayed");
 	}
 	
-	public PostPages ClickOnPostButton() {
+}
+
+	
+public PostPages ClickOnPostButton() {
 	{
 		if(!PostButton.isDisplayed())
 		{
@@ -338,11 +219,33 @@ public class HomePage extends TestBase {
 	}
 	}
 
-	public CreateSTPPage ClickOnSTPLink() {
+	public CreateSTPPage ClickOnSTPLink() throws InterruptedException {
+		Thread.sleep(3000);
 		CreateSTP.click();
 		return new ClickOnSTPLink();
 	}
 	
+	public void VerifySuccessStoriesIconButton(ExtentTest test)
+	{
+		try {
+		if(!STPSuccessStoriesIcon.isDisplayed())
+		{
+			System.out.println("Success stories Icon button is not displayed");
+			test.log(LogStatus.FAIL, "Success stories Icon button is not displayed");
+		}
+		
+		else {
+			System.out.println("Success stories Icon button is displayed");
+			test.log(LogStatus.PASS, "Success stories Icon button is displayed");
+		}
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "Success stories Icon button is not displayed");
+		}
+	}
+	
+
 	public void VerifySuccessStoriesIconButton()
 	{
 		if(!STPSuccessStoriesIcon.isDisplayed())
@@ -357,15 +260,23 @@ public class HomePage extends TestBase {
 	
 	
 	
-	public void VerifySTPToolIconButton()
+	public void VerifySTPToolIconButton(ExtentTest test)
 	{
+		try {
 		if(!STPToolIcon.isDisplayed())
 		{
 			System.out.println("STP Icon button is not displayed");
+			test.log(LogStatus.FAIL, "STP Icon button is not displayed");
 		}
 		
 		else {
 			System.out.println("Success stories Icon button is displayed");
+			test.log(LogStatus.PASS, "STP Icon Icon button is displayed");
+		}
+		}
+		catch(Exception e)
+		{
+			test.log(LogStatus.FAIL, "STP Icon button is not displayed");
 		}
 	}
 	
@@ -383,4 +294,3 @@ public class HomePage extends TestBase {
 		
 	}
 }
->>>>>>> 498d5684e312d732ead2f54769112ab78b218cc8

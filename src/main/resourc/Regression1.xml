@@ -1,34 +1,16 @@
-<<<<<<< HEAD:src/main/resourc/Regression1.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test STPNew Maven_Suite">
-
-<listeners>
-		<listener class-name="com.qa.ExtentReportListner.ExtentReportNG" />
-	</listeners>
-
+	
+	
 	
   <test name="STP Test Cases in Maven">
   <classes>
-  <class name="com.qa.testcases.HomePageTest"/>
-  <!--  <class name="com.qa.testcases.PostButtonTest"/>-->
+		  <class name="com.qa.testcases.HomePageTest"/>  
+		 <class name="com.qa.testcases.PostButtonTest"/>
+		<class name="com.qa.testcases.ListPageTest"/>
+		<class name="com.qa.testcases.STPTesting"/> 
+		  
   </classes>
   </test> <!-- Test -->
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test STPNew Maven_Suite">
-
-<listeners>
-		<listener class-name="com.qa.ExtentReportListner.ExtentReportNG" />
-	</listeners> 
-
-	
-  <test name="STP Test Cases in Maven">
-  <classes>
- 	<!--  <class name="com.qa.testcases.HomePageTest"/> -->
-      <class name="com.qa.testcases.PostButtonTest"/>
-  </classes>
-  </test> <!-- Test -->
->>>>>>> 498d5684e312d732ead2f54769112ab78b218cc8:src/main/resourc/Regression2.xml
 </suite> <!-- Suite -->
