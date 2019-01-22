@@ -3,10 +3,7 @@ package com.qa.testcases;
 import java.io.File;
 
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -23,7 +20,7 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-//@Listeners(CustomListner.class)
+@Listeners(CustomListner.class)
 public class STPTesting extends TestBase{
 
 	//STPDetailsValidationPage validation;
@@ -49,7 +46,7 @@ public class STPTesting extends TestBase{
 		initialization();
 		String ClassName = this.getClass().getSimpleName().toString();
 		//report = new ExtentReports("./Reports/Report of   "+ClassName+".html",true);
-				report = new ExtentReports("./Reports/"+ClassName+".html",true);
+		report = new ExtentReports("./Reports/"+ClassName+".html",true);
 		report.loadConfig(new File("./extent-config.xml"));
 		create = new CreateSTPPage();
 		home = new HomePage();
@@ -57,7 +54,7 @@ public class STPTesting extends TestBase{
 		details = new STPDetails();
 	}
 
-	@Test(priority = 8)
+	@Test(priority = 9)
 	public void DiscardButtonValidation() throws Exception
 	{
 		test = report.startTest("Create STP Discard button Validation");
@@ -82,7 +79,7 @@ public class STPTesting extends TestBase{
 	}
 
 
-		@Test(priority = 9)
+		@Test(priority = 10)
 		public void HelpTextValidation() throws Exception {
 
 			test = report.startTest("Create STP Help Text Validation");
@@ -95,7 +92,7 @@ public class STPTesting extends TestBase{
 			report.endTest(test);
 		}
 
-		@Test(priority = 10)
+		@Test(priority = 11)
 		public void MandatoryFieldValidation() throws Exception
 		{
 			test = report.startTest("Create STP Mandatory field validation");
@@ -121,8 +118,7 @@ public class STPTesting extends TestBase{
 			report.endTest(test);
 		}
 
-
-		@Test(priority = 11)
+		@Test(priority = 12)
 		public void AllFieldValidation() throws Exception
 		{
 			test = report.startTest("Create STP All Fields Validation");
@@ -137,7 +133,7 @@ public class STPTesting extends TestBase{
 			{
 				System.out.println("Discard Button not present. ready to go with home button");
 			}
-			//home.verifyHelpPopup(test);
+			home.verifyHelpPopup(test);
 			Thread.sleep(2000);
 			home.ClickOnSTPLink();
 			Thread.sleep(2000);
@@ -160,11 +156,15 @@ public class STPTesting extends TestBase{
 			report.endTest(test);
 		}
 
-	@Test(priority = 12)
+	@Test(priority = 13)
 	public void MySTPTest()
 	{
+		test = report.startTest("Verify My STPs");
 		try{
-			home.verifyHomeIconClick();
+			Thread.sleep(10000);
+			//home.verifyHomeIconClick();
+			home.verifyHelpPopup(test);
+			Thread.sleep(1000);
 			test.log(LogStatus.PASS, "Navigated to Home Page");
 				try{
 						home.testFindInMySTP(test);
