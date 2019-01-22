@@ -1,7 +1,12 @@
 package com.qa.testcases;
 
+import java.io.File;
+
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 
@@ -17,7 +22,6 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 
-//This is uday's code
 public class STPTesting extends TestBase{
 	
 	//STPDetailsValidationPage validation;
@@ -26,6 +30,7 @@ public class STPTesting extends TestBase{
 	ToastMessages toast;
 	STPDetails details;
 	ExtentTest test;
+	
 	ExtentReports report;
 	ListPage list;
 	TestUtil time;
@@ -40,32 +45,27 @@ public class STPTesting extends TestBase{
 	@BeforeClass
 	public void setup() {
 		initialization();
-//		String ClassName = this.getClass().getSimpleName().toString();
-//		//report = new ExtentReports("./Reports/Report of   "+ClassName+".html",true);
-//				report = new ExtentReports("./Reports/"+ClassName+".html",true);
-//		report.loadConfig(new File("./extent-config.xml"));
-		
+		String ClassName = this.getClass().getSimpleName().toString();
+		//report = new ExtentReports("./Reports/Report of   "+ClassName+".html",true);
+				report = new ExtentReports("./Reports/"+ClassName+".html",true);
+		report.loadConfig(new File("./extent-config.xml"));
 		create = new CreateSTPPage();
 		home = new HomePage();
 		toast = new ToastMessages();
 		details = new STPDetails();
-		report = new HomePageTest().initializeExtentReport();
-		//test = report.startTest("Add STP Validation");	
-	}		
-		
-		@Test(priority = 8)
-		public void discardValidation() throws InterruptedException
-		{
-			test = report.startTest("Create STP Discard Button Validation");	
-			Thread.sleep(15000);
+	}
+			@BeforeMethod
+			public void startBrowser()
+			{
+				
+			}
 			
-			report.endTest(test);
-		}
-		
-		@Test(priority = 9)
+		@Test(priority = 8)
 		public void HelpTextValidation() throws Exception {
 			
 			test = report.startTest("Create STP Help Text Validation");	
+			
+			Thread.sleep(20000);
 			
 			home.verifyHelpPopup(test);
 			Thread.sleep(2000);
@@ -79,7 +79,7 @@ public class STPTesting extends TestBase{
 			
 		}
 
-		@Test(priority = 10)
+		@Test(priority = 9)
 		public void MandatoryFieldValidation() throws Exception
 		{
 			test = report.startTest("Create STP Mandatory field validation");
@@ -106,7 +106,7 @@ public class STPTesting extends TestBase{
 		}
 		
 		
-		@Test(priority = 11)
+		@Test(priority = 10)
 		public void AllFieldValidation() throws Exception
 		{
 			test = report.startTest("Create STP All Fields Validation");	
@@ -143,10 +143,16 @@ public class STPTesting extends TestBase{
 			
 			report.endTest(test);
 		}
+		
+		@AfterMethod
+		public void closeBrowser()
+		{
+			
+		}
+
 	@AfterClass
 	public void closeReporter()
 	{
-		//report.endTest(test);
 		driver.close();
 		report.flush();
 		report.close();

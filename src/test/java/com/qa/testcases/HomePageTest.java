@@ -6,7 +6,6 @@ import java.io.File;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -16,23 +15,12 @@ import com.qa.pages.HomePage;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 
-
-//This is uday's code
-//@Listeners(CustomListner.class)
+@Listeners(CustomListner.class)
 public class HomePageTest extends TestBase {
 	HomePage homepage;
 	ExtentTest test;
 	ExtentReports report;
 
-	@BeforeSuite
-	public ExtentReports initializeExtentReport()
-	{
-		String ClassName = this.getClass().getSimpleName().toString();
-		report = new ExtentReports("./Reports/"+ClassName+".html",true);
-		report.loadConfig(new File("./extent-config.xml"));
-		return report;
-	}
-	
 	public HomePageTest() {
 		super();
 	}
@@ -44,8 +32,10 @@ public class HomePageTest extends TestBase {
 
 		homepage = new HomePage();
 		System.out.println("Browser launched of STP");
-		report = initializeExtentReport();
-		//test = report.startTest("Home Page Test");
+		String ClassName = this.getClass().getSimpleName().toString();
+		//report = new ExtentReports("./Reports/Report of   "+ClassName+".html",true);
+				report = new ExtentReports("./Reports/"+ClassName+".html",true);
+		report.loadConfig(new File("./extent-config.xml"));
 
 	}
 
@@ -119,9 +109,6 @@ public class HomePageTest extends TestBase {
 
 	@AfterClass(alwaysRun = true)
 	public void TearDown() {
-		
-		
-		//report.endTest(test);
 		driver.close();
 		report.flush();
 		report.close();
