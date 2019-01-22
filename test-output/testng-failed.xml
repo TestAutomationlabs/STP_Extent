@@ -3,11 +3,40 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
+<<<<<<< HEAD
       <class name="com.qa.testcases.FileUpload">
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <class name="com.qa.testcases.STPDetailsVAlidationTest">
+=======
+      <class name="com.qa.testcases.HomePageTest">
+>>>>>>> 0eda048fdb04fe5228c1685d3f726d131e2a8135
+>>>>>>> 1e793726df19de231572aebb630d8a40cfdf5956
         <methods>
           <include name="f"/>
         </methods>
+<<<<<<< HEAD
       </class> <!-- com.qa.testcases.FileUpload -->
+=======
+<<<<<<< HEAD
+      </class> <!-- com.qa.testcases.STPDetailsVAlidationTest -->
+=======
+      <class name="com.qa.testcases.PostButtonTest">
+        <methods>
+          <include name="TearDown"/>
+          <include name="verifySTPNews"/>
+          <include name="verifySTPToolStory"/>
+          <include name="AddPostTest"/>
+          <include name="setUp"/>
+          <include name="verifyPostPageTest"/>
+        </methods>
+      </class> <!-- com.qa.testcases.PostButtonTest -->
+>>>>>>> 498d5684e312d732ead2f54769112ab78b218cc8
+=======
+      </class> <!-- com.qa.testcases.HomePageTest -->
+>>>>>>> 0eda048fdb04fe5228c1685d3f726d131e2a8135
+>>>>>>> 1e793726df19de231572aebb630d8a40cfdf5956
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

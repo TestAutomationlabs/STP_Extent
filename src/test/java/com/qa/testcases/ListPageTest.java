@@ -35,6 +35,8 @@ public class ListPageTest extends TestBase {
 		report.loadConfig(new File("./extent-config.xml"));
 	}
 	
+	
+	
 	//@Test(priority = 11)
 	@Test(priority = 1)
 	public void SearchSTPTest() throws Exception

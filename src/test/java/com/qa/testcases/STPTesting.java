@@ -136,6 +136,7 @@ public class STPTesting extends TestBase{
 				toast.successfulToast(6, test);
 				details.detailsValidation(6);
 				
+				
 			}
 			catch(Exception e)
 			{
