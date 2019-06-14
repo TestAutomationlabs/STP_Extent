@@ -21,8 +21,7 @@ import com.relevantcodes.extentreports.LogStatus;
 public class ListPage extends TestBase
 {
 
-	ExtentTest test;
-	ExtentReports report;
+	
 	
 	int SearchCount = 0;
 	String value = null;
@@ -144,12 +143,123 @@ public class ListPage extends TestBase
 	@FindBy (xpath = "//*[@class='svg-inline--fa fa-times fa-w-11 category-item-close hide-when-collapsed cursor-pointer']")
 	WebElement closeCategory;
 	
+	@FindBy (xpath ="//*[@id=\"root\"]/div/div[2]/div[3]/div/div/div[3]/div[1]/div[3]/button[2]")
+	WebElement ShareWithMail;
+	
+	@FindBy (xpath = "//input[@placeholder='Type in the name of colleague you want to share the STP with ...']")
+	WebElement shareWithField;
+	
+	@FindBy (xpath = "//div[text()='Uday Kumar']")
+	WebElement mailCheckName;
+	
+	@FindBy (xpath = "//*[@placeholder='Look what I found on the STP Tool! This STP might help you ...']")
+	WebElement reasonForSharing;
+	
+	@FindBy (xpath ="//button[text()='Share']")
+	WebElement mailShare;
+	
+	@FindBy (xpath="//*[text()='Close']")
+	WebElement mailShareclose;
+	
+	@FindBy (xpath ="//div[@role = 'alert']")
+	WebElement mailSent;
+	
+	
 	public ListPage()
 	{
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void searchSTP(ExtentTest test) throws Exception
+	public WebElement getlistSearch()
+    {
+        return listSearch;
+       
+    }
+	
+	public void mailSharepopup() throws InterruptedException
+	{
+		//try
+		//{
+			ShareWithMail.click();
+			//test.log(LogStatus.PASS, "share with mail button clicked");
+			System.out.println("Share with mail button clicked");
+		//	try 
+			//{
+				shareWithField.sendKeys("Uday kumar");
+				Thread.sleep(3000);
+				shareWithField.sendKeys(Keys.RETURN);
+				Thread.sleep(1000);
+				String namePresent = mailCheckName.getText();
+				//if(namePresent.equalsIgnoreCase("Uday Kumar"))
+					if(namePresent.equalsIgnoreCase("Uday kumar"))
+				{
+					//test.log(LogStatus.PASS, "Name Enetered Successfully");
+					System.out.println("Name Enetered Successfully");
+					//try {
+						Thread.sleep(1000);
+							reasonForSharing.sendKeys();//"Sharing mail from Share button in List tab of STP application"
+							//test.log(LogStatus.PASS, "Reason for Sharing details entered");
+							System.out.println("Reason for Sharing details entered");
+							//try {
+									mailShare.click();
+								//	test.log(LogStatus.PASS, "clicked on share button");
+									System.out.println("clicked on share button");
+								//	try {
+										 //Verify mail sent toast message
+											Thread.sleep(2000);
+											//div[text()='Mail sent.']
+											String clickedShareButton =mailSent.getText();
+											if(clickedShareButton.equalsIgnoreCase("Mail sent."))
+											{
+												//test.log(LogStatus.PASS, "Mail sent toast messsage verified");
+												System.out.println("Mail sent toast messsage verified");
+											}
+											else
+											{
+												//test.log(LogStatus.FAIL, "Mail sent toast message is not the same");
+												System.out.println("Mail sent toast message is not the same");
+											}
+//										}
+//									catch(Exception e)
+//									{
+//										//test.log(LogStatus.FAIL, "Toast message not verified");
+//										System.out.println("Toast message not verified");
+//									}
+//								}
+//							catch(Exception e)
+//							{
+//								//test.log(LogStatus.FAIL, "Unable to click on share button");
+//								System.out.println("Unable to click on share button");
+//							}
+//						}
+//					catch(Exception e)
+//					{
+//						//test.log(LogStatus.FAIL, "Failed to Enter the reason for sharing");
+//						System.out.println("Failed to Enter the reason for sharing");
+//					}
+				}
+				else
+				{
+					//test.log(LogStatus.FAIL, "Name Entered didnt match the expected");
+					System.out.println("Name Entered didnt match the expected");
+				}
+//				//.test...
+				
+				
+//			}
+//			catch(Exception e)
+//			{
+//				
+//			}
+//		}
+//		//catch(Exception e)
+//		{
+//			//test.log(LogStatus.PASS, "failed at share with mail button");
+//			System.out.println("failed at share with mail button");
+//		}
+	}
+	
+	public void searchSTP() throws Exception
 	{
 		try
 		{
@@ -161,36 +271,37 @@ public class ListPage extends TestBase
 					try {
 						listSearch.sendKeys(searching);//ExcelUtility.getCellData("CreateSTP", 5, 1));
 						listSearch.sendKeys(Keys.RETURN);
+						
 						Thread.sleep(1000);			
 						try{
-							elementSearch(searching, test);
+							elementSearch(searching);
 						}
 						catch(Exception e)
 						{
 							System.out.println("Search Ended");
-							test.log(LogStatus.INFO, "All Matches searched in the list");
+							
 						}
 				if (SearchCount>0)
 				{
 					System.out.println("Searched STP name matched the full name");
-					test.log(LogStatus.PASS, "Searched STP name matched the full name");
+					
 				}
 				else
 				{
 					System.out.println("search parameter was not present");
-					test.log(LogStatus.FAIL, "Searched STP name not found");
+					
 				}
 				}
 				catch(Exception e)
 				{
 					System.out.println("Exception occured at search field");
-					test.log(LogStatus.FAIL, e);
+					
 				}
 				}
 				else
 				{
 					String noListTabLink = "Navigation to List Tab unsuccessful";
-					System.out.println(noListTabLink);
+					
 				}
 				
 			}
@@ -206,7 +317,7 @@ public class ListPage extends TestBase
 		}
 		}
 	
-	public void elementSearch(String SearchValue, ExtentTest test)
+	public void elementSearch(String SearchValue)
 	{
 		do		
 		{
@@ -252,7 +363,7 @@ public class ListPage extends TestBase
 		}
 	catch(Exception e)
 	{
-		test.log(LogStatus.FAIL, "Name not found");
+		System.out.println("Name not found");
 	}
 }
 		while(loadMore.isDisplayed());
@@ -301,7 +412,7 @@ public class ListPage extends TestBase
 		}
 	}
 	
-	public void FilterByCategory(ExtentTest test) throws Exception
+	public void FilterByCategory() throws Exception
 	{
 		
 		for (int i=4; i<25; i++)
@@ -325,18 +436,20 @@ public class ListPage extends TestBase
 				searchInSelectedFilter.sendKeys(valueToMatch);
 				Thread.sleep(2000);
 				searchInSelectedFilter.sendKeys(Keys.RETURN);
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 				String searchedWord = filterTip.getText();
 				String filterTipinList = getfilterTipinList().getText();
 				if(searchedWord.contains(filterTipinList))
 				{
 					System.out.println("Category pass");
-					test.log(LogStatus.PASS, value+"  filter applied sucessfully");
+					System.out.println(value+ " filter applied sucessfully");
+					//test.log(LogStatus.PASS, value+ "filter applied sucessfully");
 				}
 				else 
 				{
 					System.out.println("Category failed");
-					test.log(LogStatus.FAIL, value+"  filter not working as expected");
+					//test.log(LogStatus.FAIL, value+"  filter not working as expected");
+					System.out.println(value+ " fiter not working as expected");
 				}
 				
 				
@@ -372,12 +485,14 @@ public class ListPage extends TestBase
 				if(searchedWord.contains(filterTipinList))
 				{
 					System.out.println("Category pass");
-					test.log(LogStatus.PASS, value+"  filter applied sucessfully");
+					//test.log(LogStatus.PASS, value+"  filter applied sucessfully");
+					System.out.println(value+ "filter applied successfully");
 				}
 				else
 				{
 					System.out.println("Category failed");
-					test.log(LogStatus.FAIL, value+"  filter not working as expected");
+					System.out.println(value+ "filter not working as expected");
+					//test.log(LogStatus.FAIL, value+"  filter not working as expected");
 				}
 				
 				
@@ -385,21 +500,26 @@ public class ListPage extends TestBase
 			catch(Exception e)
 				{
 					System.out.println("An Error occured at "+value);
-					test.log(LogStatus.INFO, "An Error occured at "+value );
-					test.log(LogStatus.FAIL, e);
+					//test.log(LogStatus.INFO, "An Error occured at "+value );
+					//test.log(LogStatus.FAIL, e);
 					System.out.println(e);
 				}
 			try {
+					
 				closeCategory.click();
 				
 			}
-			catch(Exception e)
+			catch(NoSuchElementException e)
 			{
-				System.out.println("Unable to close the category");
-				test.log(LogStatus.INFO, "Unable to close the category");
-				test.log(LogStatus.FAIL, e);
-				break;
+				System.out.println("Category close button not present");
 			}
+//			catch(Exception e)
+//			{
+//				System.out.println("Unable to close the category");
+//				test.log(LogStatus.INFO, "Unable to close the category");
+//				test.log(LogStatus.FAIL, e);
+//				break;
+//			}
 		}
 }
 	}

@@ -6,10 +6,11 @@
 	
   <test name="STP Test Cases in Maven">
   <classes>
-		  <class name="com.qa.testcases.HomePageTest"/>  
-		 <class name="com.qa.testcases.PostButtonTest"/>
-		<class name="com.qa.testcases.ListPageTest"/>
-		<class name="com.qa.testcases.STPTesting"/> 
+		  <!--  <class name="com.qa.testcases.HomePageTest"/>   -->
+		   <class name="com.qa.testcases.STPTesting"/>
+		  <class name="com.qa.testcases.ListPageTest"/> 
+		 <class name="com.qa.testcases.PostButtonTest"/> 
+	
 		  
   </classes>
   </test> <!-- Test -->

@@ -96,14 +96,23 @@ public class TestBase{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//FileUtils.copyFile(scrFile, new File());
-	
+		
 	}
 	
 	
-	
-	
-	
+
+	public static String Screenshot(WebDriver driver, String fileName) throws IOException
+	{
+		fileName=fileName+ ".png";
+		String curr=System.getProperty("user.dir");
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		
+		//FileUtils.copyFile(src, new File(curr + fileName));
+		FileUtils.copyFile(src, new File(curr + "/screenshots/"+fileName+"_"+".jpg"));
+		String dest=curr + fileName;
+		return dest;
+		
+	}
 	
 
 }

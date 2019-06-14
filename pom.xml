@@ -15,16 +15,18 @@
   </properties>
   
   <build>
+  
+    <sourceDirectory>${basedir}</sourceDirectory>
+    <resources>
+        <resource>
+            <directory>${basedir}</directory>
+            <excludes>
+                <exclude>**/*.java</exclude>
+            </excludes>
+        </resource>
+    </resources>
+
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-         <version>3.8.0</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
     
        <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -32,7 +34,7 @@
         <version>2.19.1</version>
         <configuration>
           <suiteXmlFiles>
-        <suiteXmlFile>src/main/resourc/Regression.xml</suiteXmlFile> 
+        <suiteXmlFile>src/main/resourc/Regression1.xml</suiteXmlFile> 
         <!--   <suiteXmlFile>src/main/resourc/Regression1.xml</suiteXmlFile>-->
         </suiteXmlFiles>
         </configuration>

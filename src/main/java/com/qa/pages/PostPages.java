@@ -112,7 +112,7 @@ public class PostPages extends TestBase{
 		
 	}*/
 	
-	public void verifySTPToolcategoryBox(ExtentTest test) throws IOException, Exception{
+	public void verifySTPToolcategoryBox() throws IOException, Exception{
 		try {
 			
 		List<WebElement>dropdown = driver.findElements(By.xpath("//select[@class='form-control']//option[3]"));
@@ -151,7 +151,7 @@ public class PostPages extends TestBase{
 	}
 	
 	
-	public void verifySuccessStoriescategoryBox(ExtentTest test) throws IOException, Exception{
+	public void verifySuccessStoriescategoryBox() throws IOException, Exception{
 		try {
 			
 		List<WebElement>dropdown = driver.findElements(By.xpath("//select[@class='form-control']//option[2]"));
@@ -167,10 +167,9 @@ public class PostPages extends TestBase{
 			Thread.sleep(2000);
 			dropdown.get(i).click();
 			System.out.println("Element has clicked");
-			test.log(LogStatus.PASS, "Element has been clicked");
 			Titletextbox=ExcelUtility.getCellData("PostDetails", 3, 0);
 			Title.sendKeys(Titletextbox);
-			test.log(LogStatus.PASS, "STP title has been entered");
+			
 			
 			Success_titledata_valdn=Title.getAttribute("value");
 			System.out.println("Success Title data validation data" +Success_titledata_valdn);	
@@ -178,7 +177,7 @@ public class PostPages extends TestBase{
 			Thread.sleep(3000);
 			STPsbox=ExcelUtility.getCellData("PostDetails", 1, 2);
 			STPs.sendKeys(STPsbox);
-			test.log(LogStatus.PASS, "STP Success message has been entered");
+			
 			System.out.println("STPs Box text value is "+ STPsbox);
 			Thread.sleep(4000);
 			STPs.sendKeys(Keys.ENTER);
@@ -217,7 +216,7 @@ public class PostPages extends TestBase{
 	
 		
 	
-	public void PostbuttonClickAfterSuccessStories(ExtentTest test) throws IOException, Exception
+	public void PostbuttonClickAfterSuccessStories() throws IOException, Exception
 	{
 		//div/following::button[@class='btn btn-highlight ml-0']
 		//div/following::button[@class='btn btn-highlight ml-0']
@@ -233,38 +232,37 @@ public class PostPages extends TestBase{
 	
 
 	
-	public void ClickOnCancelButton(ExtentTest test)
+	public void ClickOnCancelButton()
 	{
 		try {
 		if(!cancel.isEnabled())
 		{
-			test.log(LogStatus.FAIL, "Cancel button is not displayed");
+			
 			System.out.println("Cancel button is not displayed");
 		}
 		else
 		{
 		cancel.click();
-		test.log(LogStatus.PASS, "Cancel button is displayed and clicked successfully");
+		
 		System.out.println("Cancel button clicked successfully");
 	}
 		
 		}
 		catch(Exception e)
 		{
-			test.log(LogStatus.FAIL, "Cancel button is not displayed");
+			System.out.println("Cancel button clicked successfully");
 		}
 
 }
 	
-	public void ClickOnPostWithEmptyDetails(ExtentTest test) throws Exception
+	public void ClickOnPostWithEmptyDetails() throws Exception
 	{
 		Post.click();
 		Thread.sleep(2000);
 		String toast=Post_EmptyDetails.getText();
 		System.out.println("Toast message is displayed for empty post click");
-		test.log(LogStatus.PASS, "Toast message is displayed for empty post click");
+		
 	}
 	
 }
-
 

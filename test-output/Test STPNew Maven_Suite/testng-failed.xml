@@ -3,24 +3,23 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Test STPNew Maven_Suite]">
   <test thread-count="5" name="STP Test Cases in Maven(failed)">
     <classes>
-      <class name="com.qa.testcases.STPDetailsVAlidationTest">
+      <class name="com.qa.testcases.HomePageTest">
         <methods>
-          <include name="validateUserLabelTest"/>
+          <include name="TearDown"/>
           <include name="setUp"/>
-          <include name="STPDetails"/>
-          <include name="verifyUserNameTest"/>
-          <include name="verifyDescriptionLabelTest"/>
-          <include name="verifyResourceValidationTest"/>
-          <include name="verifyIntrestingButtonTest"/>
+          <include name="CloseConnection"/>
+          <include name="verifyListTabTest"/>
         </methods>
-      </class> <!-- com.qa.testcases.STPDetailsVAlidationTest -->
+      </class> <!-- com.qa.testcases.HomePageTest -->
       <class name="com.qa.testcases.PostButtonTest">
         <methods>
           <include name="TearDown"/>
           <include name="verifySTPNews"/>
+          <include name="verifySuccessStoriesIcon"/>
           <include name="verifyPostbuttonClickAfterSuccessStories"/>
           <include name="setUp"/>
-          <include name="verifySuccessStoryNews"/>
+          <include name="CloseConnection"/>
+          <include name="verifyPostPageTest"/>
         </methods>
       </class> <!-- com.qa.testcases.PostButtonTest -->
     </classes>

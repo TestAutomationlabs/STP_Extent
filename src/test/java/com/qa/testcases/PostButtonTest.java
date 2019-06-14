@@ -9,12 +9,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.qa.Base.TestBase;
+import com.qa.ExtentReportListner.ExtentFactory;
 import com.qa.Util.CustomListner;
 import com.qa.Util.TestUtil;
 import com.qa.pages.HomePage;
@@ -27,8 +30,8 @@ import com.relevantcodes.extentreports.LogStatus;
 public class PostButtonTest extends TestBase {
 	HomePage homepage;
 	PostPages post;
-	ExtentTest test;
 	ExtentReports report;
+	ExtentTest test;
 
 	public String stptoolnews_valdn;
 	public String successnews_valdn;
@@ -42,67 +45,67 @@ public class PostButtonTest extends TestBase {
 	public void setUp() {
 
 		initialization();
+		report=ExtentFactory.Instance();
 		homepage = new HomePage();
 		System.out.println("Browser launched of STP");
-		String ClassName = this.getClass().getSimpleName().toString();
-		//report = new ExtentReports("./Reports/Report of   "+ClassName+".html",true);
-		report = new ExtentReports("./Reports/"+ClassName+".html",true);
-        report.loadConfig(new File("./extent-config.xml"));
-		// logger=report.startTest("PostPage");
 
 		post = new PostPages();
+		
+		//test=report.startTest("PostPageTest-->Verify PostPage of STP");
 	}
 
-	@Test(priority=8)
+	@Test(priority = 17)
 	
 	public void AddPostTest() throws Exception {
 		
-		test= report.startTest("Add Post test");
 		Thread.sleep(20000);
-		homepage.verifyHelpPopup(test);
+		homepage.verifyHelpPopup();
 		Thread.sleep(2000);
+		test=report.startTest("PostPageTest-->Verify AddPostTest of STP");
 		homepage.ClickOnPostButton();
 		System.out.println("Navigated to the AddPost");
-		report.endTest(test);
+		test.log(LogStatus.PASS, "Navigated to the AddPost");
 
 	}
-	@Test(priority=9)
-	public void ClickOnPostButtonWithEmptyDetails() throws Exception
-	{
-		test=report.startTest("verifyEmptyPostButton");
-		Thread.sleep(2000);
-		post.ClickOnPostWithEmptyDetails(test);
-		report.endTest(test);
-	}
+//	@Test(priority = 14)
+//	public void ClickOnPostButtonWithEmptyDetails() throws Exception
+//	{
+//		test=report.startTest("verifyEmptyPostButton");
+//		Thread.sleep(2000);
+//		post.ClickOnPostWithEmptyDetails(test);
+//		report.endTest(test);
+//	}
 	
-	@Test(priority=10)
+	@Test(priority = 18)
 	public void verifyCancelButtonTest() throws Exception
 	{
-		test= report.startTest("VerifyCancelbuttontest");
+		
 		Thread.sleep(2000);
-		post.ClickOnCancelButton(test);
+		test=report.startTest("PostPageTest-->Verify CancelButtonTest of STP");
+		post.ClickOnCancelButton();
 		System.out.println("Cancel button is validated");
-		report.endTest(test);
+		test.log(LogStatus.PASS,"Cancel button is validated");
 	}
 
-	@Test(priority=11)
+	@Test(priority = 19)
 	
 	public void verifyPostPageTest() throws Exception {
-		test= report.startTest("verifyPostPageTest");
+		
 		Thread.sleep(2000);
+		test=report.startTest("PostPageTest-->Verify PostPageTest of STP");
 		homepage.ClickOnPostButton();
 		System.out.println("Navigated to the AddPost for validating success stories");
-		System.out.println("Navigated to the AddPost for validating success stories");
-		post.verifySuccessStoriescategoryBox(test);
-		report.endTest(test);
+		post.verifySuccessStoriescategoryBox();
+		test.log(LogStatus.PASS, "Navigated to the AddPost for success stories");
 	}
 	
 	
-@Test(priority=12)
+@Test(priority = 20)
 	
 	public void verifySuccessStoriesIcon() throws InterruptedException
 	{
-		test= report.startTest("verifySuccessStoriesIcon");
+		Thread.sleep(2000);
+		test=report.startTest("PostPageTest-->verifySuccessStoriesIcon of STP");
 		Thread.sleep(2000);
 		if(!homepage.STPSuccessStoriesIcon.isEnabled())
 		{
@@ -111,17 +114,17 @@ public class PostButtonTest extends TestBase {
 		else
 		{
 			homepage.STPSuccessStoriesIcon.click();
-			test.log(LogStatus.PASS, "STP SuccessStories Icon button is enabled now");
 			System.out.println("STP SuccessStories Icon button is enabled now");
-			report.endTest(test);
+			test.log(LogStatus.PASS, "STP SuccessStories Icon button is enabled now");
 		}
 	}
 	
-@Test(priority=13)
+@Test(priority = 21)
 	
 	public void verifySuccessStoryNews() throws Exception {
 			
-		test= report.startTest("verifySuccessStoryNews");
+	test=report.startTest("PostPageTest-->verifySuccessStoryNews of STP");
+		
 		// *[@id="root"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[2]/span/div[1]
 		String beforexpath = "//*[@id=\"root\"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[";
 		String afterxpath = "]/span/div[1]";
@@ -140,39 +143,39 @@ public class PostButtonTest extends TestBase {
 			}
 		}
 		test.log(LogStatus.PASS, "STP SuccessStoryNews is Verified");
-		report.endTest(test);		
+			
 	}
 
 
-	@Test(priority=14)
+	@Test(priority = 22)
 	
 	public void verifyPostbuttonClickAfterSuccessStories() throws IOException, Exception {
-		test= report.startTest("ClickAfterSuccessStories");
+		test=report.startTest("PostPageTest-->verifyPostbuttonClickAfterSuccessStories validation in STP");
 		Thread.sleep(4000);
-		 post.PostbuttonClickAfterSuccessStories(test);
+		 post.PostbuttonClickAfterSuccessStories();
 		 System.out.println("Post button clicked after successs stories validation");
 		 test.log(LogStatus.PASS, "Post button clicked after successs stories validation");
-		 report.endTest(test);
 	}
 
-	@Test(priority=15)
+	@Test(priority = 23)
 	
 	public void verifySTPToolStory() throws IOException, Exception {
-		test= report.startTest("STPToolStory");
-		post.verifySTPToolcategoryBox(test);
+		test=report.startTest("PostPageTest-->verifySTPToolStory of STP");
+		Thread.sleep(1000);
+		post.verifySTPToolcategoryBox();
 		System.out.println("STP Tool category validation");
 		test.log(LogStatus.PASS, "STP Tool category validation is completed");
-		report.endTest(test);
+		
 	}
 	
 
 	
 
-	@Test(priority=16)
+	@Test(priority = 24)
 	
 	public void verifySTPNews() throws Exception {
 		// *[@id="root"]/div/div[2]/div[2]/div[1]/div/div[3]/div/div[2]/span/div[1]
-		test= report.startTest("verifySTPNews");
+		test=report.startTest("PostPageTest-->verifySTPNews of STP");
 		Thread.sleep(3000);
 		homepage.STPSuccessStoriesIcon.click();
 		System.out.println("STP SuccessStories Icon button is disabled now");
@@ -195,7 +198,7 @@ public class PostButtonTest extends TestBase {
 
 		}
 		test.log(LogStatus.PASS, "STPNews is Verified");
-		report.endTest(test);
+		
 	}
 	
 
@@ -222,12 +225,25 @@ public class PostButtonTest extends TestBase {
 	 * }
 	 */
 	
-	@AfterClass(alwaysRun = true)
-	public void TearDown() {
+	@AfterMethod
+	public void TearDown(ITestResult testResult) throws IOException
+	{
+		if(testResult.getStatus()==ITestResult.FAILURE)
+		{
+			//takeScreenshotAtEndOfTest(testResult.getMethod().getMethodName());
+			String path=TestBase.Screenshot(driver,  testResult.getName());
+			String imgPath=test.addScreenCapture(path);
+			test.log(LogStatus.FAIL, "VerifyTestresults", imgPath);
+		}
 		
-		driver.close();
-		report.flush();
-		report.close();
 	}
+	
 
+	@AfterClass(alwaysRun = true)
+public void CloseConnection() {
+	driver.close();
+		report.endTest(test);
+		report.flush();
+	}
 }
+

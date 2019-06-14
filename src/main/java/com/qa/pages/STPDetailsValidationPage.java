@@ -112,7 +112,7 @@ public class STPDetailsValidationPage extends TestBase{
 	public void STPFields() throws IOException, InterruptedException 
 	{		
 		System.out.println(ExcelUtility.getCellData("CreateSTP_Mandatory", 1, 2));
-		STPTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",4, 0);
+		STPTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",7, 0);
 		Stpname.sendKeys(STPTextbox);
 		
 		System.out.println("The text value of stptexbox" +Stpname.getAttribute("value"));
@@ -120,13 +120,13 @@ public class STPDetailsValidationPage extends TestBase{
 		System.out.println("Enteredstpname"+enteredstpname);
 		
 		
-		String STPShortNameTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",4, 1);
+		String STPShortNameTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory",7, 1);
 		StpShortname.sendKeys(STPShortNameTextbox);
 			
 		
 		
 		
-		String DescriptionTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 4, 2);
+		String DescriptionTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 7, 2);
 		Description.sendKeys(DescriptionTextbox);
 		
 		System.out.println("The text value of stpdescription is: " +Description.getAttribute("value"));
@@ -135,7 +135,7 @@ public class STPDetailsValidationPage extends TestBase{
 		
 		resources.click();
 		
-		String CommunityorgTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 3, 3);
+		String CommunityorgTextbox=ExcelUtility.getCellData("CreateSTP_Mandatory", 7, 3);
 		communityorganizer.sendKeys(CommunityorgTextbox,Keys.SPACE);
 		Thread.sleep(3000);
 		communityorganizer.sendKeys(Keys.ENTER);
